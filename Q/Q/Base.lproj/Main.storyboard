@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FInalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6lu-jH-5aH">
+                                <rect key="frame" x="20" y="63" width="560" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpC-BG-2GY">
+                                <rect key="frame" x="20" y="127" width="560" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEZ-FC-l9z">
+                                <rect key="frame" x="276" y="34" width="45" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx2-SE-SEC">
+                                <rect key="frame" x="279" y="106" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48x-sC-FwQ">
+                                <rect key="frame" x="277" y="171" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="send:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p2X-5s-Caj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="6lu-jH-5aH" secondAttribute="leading" id="89c-OQ-7Jo"/>
+                            <constraint firstItem="GEZ-FC-l9z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="BPr-vp-pUU"/>
+                            <constraint firstItem="6lu-jH-5aH" firstAttribute="top" secondItem="GEZ-FC-l9z" secondAttribute="bottom" constant="8" id="DeJ-4e-W3A"/>
+                            <constraint firstItem="SpC-BG-2GY" firstAttribute="width" secondItem="6lu-jH-5aH" secondAttribute="width" id="SEt-Zh-dak"/>
+                            <constraint firstItem="48x-sC-FwQ" firstAttribute="centerX" secondItem="SpC-BG-2GY" secondAttribute="centerX" id="T1k-QL-qg1"/>
+                            <constraint firstItem="SpC-BG-2GY" firstAttribute="top" secondItem="dx2-SE-SEC" secondAttribute="bottom" id="V24-Z0-ffD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6lu-jH-5aH" secondAttribute="trailing" id="bfS-2b-MfJ"/>
+                            <constraint firstItem="GEZ-FC-l9z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-1.5" id="gDr-oy-Xkk"/>
+                            <constraint firstItem="SpC-BG-2GY" firstAttribute="centerX" secondItem="dx2-SE-SEC" secondAttribute="centerX" id="hWl-Sr-bPC"/>
+                            <constraint firstItem="48x-sC-FwQ" firstAttribute="top" secondItem="SpC-BG-2GY" secondAttribute="bottom" constant="14" id="hba-Ro-Xx4"/>
+                            <constraint firstItem="dx2-SE-SEC" firstAttribute="centerX" secondItem="6lu-jH-5aH" secondAttribute="centerX" id="tmX-lu-qTg"/>
+                            <constraint firstItem="dx2-SE-SEC" firstAttribute="top" secondItem="6lu-jH-5aH" secondAttribute="bottom" constant="13" id="xJM-Kp-E5W"/>
+                            <constraint firstItem="SpC-BG-2GY" firstAttribute="height" secondItem="6lu-jH-5aH" secondAttribute="height" id="xeH-kP-1Ih"/>
+                            <constraint firstItem="6lu-jH-5aH" firstAttribute="centerX" secondItem="GEZ-FC-l9z" secondAttribute="centerX" constant="1.5" id="zc5-ba-4mB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="classText" destination="SpC-BG-2GY" id="EqU-F4-Cbo"/>
+                        <outlet property="name" destination="6lu-jH-5aH" id="c2R-Jh-qUe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="357"/>
+        </scene>
+    </scenes>
+</document>

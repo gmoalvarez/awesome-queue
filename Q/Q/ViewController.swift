@@ -24,10 +24,11 @@ class ViewController: UIViewController {
     
     
     func sendInfo(){
-        if let n = name.text, c = classText.text{
+        if let name = name.text,
+            classNameAndNumber = classText.text{
         let person = PFObject(className: "Person")
-            person["name"] = n
-            person["class"] = c
+            person["name"] = name
+            person["class"] = classNameAndNumber
         person.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             print("Object has been saved.")
         }

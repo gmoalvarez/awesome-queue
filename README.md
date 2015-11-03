@@ -3,4 +3,4 @@ The best ios app for making awesome queues
 
 #Developers
 
-Archie Archibold and Guillermo Alvarez
+Archie Archbold and Guillermo Alvarez

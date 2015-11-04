@@ -196,6 +196,8 @@
                         <outlet property="signUpButton" destination="Gcl-rI-HR6" id="p7Q-RV-BmN"/>
                         <outlet property="userTypeSegmentedControl" destination="CeW-n1-VBQ" id="ZPh-Ro-dwx"/>
                         <outlet property="usernameTextField" destination="pRj-xO-EdM" id="QVD-Nt-5yT"/>
+                        <segue destination="zwZ-ei-ru2" kind="show" identifier="queueListViewSegue" id="0Jh-HU-XQ5"/>
+                        <segue destination="SBa-Ig-DuV" kind="show" identifier="waitViewSegue" id="Ly6-xs-gnz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94d-q7-pmo" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -52,8 +52,9 @@ class LoginSignupViewController: UIViewController {
         let user = PFUser()
         user.username = usernameTextField.text
         user.password = passwordTextField.text
-        user["type"] = userTypeSegmentedControl.titleForSegmentAtIndex(
+        let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
             userTypeSegmentedControl.selectedSegmentIndex)
+        user["type"] = userType
         
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
             
@@ -69,8 +70,11 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            //TODO: - successfully signed up, segue to appropriate view
-            print("Sign up successful")
+            if userType == "Prof" {
+                self.performSegueWithIdentifier("queueListViewSegue", sender: nil)
+            } else {
+                self.performSegueWithIdentifier("waitViewSegue", sender: nil)
+            }
             
         }
 

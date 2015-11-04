@@ -11,17 +11,25 @@ import Parse
 
 class LoginSignupViewController: UIViewController {
 
-    var signupActive = true
     
+    @IBOutlet weak var signupOrLoginSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var registeredText: UILabel!
-    
     
     var activityIndicator = UIActivityIndicatorView()
+    
+    @IBAction func signupModeChanged(sender: UISegmentedControl) {
+        let signUpModeTitle = getSignUpModeTitle()
+        signUpButton.setTitle(signUpModeTitle, forState: .Normal)
+    }
+    
+    func getSignUpModeTitle() -> String{
+        let selectedSignInModeIndex = signupOrLoginSegmentedControl.selectedSegmentIndex
+        let signInMode = signupOrLoginSegmentedControl.titleForSegmentAtIndex(selectedSignInModeIndex)!
+        return signInMode
+    }
     
     @IBAction func signupPressed(sender: UIButton) {
         
@@ -38,12 +46,15 @@ class LoginSignupViewController: UIViewController {
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
-        if signupActive {
-            setUpNewUser()
-        } else {
-            loginExistingUser()
-        }
+        let signInMode = getSignUpModeTitle()
         
+        if signInMode == "Sign Up" {
+            setUpNewUser()
+        } else if signInMode == "Log In" {
+            loginExistingUser()
+        } else {
+            print("Spelling error in code, should be title of segmented control")
+        }
     }
     
     func setUpNewUser() {
@@ -68,7 +79,7 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            if userType == "Prof" {
+            if userType == "Professor" {
                 self.performSegueWithIdentifier("queueListViewSegue", sender: nil)
             } else {
                 self.performSegueWithIdentifier("waitViewSegue", sender: nil)
@@ -96,25 +107,26 @@ class LoginSignupViewController: UIViewController {
             
             
             
+            
         }
     }
     
-    @IBAction func loginPressed(sender: UIButton) {
-       
-        if signupActive {
-            toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
-        } else {
-            toggleBetweenSignupAndLoginMode("Sign Up",label: "Already Registered?", loginButtonText: "Log In")
-        }
-        
-    }
+//    @IBAction func loginPressed(sender: UIButton) {
+//       
+//        if signupActive {
+//            toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
+//        } else {
+//            toggleBetweenSignupAndLoginMode("Sign Up",label: "Already Registered?", loginButtonText: "Log In")
+//        }
+//        
+//    }
     
-    func toggleBetweenSignupAndLoginMode(mode: String, label: String, loginButtonText: String) {
-        signUpButton.setTitle(mode, forState: .Normal)
-        registeredText.text = label
-        loginButton.setTitle(loginButtonText, forState: .Normal)
-        signupActive = !signupActive
-    }
+//    func toggleBetweenSignupAndLoginMode(mode: String, label: String, loginButtonText: String) {
+//        signUpButton.setTitle(mode, forState: .Normal)
+//        registeredText.text = label
+//        loginButton.setTitle(loginButtonText, forState: .Normal)
+//        signupActive = !signupActive
+//    }
     
     func runActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))

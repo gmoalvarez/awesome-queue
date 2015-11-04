@@ -100,6 +100,34 @@
             </objects>
             <point key="canvasLocation" x="-575" y="336"/>
         </scene>
+        <!--Student Enroll in Queue-->
+        <scene sceneID="uQg-5O-NS6">
+            <objects>
+                <viewController title="Student Enroll in Queue" id="JMe-fo-vwO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OvG-5f-8J7"/>
+                        <viewControllerLayoutGuide type="bottom" id="gSf-UU-Wp1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ueu-3d-D7N">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QR Code stuff here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76T-pf-hkZ">
+                                <rect key="frame" x="173" y="67" width="148" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LeM-Ak-lEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="370" y="15"/>
+        </scene>
         <!--Login or Signup-->
         <scene sceneID="TcK-ZY-rrr">
             <objects>
@@ -112,7 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq4-XZ-Z34">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Awesome Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq4-XZ-Z34">
                                 <rect key="frame" x="83" y="28" width="129" height="21"/>
                                 <animations/>
                                 <constraints>
@@ -134,11 +162,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-n1-VBQ">
-                                <rect key="frame" x="87" y="233" width="125" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-n1-VBQ">
+                                <rect key="frame" x="56" y="233" width="179" height="29"/>
                                 <animations/>
                                 <segments>
-                                    <segment title="Prof"/>
+                                    <segment title="Professor"/>
                                     <segment title="Student"/>
                                 </segments>
                             </segmentedControl>
@@ -157,6 +185,9 @@
                                     <segment title="Sign up"/>
                                     <segment title="Log In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="signupModeChanged:" destination="i98-vM-rvp" eventType="valueChanged" id="NyQ-r3-j4O"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <animations/>
@@ -183,15 +214,47 @@
                     <connections>
                         <outlet property="passwordTextField" destination="wxF-ge-6Py" id="q2c-2J-COZ"/>
                         <outlet property="signUpButton" destination="Gcl-rI-HR6" id="p7Q-RV-BmN"/>
+                        <outlet property="signupOrLoginSegmentedControl" destination="707-uB-DIK" id="P0t-aO-jFa"/>
                         <outlet property="userTypeSegmentedControl" destination="CeW-n1-VBQ" id="ZPh-Ro-dwx"/>
                         <outlet property="usernameTextField" destination="pRj-xO-EdM" id="QVD-Nt-5yT"/>
-                        <segue destination="zwZ-ei-ru2" kind="show" identifier="queueListViewSegue" id="0Jh-HU-XQ5"/>
-                        <segue destination="SBa-Ig-DuV" kind="show" identifier="waitViewSegue" id="Ly6-xs-gnz"/>
+                        <segue destination="9mw-02-WeK" kind="show" identifier="professorSegue" id="2wQ-Vj-BQL"/>
+                        <segue destination="JMe-fo-vwO" kind="show" identifier="studentSegue" id="fS4-5W-0g3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94d-q7-pmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147" y="-337"/>
+            <point key="canvasLocation" x="-456" y="-552"/>
+        </scene>
+        <!--Professor Create or View-->
+        <scene sceneID="PEE-0u-hqY">
+            <objects>
+                <viewController title="Professor Create or View" id="9mw-02-WeK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dPG-fs-RUE"/>
+                        <viewControllerLayoutGuide type="bottom" id="2rM-VN-yz0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eNz-VQ-HlQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92u-ir-CBL">
+                                <rect key="frame" x="231" y="128" width="139" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Create a new Queue"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KN-lA-Wjr">
+                                <rect key="frame" x="231" y="354" width="140" height="30"/>
+                                <animations/>
+                                <state key="normal" title="View Existing Queue"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rsg-16-ChE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="-909"/>
         </scene>
         <!--Queue List View-->
         <scene sceneID="1lD-Md-Zo6">
@@ -222,7 +285,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9o-mB-OMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="-337"/>
+            <point key="canvasLocation" x="1200" y="-904"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oc3-e5-mfa">
@@ -283,7 +346,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJx-O8-asH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="352"/>
+            <point key="canvasLocation" x="1200" y="15"/>
         </scene>
     </scenes>
 </document>

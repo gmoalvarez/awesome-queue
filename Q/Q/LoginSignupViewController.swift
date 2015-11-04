@@ -11,47 +11,67 @@ import Parse
 
 class LoginSignupViewController: UIViewController {
 
-    var signupActive = true
-    
+    @IBOutlet weak var signupOrLoginSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var registeredText: UILabel!
-    
     
     var activityIndicator = UIActivityIndicatorView()
+    
+    @IBAction func signupModeChanged(sender: UISegmentedControl) {
+        let signUpModeTitle = getSignUpModeTitle()
+        
+        if signUpModeTitle == "Log In" {
+            userTypeSegmentedControl.hidden = true
+        } else {
+            userTypeSegmentedControl.hidden = false
+        }
+        
+        signUpButton.setTitle(signUpModeTitle, forState: .Normal)
+        
+    }
+    
+    func getSignUpModeTitle() -> String{
+        let selectedSignInModeIndex = signupOrLoginSegmentedControl.selectedSegmentIndex
+        let signInMode = signupOrLoginSegmentedControl.titleForSegmentAtIndex(selectedSignInModeIndex)!
+        return signInMode
+    }
     
     @IBAction func signupPressed(sender: UIButton) {
         
         guard usernameTextField.text != "" &&
             passwordTextField.text != "" &&
-        userTypeSegmentedControl.selectedSegmentIndex != -1 else {
+        (userTypeSegmentedControl.selectedSegmentIndex != -1 ||
+        userTypeSegmentedControl.hidden == true) else {
                 
                 displayAlert("Empty Field(s)",
-                    message: "Please enter a username, password, and select user type")
+                    message: "Please enter a username, password, and select user type (if signing up)")
                 return
         }
+        
         
         runActivityIndicator()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
-        if signupActive {
-            setUpNewUser()
-        } else {
-            loginExistingUser()
-        }
+        let signInMode = getSignUpModeTitle()
         
+        if signInMode == "Sign Up" {
+            let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
+                userTypeSegmentedControl.selectedSegmentIndex)!
+            setUpNewUser(userType)
+        } else if signInMode == "Log In" {
+            loginExistingUser()
+        } else {
+            print("Spelling error in code, should be title of segmented control")
+        }
     }
     
-    func setUpNewUser() {
+    func setUpNewUser(userType: String) {
         let user = PFUser()
         user.username = usernameTextField.text
         user.password = passwordTextField.text
-        let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
-            userTypeSegmentedControl.selectedSegmentIndex)
         user["type"] = userType
         
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
@@ -68,10 +88,10 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            if userType == "Prof" {
-                self.performSegueWithIdentifier("queueListViewSegue", sender: nil)
+            if userType == "Professor" {
+                self.performSegueWithIdentifier("professorSegue", sender: nil)
             } else {
-                self.performSegueWithIdentifier("waitViewSegue", sender: nil)
+                self.performSegueWithIdentifier("studentSegue", sender: nil)
             }
             
         }
@@ -83,7 +103,7 @@ class LoginSignupViewController: UIViewController {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
-        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
+        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
             
             guard error == nil else {
                 if let errorString = error!.userInfo["error"] as? String {
@@ -94,27 +114,39 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
+            guard let userType = user?["type"] as? String else {
+                print("Current user does not have type...that's weird")
+                return
+            }
+            
+            if userType == "Professor" {
+                self.performSegueWithIdentifier("professorSegue", sender: nil)
+            } else if userType == "Student" {
+                self.performSegueWithIdentifier("studentSegue", sender: nil)
+            } else {
+                print("Error, userType should be Professor or Student")
+            }
             
             
         }
     }
     
-    @IBAction func loginPressed(sender: UIButton) {
-       
-        if signupActive {
-            toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
-        } else {
-            toggleBetweenSignupAndLoginMode("Sign Up",label: "Already Registered?", loginButtonText: "Log In")
-        }
-        
-    }
+//    @IBAction func loginPressed(sender: UIButton) {
+//       
+//        if signupActive {
+//            toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
+//        } else {
+//            toggleBetweenSignupAndLoginMode("Sign Up",label: "Already Registered?", loginButtonText: "Log In")
+//        }
+//        
+//    }
     
-    func toggleBetweenSignupAndLoginMode(mode: String, label: String, loginButtonText: String) {
-        signUpButton.setTitle(mode, forState: .Normal)
-        registeredText.text = label
-        loginButton.setTitle(loginButtonText, forState: .Normal)
-        signupActive = !signupActive
-    }
+//    func toggleBetweenSignupAndLoginMode(mode: String, label: String, loginButtonText: String) {
+//        signUpButton.setTitle(mode, forState: .Normal)
+//        registeredText.text = label
+//        loginButton.setTitle(loginButtonText, forState: .Normal)
+//        signupActive = !signupActive
+//    }
     
     func runActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
@@ -149,14 +181,33 @@ class LoginSignupViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
+    
+    //I will leave this here for now but this is unnecessary since we can always get the current user from Parse
+    //we do not need to pass it during the segue
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        let segueIdentifier = segue.identifier
+//        
+//        if segueIdentifier == "professorSegue" {
+//            guard let destination = segue.destinationViewController as? ProfessorCreateOrViewController else {
+//                print("Error: Destination is not ProfessorCreateOrViewController")
+//                return
+//            }
+//            
+//            //We can force unwrap currentUser since we are sure we are logged in at this point
+////            destination.user = PFUser.currentUser()!
+//        } else if segueIdentifier == "studentSegue" {
+//            guard let destination = segue.destinationViewController as? StudentChooseQueueViewController else {
+//                print("Error: Destination is not StudentChooseQueueViewController")
+//                return
+//            }
+//            
+//            //We can force unwrap currentUser since we are sure we are logged in at this point
+////            destination.user = PFUser.currentUser()!
+//        }
+//    }
+    
 
 }

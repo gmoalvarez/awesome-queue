@@ -10,6 +10,9 @@ import UIKit
 
 class QueueListController: UITableViewController {
 
+    var queueList = [String]()
+    var queueID = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +32,7 @@ class QueueListController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

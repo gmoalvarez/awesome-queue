@@ -28,6 +28,8 @@
 		21DCCBC21BDA261900851C10 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBC11BDA261900851C10 /* libsqlite3.tbd */; };
 		B301565A1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
 		B301565B1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
+		B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
+		B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,7 @@
 		21DCCBBF1BDA260800851C10 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B30156591BE9AE57000CDF85 /* Production.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Production.storyboard; sourceTree = "<group>"; };
+		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,7 @@
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				B30156591BE9AE57000CDF85 /* Production.storyboard */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
+				B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
 				21DCCB881BDA253800851C10 /* Info.plist */,
@@ -321,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
+				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB921BDA253800851C10 /* QTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

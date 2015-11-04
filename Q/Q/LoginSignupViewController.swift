@@ -44,8 +44,6 @@ class LoginSignupViewController: UIViewController {
             loginExistingUser()
         }
         
-        
-        
     }
     
     func setUpNewUser() {

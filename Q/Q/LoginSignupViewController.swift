@@ -21,7 +21,15 @@ class LoginSignupViewController: UIViewController {
     
     @IBAction func signupModeChanged(sender: UISegmentedControl) {
         let signUpModeTitle = getSignUpModeTitle()
+        
+        if signUpModeTitle == "Log In" {
+            userTypeSegmentedControl.hidden = true
+        } else {
+            userTypeSegmentedControl.hidden = false
+        }
+        
         signUpButton.setTitle(signUpModeTitle, forState: .Normal)
+        
     }
     
     func getSignUpModeTitle() -> String{
@@ -34,16 +42,14 @@ class LoginSignupViewController: UIViewController {
         
         guard usernameTextField.text != "" &&
             passwordTextField.text != "" &&
-        userTypeSegmentedControl.selectedSegmentIndex != -1 else {
+        (userTypeSegmentedControl.selectedSegmentIndex != -1 ||
+        userTypeSegmentedControl.hidden == true) else {
                 
                 displayAlert("Empty Field(s)",
-                    message: "Please enter a username, password, and select user type")
+                    message: "Please enter a username, password, and select user type (if signing up)")
                 return
         }
         
-        //We can force unwrap since we are sure a segment was selected
-        let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
-            userTypeSegmentedControl.selectedSegmentIndex)!
         
         runActivityIndicator()
         
@@ -51,10 +57,12 @@ class LoginSignupViewController: UIViewController {
         
         let signInMode = getSignUpModeTitle()
         
-        if signInMode == "Sign up" {
+        if signInMode == "Sign Up" {
+            let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
+                userTypeSegmentedControl.selectedSegmentIndex)!
             setUpNewUser(userType)
         } else if signInMode == "Log In" {
-            loginExistingUser(userType)
+            loginExistingUser()
         } else {
             print("Spelling error in code, should be title of segmented control")
         }
@@ -90,12 +98,12 @@ class LoginSignupViewController: UIViewController {
 
     }
     
-    func loginExistingUser(userType: String) {
+    func loginExistingUser() {
         
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
-        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
+        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
             
             guard error == nil else {
                 if let errorString = error!.userInfo["error"] as? String {
@@ -103,6 +111,11 @@ class LoginSignupViewController: UIViewController {
                 } else {
                     self.displayAlert("Failed to log in", message: "Try again later")
                 }
+                return
+            }
+            
+            guard let userType = user?["type"] as? String else {
+                print("Current user does not have type...that's weird")
                 return
             }
             

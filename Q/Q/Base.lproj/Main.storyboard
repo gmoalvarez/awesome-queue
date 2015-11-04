@@ -182,7 +182,7 @@
                                 <rect key="frame" x="20" y="81" width="250" height="29"/>
                                 <animations/>
                                 <segments>
-                                    <segment title="Sign up"/>
+                                    <segment title="Sign Up"/>
                                     <segment title="Log In"/>
                                 </segments>
                                 <connections>

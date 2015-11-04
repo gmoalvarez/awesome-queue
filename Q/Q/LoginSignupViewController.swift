@@ -42,27 +42,29 @@ class LoginSignupViewController: UIViewController {
                 return
         }
         
+        //We can force unwrap since we are sure a segment was selected
+        let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
+            userTypeSegmentedControl.selectedSegmentIndex)!
+        
         runActivityIndicator()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         let signInMode = getSignUpModeTitle()
         
-        if signInMode == "Sign Up" {
-            setUpNewUser()
+        if signInMode == "Sign up" {
+            setUpNewUser(userType)
         } else if signInMode == "Log In" {
-            loginExistingUser()
+            loginExistingUser(userType)
         } else {
             print("Spelling error in code, should be title of segmented control")
         }
     }
     
-    func setUpNewUser() {
+    func setUpNewUser(userType: String) {
         let user = PFUser()
         user.username = usernameTextField.text
         user.password = passwordTextField.text
-        let userType = userTypeSegmentedControl.titleForSegmentAtIndex(
-            userTypeSegmentedControl.selectedSegmentIndex)
         user["type"] = userType
         
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
@@ -80,16 +82,16 @@ class LoginSignupViewController: UIViewController {
             }
             
             if userType == "Professor" {
-                self.performSegueWithIdentifier("queueListViewSegue", sender: nil)
+                self.performSegueWithIdentifier("professorSegue", sender: nil)
             } else {
-                self.performSegueWithIdentifier("waitViewSegue", sender: nil)
+                self.performSegueWithIdentifier("studentSegue", sender: nil)
             }
             
         }
 
     }
     
-    func loginExistingUser() {
+    func loginExistingUser(userType: String) {
         
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
@@ -105,7 +107,13 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            
+            if userType == "Professor" {
+                self.performSegueWithIdentifier("professorSegue", sender: nil)
+            } else if userType == "Student" {
+                self.performSegueWithIdentifier("studentSegue", sender: nil)
+            } else {
+                print("Error, userType should be Professor or Student")
+            }
             
             
         }
@@ -161,14 +169,33 @@ class LoginSignupViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
+    
+    //I will leave this here for now but this is unnecessary since we can always get the current user from Parse
+    //we do not need to pass it during the segue
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        let segueIdentifier = segue.identifier
+//        
+//        if segueIdentifier == "professorSegue" {
+//            guard let destination = segue.destinationViewController as? ProfessorCreateOrViewController else {
+//                print("Error: Destination is not ProfessorCreateOrViewController")
+//                return
+//            }
+//            
+//            //We can force unwrap currentUser since we are sure we are logged in at this point
+////            destination.user = PFUser.currentUser()!
+//        } else if segueIdentifier == "studentSegue" {
+//            guard let destination = segue.destinationViewController as? StudentChooseQueueViewController else {
+//                print("Error: Destination is not StudentChooseQueueViewController")
+//                return
+//            }
+//            
+//            //We can force unwrap currentUser since we are sure we are logged in at this point
+////            destination.user = PFUser.currentUser()!
+//        }
+//    }
+    
 
 }

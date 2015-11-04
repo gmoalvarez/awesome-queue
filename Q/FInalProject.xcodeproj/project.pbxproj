@@ -30,6 +30,10 @@
 		B301565B1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
 		B39C96091BEAB6C500372446 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C96081BEAB6C500372446 /* User.swift */; };
 		B39C960A1BEAB6C500372446 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C96081BEAB6C500372446 /* User.swift */; };
+		B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
+		B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
+		B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
+		B39C96111BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
 		B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 		B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +83,8 @@
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B30156591BE9AE57000CDF85 /* Production.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Production.storyboard; sourceTree = "<group>"; };
 		B39C96081BEAB6C500372446 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
+		B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentChooseQueueViewController.swift; sourceTree = "<group>"; };
 		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +149,8 @@
 		21DCCB7B1BDA253800851C10 /* Q */ = {
 			isa = PBXGroup;
 			children = (
+				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
+				B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */,
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				B30156591BE9AE57000CDF85 /* Production.storyboard */,
@@ -338,8 +346,10 @@
 			files = (
 				B39C96091BEAB6C500372446 /* User.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
+				B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,
+				B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +360,8 @@
 				B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB921BDA253800851C10 /* QTests.swift in Sources */,
 				B39C960A1BEAB6C500372446 /* User.swift in Sources */,
+				B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
+				B39C96111BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -256,7 +256,7 @@
 				TargetAttributes = {
 					21DCCB781BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 9U59G4TU97;
+						DevelopmentTeam = YFW32UFS6M;
 					};
 					21DCCB8C1BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -469,6 +469,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -477,6 +479,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SquirrelApps.FinalProject;
 				PRODUCT_NAME = FInalProject;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -484,6 +487,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -492,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SquirrelApps.FinalProject;
 				PRODUCT_NAME = FInalProject;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -11,7 +11,6 @@ import Parse
 
 class LoginSignupViewController: UIViewController {
 
-    
     @IBOutlet weak var signupOrLoginSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!

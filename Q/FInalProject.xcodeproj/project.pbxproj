@@ -28,8 +28,6 @@
 		21DCCBC21BDA261900851C10 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBC11BDA261900851C10 /* libsqlite3.tbd */; };
 		B301565A1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
 		B301565B1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
-		B39C96091BEAB6C500372446 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C96081BEAB6C500372446 /* User.swift */; };
-		B39C960A1BEAB6C500372446 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C96081BEAB6C500372446 /* User.swift */; };
 		B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
@@ -82,7 +80,6 @@
 		21DCCBBF1BDA260800851C10 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B30156591BE9AE57000CDF85 /* Production.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Production.storyboard; sourceTree = "<group>"; };
-		B39C96081BEAB6C500372446 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
 		B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentChooseQueueViewController.swift; sourceTree = "<group>"; };
 		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */,
-				B39C96081BEAB6C500372446 /* User.swift */,
 			);
 			name = LoginSignup;
 			sourceTree = "<group>";
@@ -344,7 +340,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B39C96091BEAB6C500372446 /* User.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
 				B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
@@ -359,7 +354,6 @@
 			files = (
 				B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB921BDA253800851C10 /* QTests.swift in Sources */,
-				B39C960A1BEAB6C500372446 /* User.swift in Sources */,
 				B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
 				B39C96111BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */,
 			);

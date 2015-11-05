@@ -26,6 +26,7 @@ class StudentChooseQueueViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         user = PFUser.currentUser()!
+        print("The current user is \(user)")
     }
 
     /*

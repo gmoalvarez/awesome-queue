@@ -88,12 +88,18 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            if userType == "Professor" {
-                self.performSegueWithIdentifier("professorSegue", sender: nil)
-            } else {
-                self.performSegueWithIdentifier("studentSegue", sender: nil)
-            }
+            self.segueAfterSignupOrLogin(userType)
             
+        }
+
+    }
+    func segueAfterSignupOrLogin(userType: String) {
+        if userType == "Professor" {
+            self.performSegueWithIdentifier("professorSegue", sender: nil)
+        } else if userType == "Student" {
+            self.performSegueWithIdentifier("studentSegue", sender: nil)
+        } else {
+            print("Error, userType should be Professor or Student")
         }
 
     }
@@ -119,14 +125,7 @@ class LoginSignupViewController: UIViewController {
                 return
             }
             
-            if userType == "Professor" {
-                self.performSegueWithIdentifier("professorSegue", sender: nil)
-            } else if userType == "Student" {
-                self.performSegueWithIdentifier("studentSegue", sender: nil)
-            } else {
-                print("Error, userType should be Professor or Student")
-            }
-            
+            self.segueAfterSignupOrLogin(userType)
             
         }
     }

@@ -26,8 +26,6 @@
 		21DCCBBE1BDA25FA00851C10 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBBD1BDA25FA00851C10 /* SystemConfiguration.framework */; };
 		21DCCBC01BDA260800851C10 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBBF1BDA260800851C10 /* libz.tbd */; };
 		21DCCBC21BDA261900851C10 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBC11BDA261900851C10 /* libsqlite3.tbd */; };
-		B301565A1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
-		B301565B1BE9AE57000CDF85 /* Production.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30156591BE9AE57000CDF85 /* Production.storyboard */; };
 		B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
@@ -79,7 +77,6 @@
 		21DCCBBD1BDA25FA00851C10 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		21DCCBBF1BDA260800851C10 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		B30156591BE9AE57000CDF85 /* Production.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Production.storyboard; sourceTree = "<group>"; };
 		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
 		B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentChooseQueueViewController.swift; sourceTree = "<group>"; };
 		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 				B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */,
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
-				B30156591BE9AE57000CDF85 /* Production.storyboard */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
 				B39C960B1BEAB8E100372446 /* LoginSignup */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
@@ -314,7 +310,6 @@
 				21DCCB871BDA253800851C10 /* LaunchScreen.storyboard in Resources */,
 				21DCCB841BDA253800851C10 /* Assets.xcassets in Resources */,
 				21DCCB821BDA253800851C10 /* Main.storyboard in Resources */,
-				B301565A1BE9AE57000CDF85 /* Production.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B301565B1BE9AE57000CDF85 /* Production.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

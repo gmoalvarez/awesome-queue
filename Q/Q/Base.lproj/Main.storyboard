@@ -103,7 +103,7 @@
         <!--Student Enroll in Queue-->
         <scene sceneID="uQg-5O-NS6">
             <objects>
-                <viewController title="Student Enroll in Queue" id="JMe-fo-vwO" sceneMemberID="viewController">
+                <viewController title="Student Enroll in Queue" id="JMe-fo-vwO" customClass="StudentChooseQueueViewController" customModule="FInalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OvG-5f-8J7"/>
                         <viewControllerLayoutGuide type="bottom" id="gSf-UU-Wp1"/>
@@ -229,7 +229,7 @@
         <!--Professor Create or View-->
         <scene sceneID="PEE-0u-hqY">
             <objects>
-                <viewController title="Professor Create or View" id="9mw-02-WeK" sceneMemberID="viewController">
+                <viewController title="Professor Create or View" id="9mw-02-WeK" customClass="ProfessorCreateOrViewController" customModule="FInalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dPG-fs-RUE"/>
                         <viewControllerLayoutGuide type="bottom" id="2rM-VN-yz0"/>

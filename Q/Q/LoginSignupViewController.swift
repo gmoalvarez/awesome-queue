@@ -157,11 +157,11 @@ class LoginSignupViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? StudentViewController {
-            if let UN = userName{
-            destination.userName = UN
-            }
-        }
+//        if let destination = segue.destinationViewController as? StudentViewController {
+//            if let UN = userName{
+//            destination.userName = UN
+//            }
+//        }
     }
     
 

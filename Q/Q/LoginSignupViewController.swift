@@ -20,6 +20,7 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registeredText: UILabel!
+    var userName:String? //set by userNameTextField after verifying userName on Parse
 
     
     var activityIndicator = UIActivityIndicatorView()
@@ -151,15 +152,18 @@ class LoginSignupViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destinationViewController as? StudentViewController {
+            if let UN = userName{
+            destination.userName = UN
+            }
+        }
     }
-    */
+    
 
     
     @IBAction func back(segue:UIStoryboardSegue){

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210A58801BFAACC000803E91 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210A587F1BFAACC000803E91 /* QRViewController.swift */; };
+		210A58821BFAF9D300803E91 /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210A58811BFAF9D300803E91 /* StudentViewController.swift */; };
 		21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7C1BDA253800851C10 /* AppDelegate.swift */; };
 		21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7E1BDA253800851C10 /* ViewController.swift */; };
 		21DCCB821BDA253800851C10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DCCB801BDA253800851C10 /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210A587F1BFAACC000803E91 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		210A58811BFAF9D300803E91 /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
 		21DCCB791BDA253800851C10 /* FInalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FInalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DCCB7C1BDA253800851C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21DCCB7E1BDA253800851C10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				B30156591BE9AE57000CDF85 /* Production.storyboard */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
+				210A58811BFAF9D300803E91 /* StudentViewController.swift */,
+				210A587F1BFAACC000803E91 /* QRViewController.swift */,
 				B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
@@ -324,9 +330,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210A58821BFAF9D300803E91 /* StudentViewController.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,
+				210A58801BFAACC000803E91 /* QRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

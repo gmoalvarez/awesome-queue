@@ -47,10 +47,7 @@ class ViewController: UIViewController {
             }
         }
         
-        //I hate Professor Whitney
-        
-        
-        
+    
 //need to get user signed in AND store ScreenName locally for later queries
 //ScreenName needs to be unique (query users for username, if returns size 0, good to go
 //No need to store query object when app quit or goto background. 

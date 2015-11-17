@@ -13,13 +13,14 @@ class LoginSignupViewController: UIViewController {
 
     var signupActive = true
     
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registeredText: UILabel!
-    
+
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -46,6 +47,7 @@ class LoginSignupViewController: UIViewController {
         
     }
     
+   
     func setUpNewUser() {
         let user = PFUser()
         user.username = usernameTextField.text
@@ -100,7 +102,7 @@ class LoginSignupViewController: UIViewController {
     }
     
     @IBAction func loginPressed(sender: UIButton) {
-       
+       print("pressed")
         if signupActive {
             toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
         } else {
@@ -159,4 +161,8 @@ class LoginSignupViewController: UIViewController {
     }
     */
 
+    
+    @IBAction func back(segue:UIStoryboardSegue){
+        
+    }
 }

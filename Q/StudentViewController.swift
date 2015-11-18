@@ -21,7 +21,9 @@ class StudentViewController: UIViewController {
     
     var queueToJoin:String?
     var userName = PFUser.currentUser()!.username
-
+//creates new timer
+    var timer1:NSTimer!
+    var currentTimerTime = 0
     
     //change the name for testing
     @IBAction func changeName(sender: UIButton) {
@@ -54,9 +56,23 @@ class StudentViewController: UIViewController {
             person["userName"] = uName
             person.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 print("Object has been saved.")
+                //testing the timer when entering queue
+                
+                self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "testTimer", userInfo: nil, repeats: true)
             }
+            
         }
     }
+    //next two methods are for testing timer
+    func testTimer(){
+        print(currentTimerTime++)
+    }
+    
+    @IBAction func stopTimer(sender: UIButton) {
+        timer1.invalidate()
+    }
+    /////
+    
     
     
     override func viewDidLoad() {

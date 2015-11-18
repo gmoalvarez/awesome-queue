@@ -28,6 +28,8 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var password1:String?
     var password2:String?
     
+    
+    
   
     
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
@@ -100,6 +102,11 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         errorMessage.hidden = true
         passwordsError.hidden = true
         // Do any additional setup after loading the view.
+      
+    }
+    
+    func testTimer(){
+        print("yes")
     }
     
     override func didReceiveMemoryWarning() {

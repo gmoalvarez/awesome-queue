@@ -162,6 +162,14 @@
                                     <action selector="changeName:" destination="JMe-fo-vwO" eventType="touchUpInside" id="E2e-DF-7IS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coZ-6E-VzU">
+                                <rect key="frame" x="265" y="392" width="70" height="30"/>
+                                <animations/>
+                                <state key="normal" title="stop timer"/>
+                                <connections>
+                                    <action selector="stopTimer:" destination="JMe-fo-vwO" eventType="touchUpInside" id="5NH-rA-tXw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +182,9 @@
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="trailing" secondItem="QcC-nn-QX0" secondAttribute="trailing" id="Gdi-6j-uTX"/>
                             <constraint firstItem="62B-eX-dJM" firstAttribute="centerX" secondItem="bLt-pv-ZBL" secondAttribute="centerX" id="H9S-k2-ZeJ"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="J6Z-El-4rP" secondAttribute="leading" id="HMh-p5-QlC"/>
+                            <constraint firstItem="coZ-6E-VzU" firstAttribute="centerX" secondItem="J6Z-El-4rP" secondAttribute="centerX" id="IfW-aG-VWw"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="Ivt-bN-J4z"/>
+                            <constraint firstItem="coZ-6E-VzU" firstAttribute="top" secondItem="J6Z-El-4rP" secondAttribute="bottom" constant="25" id="MiS-iR-n83"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="T68-PL-9ST"/>
                             <constraint firstItem="J6Z-El-4rP" firstAttribute="leading" secondItem="ueu-3d-D7N" secondAttribute="leadingMargin" id="Wah-JF-Irx"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="centerX" secondItem="J9N-A3-HXg" secondAttribute="centerX" id="X7P-uh-2pc"/>
@@ -189,7 +199,7 @@
                     </view>
                     <connections>
                         <outlet property="lat" destination="MV9-U4-mco" id="e9G-i3-Afo"/>
-                        <outlet property="long" destination="MV9-U4-mco" id="VES-PZ-2Z4"/>
+                        <outlet property="long" destination="J6Z-El-4rP" id="pNr-hj-C7f"/>
                         <outlet property="queueName" destination="QcC-nn-QX0" id="G1r-au-qs3"/>
                         <outlet property="status" destination="oFe-fe-YgR" id="HOn-LT-fkA"/>
                         <outlet property="userNameToChange" destination="bLt-pv-ZBL" id="Hkm-Xw-7rB"/>
@@ -381,18 +391,11 @@
                                     <outletCollection property="gestureRecognizers" destination="1xO-rO-Gwn" appends="YES" id="hoY-VL-SMD"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please enter all fields above" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-vg-h0r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-vg-h0r">
                                 <rect key="frame" x="20" y="265" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwords do not match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8w-7s-hAK">
-                                <rect key="frame" x="20" y="265" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -406,19 +409,13 @@
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="leading" secondItem="efv-wJ-xWQ" secondAttribute="leading" id="H69-Pc-2v3"/>
                             <constraint firstItem="BiZ-io-FlP" firstAttribute="top" secondItem="BMC-y8-KC8" secondAttribute="bottom" constant="54" id="J4q-By-Vbm"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="leading" secondItem="BMC-y8-KC8" secondAttribute="leading" id="LUD-vT-rEP"/>
-                            <constraint firstItem="c8w-7s-hAK" firstAttribute="leading" secondItem="cTj-vg-h0r" secondAttribute="leading" id="Mma-aT-8ui"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="trailing" secondItem="W1d-OZ-HC2" secondAttribute="trailing" id="Nu7-KH-Hnd"/>
-                            <constraint firstItem="cTj-vg-h0r" firstAttribute="leading" secondItem="BMC-y8-KC8" secondAttribute="leading" id="SOz-Dh-fnh"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="top" secondItem="efv-wJ-xWQ" secondAttribute="bottom" constant="8" symbolic="YES" id="b1Q-i4-gSV"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="trailing" secondItem="YYA-Ti-8cL" secondAttribute="trailing" id="e5u-9Q-lMU"/>
                             <constraint firstItem="YYA-Ti-8cL" firstAttribute="trailing" secondItem="TVP-4I-BNz" secondAttribute="trailing" id="eFu-eS-01u"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="trailing" secondItem="efv-wJ-xWQ" secondAttribute="trailing" id="ele-Y2-fku"/>
-                            <constraint firstItem="cTj-vg-h0r" firstAttribute="trailing" secondItem="BMC-y8-KC8" secondAttribute="trailing" id="fCy-tw-llg"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="hxy-yB-oLR"/>
-                            <constraint firstItem="cTj-vg-h0r" firstAttribute="top" secondItem="BMC-y8-KC8" secondAttribute="bottom" constant="15" id="o2e-ih-dY6"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="trailing" secondItem="BiZ-io-FlP" secondAttribute="trailing" id="oNc-9y-YAH"/>
-                            <constraint firstItem="c8w-7s-hAK" firstAttribute="trailing" secondItem="cTj-vg-h0r" secondAttribute="trailing" id="pFY-yG-DQX"/>
-                            <constraint firstItem="c8w-7s-hAK" firstAttribute="baseline" secondItem="cTj-vg-h0r" secondAttribute="baseline" id="qz1-gT-ZTt"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="rX1-TZ-Kb4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="efv-wJ-xWQ" secondAttribute="leading" id="t4P-IO-9YR"/>
                             <constraint firstAttribute="bottom" secondItem="BiZ-io-FlP" secondAttribute="bottom" constant="20" symbolic="YES" id="tYZ-D8-3Tb"/>
@@ -443,13 +440,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="errorMessage" destination="cTj-vg-h0r" id="EFp-cN-d8K"/>
                         <outlet property="firstNameText" destination="efv-wJ-xWQ" id="r3E-g8-H9r"/>
                         <outlet property="imageView" destination="BiZ-io-FlP" id="w5P-m1-kib"/>
                         <outlet property="lastNameText" destination="TVP-4I-BNz" id="Qgf-Ol-08f"/>
                         <outlet property="passWordText" destination="W1d-OZ-HC2" id="f08-zi-UyV"/>
                         <outlet property="password2Text" destination="BMC-y8-KC8" id="VYP-I0-iEc"/>
-                        <outlet property="passwordsError" destination="c8w-7s-hAK" id="alj-0u-Kfd"/>
                         <outlet property="userNameText" destination="YYA-Ti-8cL" id="fex-m9-eKA"/>
                         <segue destination="15w-qv-FGy" kind="unwind" identifier="backToLogIn" unwindAction="back:" id="loG-a6-xgk"/>
                     </connections>

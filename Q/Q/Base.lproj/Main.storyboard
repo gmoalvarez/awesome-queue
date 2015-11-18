@@ -391,11 +391,18 @@
                                     <outletCollection property="gestureRecognizers" destination="1xO-rO-Gwn" appends="YES" id="hoY-VL-SMD"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-vg-h0r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please enter all information above" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-vg-h0r">
                                 <rect key="frame" x="20" y="265" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwords do not match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nas-2r-MEk">
+                                <rect key="frame" x="20" y="265" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -408,18 +415,24 @@
                             <constraint firstItem="YYA-Ti-8cL" firstAttribute="top" secondItem="TVP-4I-BNz" secondAttribute="bottom" constant="8" symbolic="YES" id="EBL-NN-rqp"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="leading" secondItem="efv-wJ-xWQ" secondAttribute="leading" id="H69-Pc-2v3"/>
                             <constraint firstItem="BiZ-io-FlP" firstAttribute="top" secondItem="BMC-y8-KC8" secondAttribute="bottom" constant="54" id="J4q-By-Vbm"/>
+                            <constraint firstItem="Nas-2r-MEk" firstAttribute="baseline" secondItem="cTj-vg-h0r" secondAttribute="baseline" id="JWI-Hf-y9x"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="leading" secondItem="BMC-y8-KC8" secondAttribute="leading" id="LUD-vT-rEP"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="trailing" secondItem="W1d-OZ-HC2" secondAttribute="trailing" id="Nu7-KH-Hnd"/>
+                            <constraint firstItem="cTj-vg-h0r" firstAttribute="leading" secondItem="BMC-y8-KC8" secondAttribute="leading" id="OMT-PX-Rj7"/>
+                            <constraint firstItem="Nas-2r-MEk" firstAttribute="trailing" secondItem="cTj-vg-h0r" secondAttribute="trailing" id="WGb-hq-zFA"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="top" secondItem="efv-wJ-xWQ" secondAttribute="bottom" constant="8" symbolic="YES" id="b1Q-i4-gSV"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="trailing" secondItem="YYA-Ti-8cL" secondAttribute="trailing" id="e5u-9Q-lMU"/>
                             <constraint firstItem="YYA-Ti-8cL" firstAttribute="trailing" secondItem="TVP-4I-BNz" secondAttribute="trailing" id="eFu-eS-01u"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="trailing" secondItem="efv-wJ-xWQ" secondAttribute="trailing" id="ele-Y2-fku"/>
+                            <constraint firstItem="cTj-vg-h0r" firstAttribute="trailing" secondItem="BMC-y8-KC8" secondAttribute="trailing" id="fQr-F1-DfZ"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="hxy-yB-oLR"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="trailing" secondItem="BiZ-io-FlP" secondAttribute="trailing" id="oNc-9y-YAH"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="rX1-TZ-Kb4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="efv-wJ-xWQ" secondAttribute="leading" id="t4P-IO-9YR"/>
                             <constraint firstAttribute="bottom" secondItem="BiZ-io-FlP" secondAttribute="bottom" constant="20" symbolic="YES" id="tYZ-D8-3Tb"/>
+                            <constraint firstItem="Nas-2r-MEk" firstAttribute="leading" secondItem="cTj-vg-h0r" secondAttribute="leading" id="tfm-ja-dl3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="efv-wJ-xWQ" secondAttribute="trailing" id="uqX-fY-uF0"/>
+                            <constraint firstItem="cTj-vg-h0r" firstAttribute="top" secondItem="BMC-y8-KC8" secondAttribute="bottom" constant="15" id="v5m-dN-iZw"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="top" secondItem="W1d-OZ-HC2" secondAttribute="bottom" constant="8" symbolic="YES" id="xj9-S6-WTK"/>
                             <constraint firstItem="efv-wJ-xWQ" firstAttribute="top" secondItem="XfH-9b-xre" secondAttribute="bottom" constant="4" id="xzn-yE-MYC"/>
                         </constraints>
@@ -440,11 +453,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorMessage" destination="cTj-vg-h0r" id="Dze-8q-hbL"/>
                         <outlet property="firstNameText" destination="efv-wJ-xWQ" id="r3E-g8-H9r"/>
                         <outlet property="imageView" destination="BiZ-io-FlP" id="w5P-m1-kib"/>
                         <outlet property="lastNameText" destination="TVP-4I-BNz" id="Qgf-Ol-08f"/>
                         <outlet property="passWordText" destination="W1d-OZ-HC2" id="f08-zi-UyV"/>
                         <outlet property="password2Text" destination="BMC-y8-KC8" id="VYP-I0-iEc"/>
+                        <outlet property="passwordsError" destination="Nas-2r-MEk" id="6AY-Po-zDO"/>
                         <outlet property="userNameText" destination="YYA-Ti-8cL" id="fex-m9-eKA"/>
                         <segue destination="15w-qv-FGy" kind="unwind" identifier="backToLogIn" unwindAction="back:" id="loG-a6-xgk"/>
                     </connections>

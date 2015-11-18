@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */; };
+		21A54DFD1BFBF524006734FC /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFC1BFBF524006734FC /* QRViewController.swift */; };
 		21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7C1BDA253800851C10 /* AppDelegate.swift */; };
 		21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7E1BDA253800851C10 /* ViewController.swift */; };
 		21DCCB821BDA253800851C10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DCCB801BDA253800851C10 /* Main.storyboard */; };
@@ -28,8 +30,6 @@
 		21DCCBC21BDA261900851C10 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DCCBC11BDA261900851C10 /* libsqlite3.tbd */; };
 		B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
-		B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
-		B39C96111BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */; };
 		B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 		B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentViewController.swift; path = ../StudentViewController.swift; sourceTree = "<group>"; };
+		21A54DFC1BFBF524006734FC /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		21DCCB791BDA253800851C10 /* FInalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FInalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DCCB7C1BDA253800851C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21DCCB7E1BDA253800851C10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 		21DCCBBF1BDA260800851C10 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
-		B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentChooseQueueViewController.swift; sourceTree = "<group>"; };
 		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,8 +144,9 @@
 		21DCCB7B1BDA253800851C10 /* Q */ = {
 			isa = PBXGroup;
 			children = (
+				21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */,
+				21A54DFC1BFBF524006734FC /* QRViewController.swift */,
 				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
-				B39C960F1BEAC5FC00372446 /* StudentChooseQueueViewController.swift */,
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
@@ -268,7 +270,7 @@
 				TargetAttributes = {
 					21DCCB781BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = YFW32UFS6M;
+						DevelopmentTeam = 9U59G4TU97;
 					};
 					21DCCB8C1BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -334,11 +336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
 				B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,
-				B39C96101BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */,
+				21A54DFD1BFBF524006734FC /* QRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +352,6 @@
 				B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB921BDA253800851C10 /* QTests.swift in Sources */,
 				B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
-				B39C96111BEAC5FC00372446 /* StudentChooseQueueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

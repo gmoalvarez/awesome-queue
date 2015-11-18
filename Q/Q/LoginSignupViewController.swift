@@ -19,6 +19,9 @@ class LoginSignupViewController: UIViewController {
     
     var activityIndicator = UIActivityIndicatorView()
     
+    @IBAction func tapBackground(sender: UITapGestureRecognizer) {
+        view.endEditing(true)   
+    }
     @IBAction func signupModeChanged(sender: UISegmentedControl) {
         let signUpModeTitle = getSignUpModeTitle()
         
@@ -209,4 +212,8 @@ class LoginSignupViewController: UIViewController {
 //    }
     
 
+    @IBAction func back(segue:UIStoryboardSegue){
+        
+        
+    }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */; };
 		21A54DFD1BFBF524006734FC /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFC1BFBF524006734FC /* QRViewController.swift */; };
+		21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */; };
 		21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7C1BDA253800851C10 /* AppDelegate.swift */; };
 		21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCCB7E1BDA253800851C10 /* ViewController.swift */; };
 		21DCCB821BDA253800851C10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DCCB801BDA253800851C10 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentViewController.swift; path = ../StudentViewController.swift; sourceTree = "<group>"; };
 		21A54DFC1BFBF524006734FC /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInInfoViewController.swift; sourceTree = "<group>"; };
 		21DCCB791BDA253800851C10 /* FInalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FInalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DCCB7C1BDA253800851C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21DCCB7E1BDA253800851C10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
+				21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */,
 				B39C960B1BEAB8E100372446 /* LoginSignup */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
@@ -336,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */,
 				21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
 				B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,

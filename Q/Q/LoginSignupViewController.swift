@@ -213,7 +213,22 @@ class LoginSignupViewController: UIViewController {
     
 
     @IBAction func back(segue:UIStoryboardSegue){
-        
-        
+        if let source = segue.sourceViewController as? LogInInfoViewController{
+            guard let fn = source.firstName,
+            ln = source.lastName,
+            un = source.userName,
+                pw = source.password1 else{
+                    return
+            }
+            if source.image != nil{
+                //you can put the image into parse
+                print("picture obtained")
+            }
+            //now you can use all variables above for newUser data
+            print(fn, ln, un, pw)
+        }
+        //here is where we would code another unWind from another view if we need to
     }
-}
+    
+    
+}//end of class

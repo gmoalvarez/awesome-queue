@@ -73,7 +73,7 @@ class TestQueueGenerator {
         }
     }
     
-    static func uploadStudentsFromJSONFileNamed(fileName:String, intoQueueWithId queueId: String) {
+    static func addStudentsFromJSONFileNamed(fileName:String, intoQueueWithId queueId: String) {
         getStudentListFromJSONFileNamed(fileName) { (data) -> Void in
             let parsedObject:AnyObject?
             do {
@@ -86,31 +86,55 @@ class TestQueueGenerator {
                 fatalError()
             }
             
-            if let studentList = parsedObject as? [Dictionary<String,AnyObject>] {
-                    let query = PFQuery(className: "Queue")
-                    query.getObjectInBackgroundWithId(queueId) { queue, error  in
-                        
-                        guard let queue = queue else {
-                            print("It appears there is no queue")
-                            return
-                        }
-                        
-                        for student in studentList {
-                            let parseStudent = PFObject(className: "Person")
-                            parseStudent["firstName"] = student["firstName"]
-                            parseStudent["lastName"] = student["lastName"]
-                            parseStudent["userName"] = student["userName"]
-                            parseStudent["password"] = student["password"]
-                            parseStudent["type"] = student["type"]
-                            
-                        }
-                        
-                        
-                    }
-
-                
+            guard let studentList = parsedObject as? [Dictionary<String,String>] else {
+                print("Error parsing JSON object into Dictionary")
+                return
             }
+            
+            let query = PFUser.query()?.whereKeyExists("lastName").whereKey("type", equalTo: "Student")
+            query?.findObjectsInBackgroundWithBlock { students, error in
+                for student in students! {
+                    print(student)
+                }
+            }
+            
         }
     }
     
 }
+
+//        let queue = PFObject(className: "Queue")
+//        let query = PFUser.query()
+//        query?.findObjectsInBackgroundWithBlock { students, error in
+//
+//            guard error == nil else {
+//                if let errorString = error!.userInfo["error"] as? String {
+//                    self.displayAlert("Failed to get users", message: errorString)
+//                } else {
+//                    self.displayAlert("Failed to get users", message: "Try again later")
+//                }
+//                return
+//            }
+//
+//            guard let students = students else {
+//                print("It appears there are no users")
+//                return
+//            }
+//
+//            for student in students {
+//                print("\(student)")
+//            }
+//
+//
+//            let query = PFQuery(className: "Queue")
+//            query.getObjectInBackgroundWithId("0BPUdcE3ro") { queue, error  in
+//
+//                guard let queue = queue else {
+//                    print("It appears there is no queue")
+//                    return
+//                }
+//
+//                //this saves the users in a weird way but it is ok for now.
+//                queue.addUniqueObjectsFromArray(students, forKey: "waitlist")
+//                queue.saveInBackground()
+//            }

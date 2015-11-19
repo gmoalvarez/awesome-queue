@@ -39,10 +39,11 @@ class ProfessorCreateOrViewController: UIViewController {
 
     }
     
+    let queueId = "0BPUdcE3ro"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        TestQueueGenerator.createNewUsersFromJSONFileNamed("testStudentList")
-
+        TestQueueGenerator.addStudentsFromJSONFileNamed("testStudentList", intoQueueWithId: queueId)
 //        loadQueueWithTestUsers()
     }
     
@@ -87,11 +88,9 @@ class ProfessorCreateOrViewController: UIViewController {
 //            
 //        }
 //    }
-    
-let queueId = "0BPUdcE3ro" //queue Id used for testing
-    
+        
     override func viewWillAppear(animated: Bool) {
-        print("Attempting to create new users")
+
     }
 
     func displayAlert(title: String, message: String) {

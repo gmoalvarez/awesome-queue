@@ -54,14 +54,12 @@ class TestQueueGenerator {
                     user["lastName"] = student["lastName"]
                     user.username = student["userName"]
                     user.password = student["password"]
-                    user["userType"] = student["userType"]
+                    user["type"] = student["type"]
                     user.signUpInBackgroundWithBlock { (success, error) -> Void in
-                        
-                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         
                         guard error == nil else {
                             if let errorString = error!.userInfo["error"] as? String {
-                                print("Error: \(error)")
+                                print("Error: \(errorString)")
                             } else {
                                 print("Error: \(error)")
                             }
@@ -103,7 +101,7 @@ class TestQueueGenerator {
                             parseStudent["lastName"] = student["lastName"]
                             parseStudent["userName"] = student["userName"]
                             parseStudent["password"] = student["password"]
-                            parseStudent["userType"] = student["userType"]
+                            parseStudent["type"] = student["type"]
                             
                         }
                         

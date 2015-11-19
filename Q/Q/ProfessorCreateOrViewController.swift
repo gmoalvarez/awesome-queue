@@ -86,8 +86,10 @@ class ProfessorCreateOrViewController: UIViewController {
         }
     }
     
+let queueId = "0BPUdcE3ro" //queue Id used for testing
+    
     override func viewWillAppear(animated: Bool) {
-
+        TestQueueGenerator.uploadStudentsFromJSONFileNamed("testStudentList", intoQueueWithId: queueId)
     }
 
     func displayAlert(title: String, message: String) {

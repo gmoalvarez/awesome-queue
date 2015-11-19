@@ -27,6 +27,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var userName:String?
     var password1:String?
     var password2:String?
+    var reason:String = ""
     
     
     
@@ -119,14 +120,21 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         return true
     }
     
-    /*
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
+
     }
-    */
+    
+    @IBAction func back(segue:UIStoryboardSegue){
+        if let source = segue.sourceViewController as? VisitReasonViewController{
+            reason = source.reason
+            print("REason: \(reason)")
+        }
+    }
     
 }

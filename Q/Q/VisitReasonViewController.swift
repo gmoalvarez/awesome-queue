@@ -15,13 +15,12 @@ class VisitReasonViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var reasonTextBottom: NSLayoutConstraint!
    
     @IBAction func submit(sender: UIBarButtonItem) {
-            reason = reasonText.text
-        performSegueWithIdentifier("backToLogInInfo", sender: self)
+        reason = reasonText.text
+        performSegueWithIdentifier("toQR2", sender: self)
     }
-    
     var bottomDistance:CGFloat!
     
-    var reason = ""
+    var reason:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +38,18 @@ class VisitReasonViewController: UIViewController,UITextViewDelegate {
     }
     
 
-    /*
+   
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destinationViewController as? QRViewController{
+        destinationVC.reason = reason
+        }
     }
-    */
+ 
 // MARK: - Text Methods
     
     //this allows the done button to relase the keyboard

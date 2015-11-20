@@ -27,7 +27,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var userName:String?
     var password1:String?
     var password2:String?
-    var reason:String = ""
+    
     
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -127,10 +127,6 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     }
     
     @IBAction func back(segue:UIStoryboardSegue){
-        if let source = segue.sourceViewController as? VisitReasonViewController{
-            reason = source.reason
-            print("REason: \(reason)")
-        }
     }
     
 }

@@ -117,7 +117,7 @@
                                 <animations/>
                                 <state key="normal" title="Join Q"/>
                                 <connections>
-                                    <segue destination="SBa-Ig-DuV" kind="show" id="zXJ-eO-UHw"/>
+                                    <action selector="joinQ:" destination="JMe-fo-vwO" eventType="touchUpInside" id="sIk-od-zka"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status/error: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFe-fe-YgR">
@@ -203,6 +203,8 @@
                         <outlet property="queueName" destination="QcC-nn-QX0" id="G1r-au-qs3"/>
                         <outlet property="status" destination="oFe-fe-YgR" id="HOn-LT-fkA"/>
                         <outlet property="userNameToChange" destination="bLt-pv-ZBL" id="Hkm-Xw-7rB"/>
+                        <segue destination="SBa-Ig-DuV" kind="show" identifier="toQR" id="rbA-It-bdg"/>
+                        <segue destination="y0t-uU-bde" kind="show" identifier="toReason" id="6gM-B6-ddy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeM-Ak-lEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,14 +400,6 @@
                                 <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVR-gZ-6ov">
-                                <rect key="frame" x="211" y="258" width="178" height="30"/>
-                                <animations/>
-                                <state key="normal" title="add visit reason (optional)"/>
-                                <connections>
-                                    <segue destination="y0t-uU-bde" kind="show" identifier="toVisitReason" id="A3I-Sf-7Qm"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please enter all information above" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-vg-h0r">
                                 <rect key="frame" x="20" y="284" width="560" height="21"/>
                                 <animations/>
@@ -435,8 +429,6 @@
                             <constraint firstItem="cTj-vg-h0r" firstAttribute="trailing" secondItem="BMC-y8-KC8" secondAttribute="trailing" id="fQr-F1-DfZ"/>
                             <constraint firstItem="TVP-4I-BNz" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="hxy-yB-oLR"/>
                             <constraint firstItem="BMC-y8-KC8" firstAttribute="trailing" secondItem="BiZ-io-FlP" secondAttribute="trailing" id="oNc-9y-YAH"/>
-                            <constraint firstItem="JVR-gZ-6ov" firstAttribute="top" secondItem="BMC-y8-KC8" secondAttribute="bottom" constant="8" symbolic="YES" id="q1W-je-3oV"/>
-                            <constraint firstItem="JVR-gZ-6ov" firstAttribute="centerX" secondItem="cTj-vg-h0r" secondAttribute="centerX" id="rET-qt-wiM"/>
                             <constraint firstItem="W1d-OZ-HC2" firstAttribute="leading" secondItem="YYA-Ti-8cL" secondAttribute="leading" id="rX1-TZ-Kb4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="efv-wJ-xWQ" secondAttribute="leading" id="t4P-IO-9YR"/>
                             <constraint firstAttribute="bottom" secondItem="BiZ-io-FlP" secondAttribute="bottom" constant="20" symbolic="YES" id="tYZ-D8-3Tb"/>
@@ -516,6 +508,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjc-YW-MNe">
+                                <rect key="frame" x="0.0" y="548" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3Po-Wm-wxg"/>
+                                    <barButtonItem title="submit" id="n77-oH-RpS">
+                                        <connections>
+                                            <action selector="submit:" destination="y0t-uU-bde" id="Sk9-xg-2oT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Age-xx-vCc"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -523,40 +528,34 @@
                         <constraints>
                             <constraint firstItem="uvR-Vl-t42" firstAttribute="leading" secondItem="9Js-Lg-Zb3" secondAttribute="leadingMargin" id="E7s-ZV-ds1"/>
                             <constraint firstItem="RDs-oS-90q" firstAttribute="leading" secondItem="uvR-Vl-t42" secondAttribute="leading" id="HKE-9O-lKK"/>
-                            <constraint firstItem="tb3-al-zMA" firstAttribute="top" secondItem="uvR-Vl-t42" secondAttribute="bottom" constant="8" id="NxN-d0-yCn"/>
+                            <constraint firstItem="Mjc-YW-MNe" firstAttribute="centerX" secondItem="uvR-Vl-t42" secondAttribute="centerX" id="Ieb-c5-GTd"/>
+                            <constraint firstItem="tb3-al-zMA" firstAttribute="top" secondItem="uvR-Vl-t42" secondAttribute="bottom" constant="52" id="NxN-d0-yCn"/>
                             <constraint firstItem="uvR-Vl-t42" firstAttribute="top" secondItem="RDs-oS-90q" secondAttribute="bottom" constant="8" symbolic="YES" id="QQB-d8-IIO"/>
                             <constraint firstItem="uvR-Vl-t42" firstAttribute="trailing" secondItem="9Js-Lg-Zb3" secondAttribute="trailingMargin" id="UWi-2A-w82"/>
                             <constraint firstItem="uvR-Vl-t42" firstAttribute="trailing" secondItem="RDs-oS-90q" secondAttribute="trailing" id="Z1B-5z-9zK"/>
+                            <constraint firstItem="Mjc-YW-MNe" firstAttribute="leading" secondItem="9Js-Lg-Zb3" secondAttribute="leading" id="eS6-mL-loy"/>
+                            <constraint firstItem="tb3-al-zMA" firstAttribute="top" secondItem="Mjc-YW-MNe" secondAttribute="bottom" constant="8" id="s5K-nH-cHc"/>
                             <constraint firstItem="RDs-oS-90q" firstAttribute="top" secondItem="hRx-5A-Spe" secondAttribute="bottom" constant="8" symbolic="YES" id="z1F-D6-qD2"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="aMK-Oy-NoX" appends="YES" id="lSd-eV-jTb"/>
                         </connections>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="pZO-gk-Kad"/>
-                        <barButtonItem title="submit" id="JrB-MU-g38">
-                            <connections>
-                                <action selector="submit:" destination="y0t-uU-bde" id="at0-Z6-mDc"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="q7k-lo-UPk"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <connections>
                         <outlet property="reasonText" destination="uvR-Vl-t42" id="1lj-gU-cnb"/>
                         <outlet property="reasonTextBottom" destination="NxN-d0-yCn" id="olj-7n-4TW"/>
-                        <segue destination="Cmk-bh-O9H" kind="unwind" identifier="backToLogInInfo" unwindAction="back:" id="1rI-4f-p3a"/>
+                        <segue destination="SBa-Ig-DuV" kind="show" identifier="toQR2" id="Wj6-LK-Fme"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iud-oi-e2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Cmk-bh-O9H" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="aMK-Oy-NoX">
                     <connections>
                         <action selector="touchBackground:" destination="y0t-uU-bde" id="NqM-W0-RHU"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2623" y="-192"/>
+            <point key="canvasLocation" x="234" y="240"/>
         </scene>
         <!--Professor Create or View-->
         <scene sceneID="PEE-0u-hqY">
@@ -677,6 +676,15 @@
                     <view key="view" contentMode="scaleToFill" id="IZe-O8-KGr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QR READER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS0-aS-rNe">
+                                <rect key="frame" x="229" y="289" width="92" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -687,7 +695,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJx-O8-asH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="h7k-lz-zCC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-456" y="1013"/>
+            <point key="canvasLocation" x="-117" y="1094"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LRW-cV-GFf">
@@ -736,4 +744,7 @@
     <resources>
         <image name="uploadPhoto" width="900" height="900"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Wj6-LK-Fme"/>
+    </inferredMetricsTieBreakers>
 </document>

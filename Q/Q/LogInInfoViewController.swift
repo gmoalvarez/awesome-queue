@@ -29,6 +29,10 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var password2:String?
     
     
+    
+    
+    
+    
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -99,7 +103,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         errorMessage.hidden = true
         passwordsError.hidden = true
         // Do any additional setup after loading the view.
-      
+        
     }
     
     func testTimer(){
@@ -121,9 +125,9 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
     }
     
     @IBAction func back(segue:UIStoryboardSegue){

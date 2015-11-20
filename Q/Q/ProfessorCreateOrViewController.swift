@@ -20,6 +20,7 @@ class ProfessorCreateOrViewController: UIViewController {
     
     func createQueue() {
         let newQueue = PFObject(className: "Queue")
+        newQueue["createdBy"] = professor
         newQueue.saveInBackgroundWithBlock(saveQueue)
     }
     
@@ -39,55 +40,15 @@ class ProfessorCreateOrViewController: UIViewController {
 
     }
     
-    let queueId = "0BPUdcE3ro"
+    let queueId = "Hlcn2AlVOa"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TestQueueGenerator.addStudentsFromJSONFileNamed("testStudentList", intoQueueWithId: queueId)
+        
+//        TestQueueGenerator.addAllStudentsToQueueWithId(queueId)
 //        loadQueueWithTestUsers()
     }
     
-//    func loadQueueWithTestUsers() {
-//        let queue = PFObject(className: "Queue")
-//        let query = PFUser.query()
-//        query?.findObjectsInBackgroundWithBlock { students, error in
-//            
-//            guard error == nil else {
-//                if let errorString = error!.userInfo["error"] as? String {
-//                    self.displayAlert("Failed to get users", message: errorString)
-//                } else {
-//                    self.displayAlert("Failed to get users", message: "Try again later")
-//                }
-//                return
-//            }
-//            
-//            guard let students = students else {
-//                print("It appears there are no users")
-//                return
-//            }
-//
-//            for student in students {
-//                print("\(student)")
-//            }
-//            
-//            
-//            let query = PFQuery(className: "Queue")
-//            query.getObjectInBackgroundWithId("0BPUdcE3ro") { queue, error  in
-//                
-//                guard let queue = queue else {
-//                    print("It appears there is no queue")
-//                    return
-//                }
-//                
-//                //this saves the users in a weird way but it is ok for now.
-//                queue.addUniqueObjectsFromArray(students, forKey: "waitlist")
-//                queue.saveInBackground()
-//            }
-//            
-//            
-//            
-//        }
-//    }
         
     override func viewWillAppear(animated: Bool) {
 

@@ -495,6 +495,9 @@
                                 <rect key="frame" x="231" y="354" width="140" height="30"/>
                                 <animations/>
                                 <state key="normal" title="View Existing Queue"/>
+                                <connections>
+                                    <segue destination="qPR-ck-kAc" kind="show" identifier="showProfessorQueue" id="ejD-ah-8Fy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92u-ir-CBL">
                                 <rect key="frame" x="231" y="175" width="139" height="30"/>

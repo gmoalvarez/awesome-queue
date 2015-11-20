@@ -54,16 +54,4 @@ class ProfessorCreateOrViewController: UIViewController {
 
     }
 
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title,
-            message: message,
-            preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
 }

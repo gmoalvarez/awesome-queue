@@ -34,6 +34,10 @@
 		B32B96381BFD7B46002CB95B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96371BFD7B46002CB95B /* Person.swift */; };
 		B32B96391BFD7B46002CB95B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96371BFD7B46002CB95B /* Person.swift */; };
 		B32B963A1BFD7B46002CB95B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96371BFD7B46002CB95B /* Person.swift */; };
+		B32B963C1BFEC6D1002CB95B /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */; };
+		B32B963D1BFEC6D1002CB95B /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */; };
+		B32B96421BFECA9C002CB95B /* ParseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96411BFECA9C002CB95B /* ParseUtility.swift */; };
+		B32B96431BFECA9C002CB95B /* ParseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96411BFECA9C002CB95B /* ParseUtility.swift */; };
 		B36561CF1BFE46800069F785 /* testStudentList.json in Resources */ = {isa = PBXBuildFile; fileRef = B36561CE1BFE46800069F785 /* testStudentList.json */; };
 		B36561D01BFE46800069F785 /* testStudentList.json in Resources */ = {isa = PBXBuildFile; fileRef = B36561CE1BFE46800069F785 /* testStudentList.json */; };
 		B36561D21BFE46B70069F785 /* TestQueueGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */; };
@@ -92,6 +96,8 @@
 		21DCCBC11BDA261900851C10 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorQueueViewController.swift; sourceTree = "<group>"; };
 		B32B96371BFD7B46002CB95B /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
+		B32B96411BFECA9C002CB95B /* ParseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUtility.swift; sourceTree = "<group>"; };
 		B36561CE1BFE46800069F785 /* testStudentList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testStudentList.json; sourceTree = "<group>"; };
 		B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestQueueGenerator.swift; sourceTree = "<group>"; };
 		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
@@ -159,18 +165,16 @@
 		21DCCB7B1BDA253800851C10 /* Q */ = {
 			isa = PBXGroup;
 			children = (
-				B36561CE1BFE46800069F785 /* testStudentList.json */,
-				B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */,
 				B32B96371BFD7B46002CB95B /* Person.swift */,
-				21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */,
-				21A54DFC1BFBF524006734FC /* QRViewController.swift */,
-				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
-				B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */,
-				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
+				B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */,
+				B32B96411BFECA9C002CB95B /* ParseUtility.swift */,
+				B32B963E1BFEC840002CB95B /* Test Generator Files */,
+				B39C960B1BEAB8E100372446 /* LoginSignup */,
+				B32B96401BFEC885002CB95B /* Student Controllers */,
+				B32B963F1BFEC859002CB95B /* Professor Controllers */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
-				21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */,
-				B39C960B1BEAB8E100372446 /* LoginSignup */,
+				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
 				21DCCB881BDA253800851C10 /* Info.plist */,
@@ -215,10 +219,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B32B963E1BFEC840002CB95B /* Test Generator Files */ = {
+			isa = PBXGroup;
+			children = (
+				B36561CE1BFE46800069F785 /* testStudentList.json */,
+				B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */,
+			);
+			name = "Test Generator Files";
+			sourceTree = "<group>";
+		};
+		B32B963F1BFEC859002CB95B /* Professor Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
+				B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */,
+			);
+			name = "Professor Controllers";
+			sourceTree = "<group>";
+		};
+		B32B96401BFEC885002CB95B /* Student Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */,
+				21A54DFC1BFBF524006734FC /* QRViewController.swift */,
+			);
+			name = "Student Controllers";
+			sourceTree = "<group>";
+		};
 		B39C960B1BEAB8E100372446 /* LoginSignup */ = {
 			isa = PBXGroup;
 			children = (
 				B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */,
+				21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */,
 			);
 			name = LoginSignup;
 			sourceTree = "<group>";
@@ -358,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32B96421BFECA9C002CB95B /* ParseUtility.swift in Sources */,
 				21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */,
 				21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */,
 				21DCCB7F1BDA253800851C10 /* ViewController.swift in Sources */,
@@ -366,6 +399,7 @@
 				B32B96321BFD6F99002CB95B /* ProfessorQueueViewController.swift in Sources */,
 				B32B96381BFD7B46002CB95B /* Person.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
+				B32B963C1BFEC6D1002CB95B /* AlertExtension.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,
 				21A54DFD1BFBF524006734FC /* QRViewController.swift in Sources */,
 			);
@@ -379,8 +413,10 @@
 				B36561D31BFE46B70069F785 /* TestQueueGenerator.swift in Sources */,
 				B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				21DCCB921BDA253800851C10 /* QTests.swift in Sources */,
+				B32B96431BFECA9C002CB95B /* ParseUtility.swift in Sources */,
 				B32B96391BFD7B46002CB95B /* Person.swift in Sources */,
 				B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
+				B32B963D1BFEC6D1002CB95B /* AlertExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

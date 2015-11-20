@@ -28,10 +28,6 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var password1:String?
     var password2:String?
     
-    
-    
-  
-    
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }

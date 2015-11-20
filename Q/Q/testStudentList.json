@@ -1,0 +1,52 @@
+[
+    {
+        "firstName": "Guillermo",
+        "lastName": "Alvarez",
+        "userName": "galvarez",
+        "password": "1234",
+        "type": "Student",
+    },
+    {
+        "firstName": "Archie",
+        "lastName": "Archbold",
+        "userName": "archie",
+        "password": "1234",
+        "type": "Student",
+ 
+    },
+    {
+        "firstName": "TestFirst1",
+        "lastName": "TestLast1",
+        "userName": "TestUser1",
+        "password": "1234",
+        "type": "Student",
+    },
+    {
+        "firstName": "TestFirst2",
+        "lastName": "TestLast2",
+        "userName": "TestUser2",
+        "password": "1234",
+        "type": "Student",
+    },
+    {
+        "firstName": "TestFirst3",
+        "lastName": "TestLast3",
+        "userName": "TestUser3",
+        "password": "1234",
+        "type": "Student",
+    },
+    {
+        "firstName": "TestFirst4",
+        "lastName": "TestLast4",
+        "userName": "TestUser4",
+        "password": "1234",
+        "type": "Student",
+    },
+    {
+        "firstName": "TestFirst4",
+        "lastName": "TestLast4",
+        "userName": "TestUser4",
+        "password": "1234",
+        "type": "Student",
+    }
+]

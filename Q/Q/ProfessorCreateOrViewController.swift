@@ -10,34 +10,48 @@ import UIKit
 import Parse
 
 class ProfessorCreateOrViewController: UIViewController {
+    
+    var professor = PFUser.currentUser()!
+    
+    @IBAction func createQueueButtonPressed(sender: AnyObject) {
+        createQueue()
+        
+    }
+    
+    func createQueue() {
+        let newQueue = PFObject(className: "Queue")
+        newQueue["createdBy"] = professor
+        newQueue.saveInBackgroundWithBlock(saveQueue)
+    }
+    
+    func saveQueue(success:Bool, error:NSError?) {
+        guard error == nil else {
+            if let errorString = error!.userInfo["error"] as? String {
+                self.displayAlert("Failed to create Queue", message: errorString)
+            } else {
+                self.displayAlert("Failed to create Queue", message: "Try again later")
+            }
+            return
+        }
+        
+        if success {
+            print("Created queue successfully: \(success)")
+        }
 
-    var user = PFUser()
+    }
+    
+    let queueId = "Hlcn2AlVOa"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+//        TestQueueGenerator.addAllStudentsToQueueWithId(queueId)
+//        loadQueueWithTestUsers()
     }
     
+        
     override func viewWillAppear(animated: Bool) {
-        user = PFUser.currentUser()!
-        print("The current user is \(user)")
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

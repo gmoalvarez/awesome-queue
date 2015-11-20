@@ -56,7 +56,6 @@ class LoginSignupViewController: UIViewController {
                 return
         }
         
-        
         runActivityIndicator()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
@@ -136,23 +135,6 @@ class LoginSignupViewController: UIViewController {
         }
     }
     
-//    @IBAction func loginPressed(sender: UIButton) {
-//       
-//        if signupActive {
-//            toggleBetweenSignupAndLoginMode("Log In",label: "Not registered?", loginButtonText: "Sign Up")
-//        } else {
-//            toggleBetweenSignupAndLoginMode("Sign Up",label: "Already Registered?", loginButtonText: "Log In")
-//        }
-//        
-//    }
-    
-//    func toggleBetweenSignupAndLoginMode(mode: String, label: String, loginButtonText: String) {
-//        signUpButton.setTitle(mode, forState: .Normal)
-//        registeredText.text = label
-//        loginButton.setTitle(loginButtonText, forState: .Normal)
-//        signupActive = !signupActive
-//    }
-    
     func runActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
         activityIndicator.center = self.view.center
@@ -162,17 +144,17 @@ class LoginSignupViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title,
-            message: message,
-            preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
+//    func displayAlert(title: String, message: String) {
+//        let alert = UIAlertController(title: title,
+//            message: message,
+//            preferredStyle: UIAlertControllerStyle.Alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+//            
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }))
+//        
+//        self.presentViewController(alert, animated: true, completion: nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,36 +166,6 @@ class LoginSignupViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
-    // MARK: - Navigation
-    
-    //I will leave this here for now but this is unnecessary since we can always get the current user from Parse
-    //we do not need to pass it during the segue
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let segueIdentifier = segue.identifier
-//        
-//        if segueIdentifier == "professorSegue" {
-//            guard let destination = segue.destinationViewController as? ProfessorCreateOrViewController else {
-//                print("Error: Destination is not ProfessorCreateOrViewController")
-//                return
-//            }
-//            
-//            //We can force unwrap currentUser since we are sure we are logged in at this point
-////            destination.user = PFUser.currentUser()!
-//        } else if segueIdentifier == "studentSegue" {
-//            guard let destination = segue.destinationViewController as? StudentChooseQueueViewController else {
-//                print("Error: Destination is not StudentChooseQueueViewController")
-//                return
-//            }
-//            
-//            //We can force unwrap currentUser since we are sure we are logged in at this point
-////            destination.user = PFUser.currentUser()!
-//        }
-//    }
-    
 
     @IBAction func back(segue:UIStoryboardSegue){
         if let source = segue.sourceViewController as? LogInInfoViewController{

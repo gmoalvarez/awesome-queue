@@ -23,7 +23,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpC-BG-2GY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpC-BG-2GY">
                                 <rect key="frame" x="20" y="127" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -43,7 +43,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48x-sC-FwQ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48x-sC-FwQ">
                                 <rect key="frame" x="274" y="171" width="52" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Enter Q"/>
@@ -51,7 +51,7 @@
                                     <action selector="send:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p2X-5s-Caj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Lq-er0">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Lq-er0">
                                 <rect key="frame" x="280" y="285" width="40" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Get Q"/>
@@ -59,7 +59,7 @@
                                     <action selector="getQ:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1bZ-Ga-zZG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81X-RO-lzc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81X-RO-lzc">
                                 <rect key="frame" x="281" y="350" width="38" height="30"/>
                                 <animations/>
                                 <state key="normal" title="De-Q"/>
@@ -134,14 +134,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latitude:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV9-U4-mco">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="latitude:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV9-U4-mco">
                                 <rect key="frame" x="20" y="317" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="longitude:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6Z-El-4rP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="longitude:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6Z-El-4rP">
                                 <rect key="frame" x="20" y="346" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -162,7 +162,7 @@
                                     <action selector="changeName:" destination="JMe-fo-vwO" eventType="touchUpInside" id="E2e-DF-7IS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coZ-6E-VzU">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coZ-6E-VzU">
                                 <rect key="frame" x="265" y="392" width="70" height="30"/>
                                 <animations/>
                                 <state key="normal" title="stop timer"/>
@@ -491,15 +491,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92u-ir-CBL">
-                                <rect key="frame" x="231" y="128" width="139" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Create a new Queue"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KN-lA-Wjr">
                                 <rect key="frame" x="231" y="354" width="140" height="30"/>
                                 <animations/>
                                 <state key="normal" title="View Existing Queue"/>
+                                <connections>
+                                    <segue destination="qPR-ck-kAc" kind="show" identifier="showProfessorQueue" id="ejD-ah-8Fy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92u-ir-CBL">
+                                <rect key="frame" x="231" y="175" width="139" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Create a new Queue"/>
+                                <connections>
+                                    <action selector="createQueueButtonPressed:" destination="9mw-02-WeK" eventType="touchUpInside" id="d9O-5g-8re"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -510,36 +516,76 @@
             </objects>
             <point key="canvasLocation" x="1161" y="-909"/>
         </scene>
-        <!--Queue List View-->
-        <scene sceneID="1lD-Md-Zo6">
+        <!--Professor Queue View Controller-->
+        <scene sceneID="rwA-43-RvI">
             <objects>
-                <tableViewController title="Queue List View" id="zwZ-ei-ru2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wrv-Xb-LTT">
+                <viewController id="qPR-ck-kAc" customClass="ProfessorQueueViewController" customModule="FInalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f01-7G-FSV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mjx-NM-E4s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k1Q-KJ-hTv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uL-1N-SCi">
+                                <rect key="frame" x="20" y="20" width="560" height="84"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <state key="normal" title="NEXT"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QuM-hx-PEU">
+                                <rect key="frame" x="20" y="112" width="560" height="480"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="K32-t2-496" style="IBUITableViewCellStyleDefault" id="rhG-sJ-QMp">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rhG-sJ-QMp" id="4Of-UH-4VO">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K32-t2-496">
+                                                    <rect key="frame" x="15" y="0.0" width="530" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qPR-ck-kAc" id="THa-hj-m1K"/>
+                                    <outlet property="delegate" destination="qPR-ck-kAc" id="6Us-ac-yAm"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LbC-7a-aW2">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LbC-7a-aW2" id="2YA-EH-KRx">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zwZ-ei-ru2" id="a0g-Go-zcP"/>
-                            <outlet property="delegate" destination="zwZ-ei-ru2" id="NYI-Vi-Mts"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f9o-mB-OMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="0uL-1N-SCi" firstAttribute="centerX" secondItem="k1Q-KJ-hTv" secondAttribute="centerX" id="1q2-d7-ZBX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0uL-1N-SCi" secondAttribute="trailing" id="3PP-sn-RqY"/>
+                            <constraint firstItem="Mjx-NM-E4s" firstAttribute="top" secondItem="QuM-hx-PEU" secondAttribute="bottom" constant="8" symbolic="YES" id="NRO-WF-zxQ"/>
+                            <constraint firstItem="QuM-hx-PEU" firstAttribute="top" secondItem="0uL-1N-SCi" secondAttribute="bottom" constant="8" symbolic="YES" id="UiZ-Jy-ajp"/>
+                            <constraint firstItem="0uL-1N-SCi" firstAttribute="top" secondItem="f01-7G-FSV" secondAttribute="bottom" id="WGX-3U-ITv"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="QuM-hx-PEU" secondAttribute="leading" id="mLS-VM-4pY"/>
+                            <constraint firstItem="0uL-1N-SCi" firstAttribute="leading" secondItem="k1Q-KJ-hTv" secondAttribute="leadingMargin" id="n6C-H0-S1x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QuM-hx-PEU" secondAttribute="trailing" id="w6R-qy-V7z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="QuM-hx-PEU" id="tgI-cv-zxz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sF1-1g-09J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2012" y="-904"/>
+            <point key="canvasLocation" x="2029" y="-971"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oc3-e5-mfa">

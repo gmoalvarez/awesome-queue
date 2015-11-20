@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var signInInfo:String?
+//var signInInfo:String?
 
 class StudentViewController: UIViewController {
     
@@ -31,8 +31,9 @@ class StudentViewController: UIViewController {
         print(userName)
     }
     
-    func doSomething(info:String){
+    func doSomething(info:String,reason:String){
         print(info)
+        print(reason)
         var infoArray = info.componentsSeparatedByString("|")
         if infoArray[0] != "Q.0" {
             status.text = "Error: Not a Q.0 qr code."
@@ -96,18 +97,35 @@ class StudentViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func joinQ(sender: UIButton) {
+        //adding alert
+        let controller = UIAlertController(title: "SUBMIT REASON", message: "Would you like to add a brief reason for your visit?",
+            preferredStyle: .ActionSheet)
+        let yesAction = UIAlertAction(title: "Add Reason", style: .Default, handler: {action in self.performSegueWithIdentifier("toReason", sender: self)})
+        let noAction = UIAlertAction(title: "No Photo", style: .Default, handler:   {action in self.performSegueWithIdentifier("toQR", sender: self)})
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel, handler: nil)
+        controller.addAction(cancelAction)
+        controller.addAction(yesAction)
+        controller.addAction(noAction)
+        
+        self.presentViewController(controller, animated: true, completion: {print("Done")})
+    }
+ 
     
     @IBAction func back(segue:UIStoryboardSegue){
+        var reason = "none"
         if let source = segue.sourceViewController as? QRViewController{
-            if let info = source.foundString{
-                signInInfo = info
-                doSomething(info)
+            guard let info = source.foundString,
+                reasonTmp = source.reason else{
+            print("Error in back() from StudentViewController: back")
+                    return
             }
-            else{
-                print("QR not read correctly: from StudentViewController: back")
+            if reasonTmp != ""{
+            reason = reasonTmp
             }
+            doSomething(info, reason: reason)
         }
         
         
-    }
+        }
 }

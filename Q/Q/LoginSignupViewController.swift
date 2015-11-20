@@ -216,7 +216,6 @@ class LoginSignupViewController: UIViewController {
     
 
     @IBAction func back(segue:UIStoryboardSegue){
-            var reasonTmp = "none"
         if let source = segue.sourceViewController as? LogInInfoViewController{
             guard let fn = source.firstName,
             ln = source.lastName,
@@ -228,11 +227,9 @@ class LoginSignupViewController: UIViewController {
                 //you can put the image into parse
                 print("picture obtained")
             }
-            if source.reason != ""{
-                reasonTmp = source.reason
-            }
+           
             //you can now use fn, ln, un, pw, reason to input into parse
-            print(fn, ln, un, pw, reasonTmp)
+            print(fn, ln, un, pw)
         }
         //here is where we would code another unWind from another view if we need to
     }

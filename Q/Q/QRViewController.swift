@@ -17,6 +17,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var foundString:String?
+    var reason:String?
     
     
     func foundCode(code: String) {
@@ -101,6 +102,9 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         //dismissViewControllerAnimated(true, completion: nil)
         
         //this segues back to previous view and allows it to grab the data collected from QR
+        if reason == nil{
+            reason = "none"
+        }
         performSegueWithIdentifier("backToStudent", sender: self)
     }
     

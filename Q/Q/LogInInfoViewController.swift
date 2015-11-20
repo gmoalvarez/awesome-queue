@@ -27,7 +27,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var userName:String?
     var password1:String?
     var password2:String?
-    var reason:String = ""
+    
     
     
     
@@ -131,10 +131,6 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     }
     
     @IBAction func back(segue:UIStoryboardSegue){
-        if let source = segue.sourceViewController as? VisitReasonViewController{
-            reason = source.reason
-            print("REason: \(reason)")
-        }
     }
     
 }

@@ -9,10 +9,11 @@
 import UIKit
 import Parse
 
-class ProfessorCreateOrViewController: UIViewController {
+class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     
     var professor = PFUser.currentUser()!
-    
+    var qrImageForParse:UIImage?
+
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
         createQueue()
         
@@ -49,9 +50,39 @@ class ProfessorCreateOrViewController: UIViewController {
 //        loadQueueWithTestUsers()
     }
     
-        
     override func viewWillAppear(animated: Bool) {
 
     }
+    
+    func setQR(qr: UIImage?) {
+        guard let qrImage = qr else{
+            print("UIImage failed to unwrap in the setQR() method in the ProfessorCreateOrViewController")
+            return
+        }
+        qrImageForParse = qrImage
+        print("Made it to setQR!!")
+    }
+    
+//    @IBAction func back(segue:UIStoryboardSegue){
+//        if let source = segue.sourceViewController as? QRGenViewController{
+//            source.delegate = self
+//        }
+//    }
+    
+
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+        if let source = segue.destinationViewController as? QRGenViewController{
+            source.delegate = self
+        }
+        else{
+            print("Nope")
+        }
+    }
+    
 
 }

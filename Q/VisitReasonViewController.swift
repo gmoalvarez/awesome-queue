@@ -37,19 +37,6 @@ class VisitReasonViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if let destinationVC = segue.destinationViewController as? QRViewController{
-            destinationVC.reason = reason
-        }
-    }
-    
     // MARK: - Text Methods
     
     //this allows the done button to relase the keyboard
@@ -91,5 +78,15 @@ class VisitReasonViewController: UIViewController,UITextViewDelegate {
         view.endEditing(true)
     }
     
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destinationViewController as? QRViewController{
+            destinationVC.reason = reason
+        }
+    }
     
 }

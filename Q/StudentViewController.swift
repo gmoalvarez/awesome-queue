@@ -19,8 +19,15 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var long: UILabel!
     @IBOutlet weak var userNameToChange: UITextField!
     
+    var beginTime:NSDate?
+    var endTime:NSDate?
     var queueToJoin:String?
     var userName = PFUser.currentUser()!.username
+    
+    
+    
+    
+    
 //creates new timer
     var timer1:NSTimer!
     var currentTimerTime = 0
@@ -41,11 +48,33 @@ class StudentViewController: UIViewController {
         }
         queueToJoin = infoArray[1]
         status.text = "Status: \(infoArray[0])"
-        queueName.text = "queue Name: \(infoArray[1])"
-        lat.text = "Latitude: \(infoArray[2])"
-        long.text = "Longitude: \(infoArray[3])"
+        queueName.text = "queue id: \(infoArray[1])"
+        lat.text = "Begin Time: \(infoArray[2])"
+        long.text = "End Time: \(infoArray[3])"
+        
+        
         sendInfo()
     }
+    
+    //makes NSDates from Strings in form "yyyy-MM-dd h:mm a"
+    func makeDate(dateInString:String)->NSDate{
+        let dateFmt = NSDateFormatter()
+        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
+        dateFmt.dateFormat = "yyyy-MM-dd h:mm a"
+        let returnDate = dateFmt.dateFromString(dateInString)!
+        return returnDate
+    }
+    
+    //ready to check that student is checking in within Office Hours (
+    func checkTime(begDate:NSDate,endDate:NSDate)->Bool{
+        if NSDate().compare(begDate) == NSComparisonResult.OrderedDescending && NSDate().compare(endDate) == NSComparisonResult.OrderedAscending{
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
     
     func sendInfo(){
         var uName = "smiley"  //default userName for testing
@@ -64,6 +93,8 @@ class StudentViewController: UIViewController {
             
         }
     }
+    
+    
     //next two methods are for testing timer
     func testTimer(){
         print(currentTimerTime++)

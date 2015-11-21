@@ -171,6 +171,22 @@
                                     <action selector="stopTimer:" destination="JMe-fo-vwO" eventType="touchUpInside" id="5NH-rA-tXw"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="Lyy-BT-giO">
+                                <rect key="frame" x="247" y="425" width="107" height="108"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="vc8-WK-B6m"/>
+                                    <constraint firstAttribute="width" constant="107" id="x5c-1R-U6F"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Red-X" translatesAutoresizingMaskIntoConstraints="NO" id="GYI-ba-Y2r">
+                                <rect key="frame" x="247" y="425" width="107" height="108"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="qcU-2f-v8t"/>
+                                    <constraint firstAttribute="width" constant="107" id="sEs-tW-Ig7"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,11 +196,14 @@
                             <constraint firstItem="J9N-A3-HXg" firstAttribute="centerX" secondItem="ueu-3d-D7N" secondAttribute="centerX" id="4EF-Zc-O2Y"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="leading" secondItem="bLt-pv-ZBL" secondAttribute="leading" id="8XL-Am-M3J"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="top" secondItem="J9N-A3-HXg" secondAttribute="bottom" constant="8" symbolic="YES" id="DSn-t0-aAU"/>
+                            <constraint firstItem="Lyy-BT-giO" firstAttribute="centerX" secondItem="coZ-6E-VzU" secondAttribute="centerX" id="Eh3-K4-4QM"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="trailing" secondItem="QcC-nn-QX0" secondAttribute="trailing" id="Gdi-6j-uTX"/>
                             <constraint firstItem="62B-eX-dJM" firstAttribute="centerX" secondItem="bLt-pv-ZBL" secondAttribute="centerX" id="H9S-k2-ZeJ"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="J6Z-El-4rP" secondAttribute="leading" id="HMh-p5-QlC"/>
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="centerX" secondItem="J6Z-El-4rP" secondAttribute="centerX" id="IfW-aG-VWw"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="Ivt-bN-J4z"/>
+                            <constraint firstItem="GYI-ba-Y2r" firstAttribute="top" secondItem="Lyy-BT-giO" secondAttribute="top" id="JzD-UE-r5M"/>
+                            <constraint firstItem="Lyy-BT-giO" firstAttribute="top" secondItem="coZ-6E-VzU" secondAttribute="bottom" constant="3" id="LIy-dC-UbJ"/>
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="top" secondItem="J6Z-El-4rP" secondAttribute="bottom" constant="25" id="MiS-iR-n83"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="T68-PL-9ST"/>
                             <constraint firstItem="J6Z-El-4rP" firstAttribute="leading" secondItem="ueu-3d-D7N" secondAttribute="leadingMargin" id="Wah-JF-Irx"/>
@@ -195,13 +214,16 @@
                             <constraint firstItem="J6Z-El-4rP" firstAttribute="top" secondItem="MV9-U4-mco" secondAttribute="bottom" constant="8" symbolic="YES" id="mx6-qZ-154"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="trailing" secondItem="QcC-nn-QX0" secondAttribute="trailing" id="tGh-tB-ZD8"/>
                             <constraint firstItem="bLt-pv-ZBL" firstAttribute="top" secondItem="62B-eX-dJM" secondAttribute="bottom" constant="8" symbolic="YES" id="usL-4l-WXp"/>
+                            <constraint firstItem="GYI-ba-Y2r" firstAttribute="leading" secondItem="Lyy-BT-giO" secondAttribute="leading" id="x9h-84-G01"/>
                             <constraint firstItem="J9N-A3-HXg" firstAttribute="top" secondItem="OvG-5f-8J7" secondAttribute="bottom" constant="157" id="xqS-CC-dfS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="check" destination="Lyy-BT-giO" id="Ark-gz-HYF"/>
                         <outlet property="lat" destination="MV9-U4-mco" id="e9G-i3-Afo"/>
                         <outlet property="long" destination="J6Z-El-4rP" id="pNr-hj-C7f"/>
                         <outlet property="queueName" destination="QcC-nn-QX0" id="G1r-au-qs3"/>
+                        <outlet property="redX" destination="GYI-ba-Y2r" id="BPH-yW-5GC"/>
                         <outlet property="status" destination="oFe-fe-YgR" id="HOn-LT-fkA"/>
                         <outlet property="userNameToChange" destination="bLt-pv-ZBL" id="Hkm-Xw-7rB"/>
                         <segue destination="SBa-Ig-DuV" kind="show" identifier="toQR" id="rbA-It-bdg"/>
@@ -798,6 +820,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Red-X" width="334" height="334"/>
+        <image name="check" width="582" height="596"/>
         <image name="uploadPhoto" width="900" height="900"/>
     </resources>
     <inferredMetricsTieBreakers>

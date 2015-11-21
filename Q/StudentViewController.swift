@@ -30,7 +30,7 @@ class StudentViewController: UIViewController {
     
     
     
-//creates new timer
+    //creates new timer
     var timer1:NSTimer!
     var currentTimerTime = 0
     
@@ -53,24 +53,24 @@ class StudentViewController: UIViewController {
         queueName.text = "queue id: \(infoArray[1])"
         lat.text = "Begin Time: \(infoArray[2])"
         long.text = "End Time: \(infoArray[3])"
-//        let x = infoArray[2]
-//        let y = infoArray[3]
-//        let beginDT = makeDate(x)
-//        let endDT = makeDate(y)
-//        if (checkTime(beginDT, endDate: endDT)){
-//            check.hidden = false
-//            sendInfo()
-//        }
-//        else{
-//            redX.hidden = false
-//            return
-//        }
+        let x = infoArray[2]
+        let y = infoArray[3]
+        let beginDT = makeDate(x)
+        let endDT = makeDate(y)
+        if (checkTime(beginDT, endDate: endDT)){
+            check.hidden = false
+            sendInfo()
+        }
+        else{
+            redX.hidden = false
+            return
+        }
         sendInfo()
         
     }
     
     //makes NSDates from Strings in form "yyyy-MM-dd h:mm a"
-    func makeDate(dateInString:String)->NSDate{
+    func makeDate(dateInString:String)->NSDate {
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         dateFmt.dateFormat = "yyyy-MM-dd h:mm a"

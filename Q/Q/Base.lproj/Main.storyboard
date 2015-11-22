@@ -187,10 +187,11 @@
                                     <constraint firstAttribute="width" constant="107" id="sEs-tW-Ig7"/>
                                 </constraints>
                             </imageView>
+
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzU-Nj-QzL">
-                                <rect key="frame" x="232" y="366" width="138" height="30"/>
+                                <rect key="frame" x="123" y="313" width="101" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Remove from queue"/>
+                                <state key="normal" title="Exit the Queue"/>
                                 <connections>
                                     <action selector="removeFromQueue:" destination="JMe-fo-vwO" eventType="touchUpInside" id="isi-yd-rGX"/>
                                 </connections>
@@ -212,7 +213,6 @@
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="centerX" secondItem="J6Z-El-4rP" secondAttribute="centerX" id="IfW-aG-VWw"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="Ivt-bN-J4z"/>
                             <constraint firstItem="GYI-ba-Y2r" firstAttribute="top" secondItem="Lyy-BT-giO" secondAttribute="top" id="JzD-UE-r5M"/>
-                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="centerX" secondItem="Lyy-BT-giO" secondAttribute="centerX" id="KdO-Jg-tgJ"/>
                             <constraint firstItem="Lyy-BT-giO" firstAttribute="top" secondItem="coZ-6E-VzU" secondAttribute="bottom" constant="3" id="LIy-dC-UbJ"/>
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="top" secondItem="J6Z-El-4rP" secondAttribute="bottom" constant="25" id="MiS-iR-n83"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="T68-PL-9ST"/>
@@ -221,8 +221,9 @@
                             <constraint firstItem="J9N-A3-HXg" firstAttribute="top" secondItem="bLt-pv-ZBL" secondAttribute="bottom" constant="39" id="Xyd-GG-diS"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="trailing" secondItem="bLt-pv-ZBL" secondAttribute="trailing" id="bBs-WR-fGA"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="top" secondItem="QcC-nn-QX0" secondAttribute="bottom" constant="8" symbolic="YES" id="bPv-cJ-Ah9"/>
-                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="top" secondItem="MV9-U4-mco" secondAttribute="bottom" constant="28" id="feD-uk-zW7"/>
+                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="baseline" secondItem="J9N-A3-HXg" secondAttribute="baseline" id="lsU-e8-wau"/>
                             <constraint firstItem="J6Z-El-4rP" firstAttribute="top" secondItem="MV9-U4-mco" secondAttribute="bottom" constant="8" symbolic="YES" id="mx6-qZ-154"/>
+                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="centerX" secondItem="J9N-A3-HXg" secondAttribute="centerX" id="nQA-iM-4QS"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="trailing" secondItem="QcC-nn-QX0" secondAttribute="trailing" id="tGh-tB-ZD8"/>
                             <constraint firstItem="bLt-pv-ZBL" firstAttribute="top" secondItem="62B-eX-dJM" secondAttribute="bottom" constant="8" symbolic="YES" id="usL-4l-WXp"/>
                             <constraint firstItem="GYI-ba-Y2r" firstAttribute="leading" secondItem="Lyy-BT-giO" secondAttribute="leading" id="x9h-84-G01"/>
@@ -234,6 +235,8 @@
                     </view>
                     <connections>
                         <outlet property="check" destination="Lyy-BT-giO" id="Ark-gz-HYF"/>
+                        <outlet property="exitQueueButton" destination="RzU-Nj-QzL" id="4og-SJ-1eQ"/>
+                        <outlet property="joinQueueButton" destination="J9N-A3-HXg" id="zoI-jC-o99"/>
                         <outlet property="lat" destination="MV9-U4-mco" id="e9G-i3-Afo"/>
                         <outlet property="long" destination="J6Z-El-4rP" id="pNr-hj-C7f"/>
                         <outlet property="queueName" destination="QcC-nn-QX0" id="G1r-au-qs3"/>

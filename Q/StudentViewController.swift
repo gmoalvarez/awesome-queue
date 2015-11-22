@@ -20,6 +20,8 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var userNameToChange: UITextField!
     @IBOutlet weak var check: UIImageView!
     @IBOutlet weak var redX: UIImageView!
+    @IBOutlet weak var joinQueueButton: UIButton!
+    @IBOutlet weak var exitQueueButton: UIButton!
     
     var beginTime:NSDate?
     var endTime:NSDate?
@@ -41,7 +43,6 @@ class StudentViewController: UIViewController {
         controller.addAction(yesAction)
         self.presentViewController(controller, animated: true, completion: {print("Done")})
         
-        
     }
     
     func removeFromQueueMethod(){
@@ -60,6 +61,8 @@ class StudentViewController: UIViewController {
                 queue.removeObject(uName, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
+                self.exitQueueButton.hidden = true
+                self.joinQueueButton.hidden = false
             }
         }
     }
@@ -148,6 +151,8 @@ class StudentViewController: UIViewController {
                 queue.addUniqueObject(uName, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "testTimer", userInfo: nil, repeats: true)
+                self.joinQueueButton.hidden = true
+                self.exitQueueButton.hidden = false
             }
             
             
@@ -183,6 +188,7 @@ class StudentViewController: UIViewController {
         super.viewDidLoad()
         check.hidden = true
         redX.hidden = true
+        exitQueueButton.hidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -205,6 +211,7 @@ class StudentViewController: UIViewController {
         //adding alert
         redX.hidden = true
         check.hidden = true
+        
         let controller = UIAlertController(title: "SUBMIT REASON", message: "Would you like to add a brief reason for your visit?",
             preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Add Reason", style: .Default, handler: {action in self.performSegueWithIdentifier("toReason", sender: self)})

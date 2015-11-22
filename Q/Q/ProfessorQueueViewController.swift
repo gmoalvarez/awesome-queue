@@ -102,6 +102,31 @@ class ProfessorQueueViewController: UIViewController {
         
     }
 
+    @IBAction func nextButtonPressed(sender: UIButton) {
+        
+        PFQuery(className: "Queue").getObjectInBackgroundWithId(queueId) { (queue, error) -> Void in
+            
+            guard error == nil,
+            let queue = queue else {
+                self.displayErrorString(error, messageTitle: "Error retrieving queue with id: \(self.queueId)")
+                return
+            }
+            
+            guard let waitlist = queue["waitlist"] as? [String] else {
+                self.displayAlert("Error", message: "Could not get waitlist from queue")
+                return
+            }
+            
+            guard let usernameOfFirstStudentInQueue = waitlist.first else {
+                self.displayAlert("Error", message: "Could not get first user in queue")
+                return
+            }
+            
+            queue.removeObjectsInArray([usernameOfFirstStudentInQueue], forKey: "waitlist")
+            queue.saveInBackground()
+            self.queueList.removeFirst()
+        }
+    }
     
 }
 

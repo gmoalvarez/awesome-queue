@@ -9,49 +9,125 @@
 import UIKit
 import Parse
 
-class ProfessorCreateOrViewController: UIViewController {
+class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     
     var professor = PFUser.currentUser()!
+//    var qrImageForParse:UIImage?
+    var queueIDFromParse:String?
     
+
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
         createQueue()
-        
     }
     
     func createQueue() {
         let newQueue = PFObject(className: "Queue")
         newQueue["createdBy"] = professor
-        newQueue.saveInBackgroundWithBlock(saveQueue)
-    }
-    
-    func saveQueue(success:Bool, error:NSError?) {
-        guard error == nil else {
-            if let errorString = error!.userInfo["error"] as? String {
-                self.displayAlert("Failed to create Queue", message: errorString)
-            } else {
-                self.displayAlert("Failed to create Queue", message: "Try again later")
+        newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
+            guard error == nil else {
+                self.displayErrorString(error,messageTitle: "Failed to create Queue")
+                return
             }
-            return
+            
+            if success {
+                print("Created queue successfully: \(success)")
+                guard let objectId = newQueue.objectId else {
+                    print("Created queue but did not get an id back")
+                    return
+                }
+                
+                self.professor.addObject(newQueue, forKey: "queues")
+                self.queueIDFromParse = objectId
+                
+                ///// ------- Automatically add students upon creating the queue for testing purposes
+                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
+                ///// -------                        --------- /////////////////////////////////////
+                
+                self.performSegueWithIdentifier("toQRgen", sender: self)
+            }
         }
-        
-        if success {
-            print("Created queue successfully: \(success)")
-        }
-
     }
-    
-    let queueId = "Hlcn2AlVOa"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        TestQueueGenerator.addAllStudentsToQueueWithId(queueId)
-//        loadQueueWithTestUsers()
     }
     
-        
     override func viewWillAppear(animated: Bool) {
 
     }
+    
+    func setQR(qrImage: UIImage, queueId: String) {
+        
+        let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId)
+        query.findObjectsInBackgroundWithBlock { queue, error in
+            guard error == nil else {
+                self.displayErrorString(error, messageTitle: "Error when finding current queue")
+                return
+            }
+            
+            guard let currentQueue = queue?.first else {
+                print("Could not get queue")
+                return
+            }
+            
+            self.addImageToQueue(currentQueue, image: qrImage)
+        }
+        
+    }
+    
+    let compression:CGFloat = 0.8
+    func addImageToQueue(queue: PFObject, image: UIImage) {
+        guard let imageData = UIImagePNGRepresentation(image) else {
+            print("Could not convert image into data")
+            return
+        }
+        
+        guard let imageFile = PFFile(data: imageData) else {
+            print("Could not convert image file to Parse File")
+            return
+        }
+        
+        imageFile.saveInBackgroundWithBlock{ (success, error) -> Void in
+            
+            guard error == nil else {
+                self.displayErrorString(error, messageTitle: "Failed to upload QR image")
+                return
+            }
+            
+            if success {
+                print("Successfully saved QR image")
+                queue.setObject(imageFile, forKey: "qrImage")
+            }
+        }
+        
+        
+    }
+    
+//    @IBAction func back(segue:UIStoryboardSegue){
+//        if let source = segue.sourceViewController as? QRGenViewController{
+//            source.delegate = self
+//        }
+//    }
+    
+
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? QRGenViewController{
+            destination.delegate = self
+            if let queueIDFromParse = queueIDFromParse{
+                destination.queueID = queueIDFromParse
+            }
+            else{
+                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
+            }
+        }
+        else if let destination = segue.destinationViewController as? ProfessorQueueViewController {
+        
+        }
+    }
+    
+    
 
 }

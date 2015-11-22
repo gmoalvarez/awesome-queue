@@ -29,5 +29,14 @@ extension UIViewController {
         }
 
     }
+    
+    func displayErrorString(error:NSError?, messageTitle:String) {
+        if let errorString = error?.userInfo["error"] as? String {
+            self.displayAlert(messageTitle, message: errorString)
+        } else {
+            self.displayAlert(messageTitle, message: "Try again later")
+        }
+        
+    }
 
 }

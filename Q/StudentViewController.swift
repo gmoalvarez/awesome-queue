@@ -18,10 +18,19 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var lat: UILabel!
     @IBOutlet weak var long: UILabel!
     @IBOutlet weak var userNameToChange: UITextField!
+    @IBOutlet weak var check: UIImageView!
+    @IBOutlet weak var redX: UIImageView!
     
+    var beginTime:NSDate?
+    var endTime:NSDate?
     var queueToJoin:String?
     var userName = PFUser.currentUser()!.username
-//creates new timer
+    
+    
+    
+    
+    
+    //creates new timer
     var timer1:NSTimer!
     var currentTimerTime = 0
     
@@ -41,11 +50,42 @@ class StudentViewController: UIViewController {
         }
         queueToJoin = infoArray[1]
         status.text = "Status: \(infoArray[0])"
-        queueName.text = "queue Name: \(infoArray[1])"
-        lat.text = "Latitude: \(infoArray[2])"
-        long.text = "Longitude: \(infoArray[3])"
+        queueName.text = "queue id: \(infoArray[1])"
+        lat.text = "Begin Time: \(infoArray[2])"
+        long.text = "End Time: \(infoArray[3])"
+        let beginDT = makeDate(infoArray[2])
+        let endDT = makeDate(infoArray[3])
+        if (checkTime(beginDT, endDate: endDT)){
+            check.hidden = false
+            sendInfo()
+        }
+        else{
+            redX.hidden = false
+            return
+        }
         sendInfo()
+        
     }
+    
+    //makes NSDates from Strings in form "yyyy-MM-dd h:mm a"
+    func makeDate(dateInString:String)->NSDate {
+        let dateFmt = NSDateFormatter()
+        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
+        dateFmt.dateFormat = "yyyy-MM-dd h:mm"
+        let returnDate = dateFmt.dateFromString(dateInString)!
+        return returnDate
+    }
+    
+    //ready to check that student is checking in within Office Hours (
+    func checkTime(begDate:NSDate,endDate:NSDate)->Bool{
+        if NSDate().compare(begDate) == NSComparisonResult.OrderedDescending && NSDate().compare(endDate) == NSComparisonResult.OrderedAscending{
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
     
     func sendInfo(){
         var uName = "smiley"  //default userName for testing
@@ -64,6 +104,8 @@ class StudentViewController: UIViewController {
             
         }
     }
+    
+    
     //next two methods are for testing timer
     func testTimer(){
         print(currentTimerTime++)
@@ -78,7 +120,8 @@ class StudentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        check.hidden = true
+        redX.hidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -99,10 +142,12 @@ class StudentViewController: UIViewController {
     */
     @IBAction func joinQ(sender: UIButton) {
         //adding alert
+        redX.hidden = true
+        check.hidden = true
         let controller = UIAlertController(title: "SUBMIT REASON", message: "Would you like to add a brief reason for your visit?",
             preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Add Reason", style: .Default, handler: {action in self.performSegueWithIdentifier("toReason", sender: self)})
-        let noAction = UIAlertAction(title: "No Photo", style: .Default, handler:   {action in self.performSegueWithIdentifier("toQR", sender: self)})
+        let noAction = UIAlertAction(title: "No Reason", style: .Default, handler:   {action in self.performSegueWithIdentifier("toQR", sender: self)})
         let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel, handler: nil)
         controller.addAction(cancelAction)
         controller.addAction(yesAction)

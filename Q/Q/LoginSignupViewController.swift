@@ -158,10 +158,28 @@ class LoginSignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //testing only ****delete****
+        //makeDate("2015-11-21 02:30 PM")
 
         // Do any additional setup after loading the view.
     }
 
+//testing only --ARchie-- delete after done
+//    func makeDate(dateInString:String)->NSDate {
+//        let dateFmt = NSDateFormatter()
+//        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
+//        dateFmt.dateFormat = "yyyy-MM-dd hh:mm a"
+//        let returnDate = dateFmt.dateFromString(dateInString)!
+//        print("The date is \(returnDate)")
+//        print("The current date is \(NSDate())")
+//        return returnDate
+//    }
+    
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

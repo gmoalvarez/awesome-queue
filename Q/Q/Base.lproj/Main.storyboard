@@ -559,7 +559,7 @@
                                 <rect key="frame" x="20" y="72" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uvR-Vl-t42">
@@ -647,26 +647,19 @@
                                     <action selector="createQueueButtonPressed:" destination="9mw-02-WeK" eventType="touchUpInside" id="d9O-5g-8re"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fl-IZ-8RT">
-                                <rect key="frame" x="20" y="72" width="71" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Create QR"/>
-                                <connections>
-                                    <segue destination="xmC-Pm-NKY" kind="show" id="uvg-OR-v5p"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0fl-IZ-8RT" firstAttribute="top" secondItem="dPG-fs-RUE" secondAttribute="bottom" constant="8" symbolic="YES" id="74x-Pf-IEE"/>
-                            <constraint firstItem="0fl-IZ-8RT" firstAttribute="leading" secondItem="eNz-VQ-HlQ" secondAttribute="leadingMargin" id="D3S-sP-Mhn"/>
                             <constraint firstItem="92u-ir-CBL" firstAttribute="top" secondItem="dPG-fs-RUE" secondAttribute="bottom" constant="111" id="Ohg-EN-X3P"/>
                             <constraint firstItem="92u-ir-CBL" firstAttribute="centerX" secondItem="eNz-VQ-HlQ" secondAttribute="centerX" id="TfA-kY-eo5"/>
                             <constraint firstItem="2rM-VN-yz0" firstAttribute="top" secondItem="0KN-lA-Wjr" secondAttribute="bottom" constant="216" id="XDU-rN-cYV"/>
                             <constraint firstItem="92u-ir-CBL" firstAttribute="leading" secondItem="0KN-lA-Wjr" secondAttribute="leading" id="wTb-aw-cSO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="xmC-Pm-NKY" kind="show" identifier="toQRgen" id="8V8-WH-Yj3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsg-16-ChE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -707,7 +700,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -759,7 +752,7 @@
                                 <rect key="frame" x="229" y="289" width="92" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

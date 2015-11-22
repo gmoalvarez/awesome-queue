@@ -53,10 +53,8 @@ class StudentViewController: UIViewController {
         queueName.text = "queue id: \(infoArray[1])"
         lat.text = "Begin Time: \(infoArray[2])"
         long.text = "End Time: \(infoArray[3])"
-        let x = infoArray[2]
-        let y = infoArray[3]
-        let beginDT = makeDate(x)
-        let endDT = makeDate(y)
+        let beginDT = makeDate(infoArray[2])
+        let endDT = makeDate(infoArray[3])
         if (checkTime(beginDT, endDate: endDT)){
             check.hidden = false
             sendInfo()
@@ -73,7 +71,7 @@ class StudentViewController: UIViewController {
     func makeDate(dateInString:String)->NSDate {
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
-        dateFmt.dateFormat = "yyyy-MM-dd h:mm a"
+        dateFmt.dateFormat = "yyyy-MM-dd h:mm"
         let returnDate = dateFmt.dateFromString(dateInString)!
         return returnDate
     }

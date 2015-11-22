@@ -20,6 +20,10 @@ class QRGenViewController: UIViewController {
     var qrString:String?
     var delegate : QRViewDelegate! = nil
     var UIImageForQRReturn:UIImage?
+    //vars for qrCode
+    var queueID:String?
+    var begDate:String = "2015-11-21 12:01"
+    var endDate:String = "2015-12-21 03:00"
     
     //this method gets called when the back button is pressed
     override func viewWillDisappear(animated : Bool) {
@@ -32,13 +36,17 @@ class QRGenViewController: UIViewController {
     }
     
     func stringMaker(){
-        qrString = "Q.0|A12345678|37.33233|-122.0312"
-        print("Level 1: \(qrString)")
+        guard let qID = queueID else{
+            print("qID unwrap issue in stringMaker() QRGenViewController")
+            return
+        }
+        qrString = "Q.0|\(qID)|\(begDate)|\(endDate)|"
+       
     }
     
     func makeQR(){
         guard let qrInfo = qrString else{
-            print("QR string failed to unwrap")
+            print("qrString failed to unwrap")
             return
         }
         let data = qrInfo.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)

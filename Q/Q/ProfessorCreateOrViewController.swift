@@ -13,6 +13,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     
     var professor = PFUser.currentUser()!
     var qrImageForParse:UIImage?
+    var queueIDFromParse:String?
 
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
         createQueue()
@@ -23,6 +24,13 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
         let newQueue = PFObject(className: "Queue")
         newQueue["createdBy"] = professor
         newQueue.saveInBackgroundWithBlock(saveQueue)
+        
+        //get ID from new queue here
+        //re-write the one code line below
+        queueIDFromParse = "Hlcn2AlVOa"
+
+        
+        performSegueWithIdentifier("toQRgen", sender: self)
     }
     
     func saveQueue(success:Bool, error:NSError?) {
@@ -41,6 +49,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
 
     }
     
+    //this is going to be replaced by queueIDFromParse
     let queueId = "Hlcn2AlVOa"
     
     override func viewDidLoad() {
@@ -78,6 +87,12 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     // Pass the selected object to the new view controller.
         if let source = segue.destinationViewController as? QRGenViewController{
             source.delegate = self
+            if let qID = queueIDFromParse{
+                source.queueID = qID
+            }
+            else{
+                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
+            }
         }
         else{
             print("Nope")

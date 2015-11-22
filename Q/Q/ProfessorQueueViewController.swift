@@ -11,7 +11,13 @@ import Parse
 
 class ProfessorQueueViewController: UIViewController {
     
-    var queueId = String()
+    var queueId = String() {
+        didSet {
+            if queueId != "" {
+                loadQueueList()
+            }
+        }
+    }
 
     let professor = PFUser.currentUser()!
     
@@ -19,16 +25,15 @@ class ProfessorQueueViewController: UIViewController {
     
     var queueList = [Person]() {
         didSet {
-            tableView.reloadData()
+//            dispatch_async(dispatch_get_main_queue()){
+                self.tableView.reloadData()
+//            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.getQueueId()
-        }
+            getQueueId()
     }
     
     func getQueueId() {
@@ -51,47 +56,52 @@ class ProfessorQueueViewController: UIViewController {
             }
             
             self.queueId = latestQueueId
+        }
+    }
+    
+    func loadQueueList() {
+        
+        let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId).includeKey("waitlist")
+        query.findObjectsInBackgroundWithBlock { queue, error in
             
-            do {
-                let queue = try PFQuery(className: "Queue").getObjectWithId(latestQueueId)
+            
+            guard let queue = queue?.first else {
+                self.displayAlert("Error", message: "Could not get queue")
+                return
+            }
+            
+            guard let waitlist = queue["waitlist"] as? [String] else {
+                self.displayAlert("Error", message: "Could not get waitlist from selected queue")
+                return
+            }
+            
+            //Iterate through all users and create the Model queueList for the TableView
+            for username in waitlist {
                 
-                guard let waitlist = queue["waitlist"] as? [String] else {
-                    self.displayAlert("Error", message: "Could not get waitlist from selected queue")
-                    return
-                }
-                
-                //Iterate through all users and create the Model queueList for the TableView
-                for username in waitlist {
+                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
+                userQuery?.findObjectsInBackgroundWithBlock { user, error in
                     
-                    let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
-                    userQuery?.findObjectsInBackgroundWithBlock { user, error in
-                        
-                        guard error == nil else {
-                            self.displayErrorString(error)
-                            return
-                        }
-                        
-                        guard let user = user?.first else {
-                            self.displayAlert("Error", message: "User not found")
-                            return
-                        }
-                        
-                        self.queueList.append(Person(lastName: user["lastName"] as! String,
-                            firstName: user["firstName"] as! String,
-                            userName: user["username"] as! String))
+                    guard error == nil else {
+                        self.displayErrorString(error)
+                        return
                     }
+                    
+                    guard let user = user?.first else {
+                        self.displayAlert("Error", message: "User not found")
+                        return
+                    }
+                    
+                    self.queueList.append(Person(lastName: user["lastName"] as! String,
+                        firstName: user["firstName"] as! String,
+                        userName: user["username"] as! String))
                 }
-                
-            } catch let error as NSError {
-                self.displayErrorString(error)
-            } catch {
-                fatalError()
             }
 
         }
-
+        
+        
     }
-    
+
     
 }
 

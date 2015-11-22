@@ -170,7 +170,6 @@
 				B37081721C00D194006ADEE1 /* QueueTesting.playground */,
 				B32B96371BFD7B46002CB95B /* Person.swift */,
 				B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */,
-				B32B96441BFEEDB5002CB95B /* VisitReasonViewController.swift */,
 				B32B963E1BFEC840002CB95B /* Test Generator Files */,
 				B39C960B1BEAB8E100372446 /* LoginSignup */,
 				B32B96401BFEC885002CB95B /* Student Controllers */,
@@ -244,6 +243,7 @@
 		B32B96401BFEC885002CB95B /* Student Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B32B96441BFEEDB5002CB95B /* VisitReasonViewController.swift */,
 				21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */,
 				21A54DFC1BFBF524006734FC /* QRViewController.swift */,
 			);
@@ -326,7 +326,7 @@
 				TargetAttributes = {
 					21DCCB781BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 9U59G4TU97;
+						DevelopmentTeam = YFW32UFS6M;
 					};
 					21DCCB8C1BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol QRViewDelegate{
-    func setQR(qr:UIImage?);
+    func setQR(qrImage:UIImage, queueId: String);
 }
 
 class QRGenViewController: UIViewController {
@@ -19,9 +19,9 @@ class QRGenViewController: UIViewController {
     var qrImage:CIImage!
     var qrString:String?
     var delegate : QRViewDelegate! = nil
-    var UIImageForQRReturn:UIImage?
+
     //vars for qrCode
-    var queueID:String?
+    var queueID = String()
     var begDate:String = "2015-11-21 12:01"
     var endDate:String = "2015-12-21 03:00"
     
@@ -31,16 +31,17 @@ class QRGenViewController: UIViewController {
         
         if (self.isMovingFromParentViewController()){
             //delegate method that will be located in the ProfessorCreateViewController
-            delegate.setQR(qr.image)
+            guard let image = qr.image else {
+                print("No image to send back?")
+                return
+            }
+            
+            delegate.setQR(image, queueId: queueID)
         }
     }
     
     func stringMaker(){
-        guard let qID = queueID else{
-            print("qID unwrap issue in stringMaker() QRGenViewController")
-            return
-        }
-        qrString = "Q.0|\(qID)|\(begDate)|\(endDate)|"
+        qrString = "Q.0|\(queueID)|\(begDate)|\(endDate)|"
        
     }
     

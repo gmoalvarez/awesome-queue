@@ -17,14 +17,12 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signUpButton: UIButton!
     
-    
-    var timer1:NSTimer!
-    
     var activityIndicator = UIActivityIndicatorView()
     
     @IBAction func tapBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)   
     }
+    
     @IBAction func signupModeChanged(sender: UISegmentedControl) {
         let signUpModeTitle = getSignUpModeTitle()
         

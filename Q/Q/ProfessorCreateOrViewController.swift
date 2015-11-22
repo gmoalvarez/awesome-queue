@@ -123,9 +123,6 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
                 print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
             }
         }
-        else if let destination = segue.destinationViewController as? ProfessorQueueViewController {
-        
-        }
     }
     
     

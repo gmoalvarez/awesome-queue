@@ -17,6 +17,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     @IBOutlet weak var userNameText: UITextField!
     @IBOutlet weak var passWordText: UITextField!
     @IBOutlet weak var password2Text: UITextField!
+    @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var passwordsError: UILabel!
@@ -27,15 +28,12 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var userName:String?
     var password1:String?
     var password2:String?
-    
-    
-    
-    
-    
+    var userType:String?
     
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
     @IBAction func cancel(sender: UIBarButtonItem) {
         performSegueWithIdentifier("backToLogIn", sender: self)
         
@@ -48,14 +46,17 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
             lastNameText.text == "" ||
             userNameText.text == "" ||
             passWordText.text == "" ||
-            password2Text.text == "" {
+            password2Text.text == "" ||
+            userTypeSegmentedControl.selectedSegmentIndex == -1 {
                 errorMessage.hidden = false
                 return
         }
+        
         if passWordText.text != password2Text.text {
             passwordsError.hidden = false
             return
         }
+        
         setValuesToPassBack()
         performSegueWithIdentifier("backToLogIn", sender: self)
     }
@@ -67,6 +68,8 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         userName = userNameText.text
         password1 = passWordText.text
         password2 = password2Text.text
+        let segmentSelectedIndex = userTypeSegmentedControl.selectedSegmentIndex
+        userType = userTypeSegmentedControl.titleForSegmentAtIndex(segmentSelectedIndex)
     }
     
     

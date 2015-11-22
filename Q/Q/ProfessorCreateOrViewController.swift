@@ -14,6 +14,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     var professor = PFUser.currentUser()!
 //    var qrImageForParse:UIImage?
     var queueIDFromParse:String?
+    
 
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
         createQueue()
@@ -35,7 +36,13 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
                     return
                 }
                 
+                self.professor.addObject(newQueue, forKey: "queues")
                 self.queueIDFromParse = objectId
+                
+                ///// ------- Automatically add students upon creating the queue for testing purposes
+                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
+                ///// -------                        --------- /////////////////////////////////////
+                
                 self.performSegueWithIdentifier("toQRgen", sender: self)
             }
         }
@@ -116,10 +123,11 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
                 print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
             }
         }
-        else{
-            print("Nope")
+        else if let destination = segue.destinationViewController as? ProfessorQueueViewController {
+        
         }
     }
+    
     
 
 }

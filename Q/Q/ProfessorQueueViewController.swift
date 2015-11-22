@@ -11,9 +11,9 @@ import Parse
 
 class ProfessorQueueViewController: UIViewController {
     
-    let queueId = "Hlcn2AlVOa" //The Queue Id is hardcoded now but it will be fetched when the queue is created
+    var queueId = String()
 
-    let user = PFUser.currentUser()!
+    let professor = PFUser.currentUser()!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,53 +25,74 @@ class ProfessorQueueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadQueueList()
-
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.getQueueId()
+        }
     }
     
-    func loadQueueList() {
-        let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId).includeKey("waitlist")
-        query.findObjectsInBackgroundWithBlock { queueWaitlist, error  in
-            
+    func getQueueId() {
+        let queueQuery = PFQuery(className: "Queue")
+        queueQuery.whereKey("createdBy", equalTo: professor)
+        queueQuery.findObjectsInBackgroundWithBlock { (queues, error) -> Void in
             guard error == nil else {
                 self.displayErrorString(error)
                 return
             }
             
-            guard let selectedQueue = queueWaitlist?.first else {
-                self.displayAlert("Error", message: "Could not get queue for some reason")
+            guard let latestQueue = queues?.last else {
+                self.displayAlert("Error", message: "Could not get latest queue")
                 return
             }
             
-            guard let waitlist = selectedQueue["waitlist"] as? [String] else {
-                self.displayAlert("Error", message: "Could not get waitlist from selected queue")
+            guard let latestQueueId = latestQueue.objectId else {
+                print("Could not get latest queue Id")
                 return
             }
             
-            //Iterate through all users and create the Model queueList for the TableView
-            for username in waitlist {
+            self.queueId = latestQueueId
+            
+            do {
+                let queue = try PFQuery(className: "Queue").getObjectWithId(latestQueueId)
                 
-                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
-                userQuery?.findObjectsInBackgroundWithBlock { user, error in
-                    
-                    guard error == nil else {
-                        self.displayErrorString(error)
-                        return
-                    }
-
-                    
-                    guard let user = user?.first else {
-                        self.displayAlert("Error", message: "User not found")
-                        return
-                    }
-                    
-                    self.queueList.append(Person(lastName: user["lastName"] as! String,
-                        firstName: user["firstName"] as! String,
-                        userName: user["username"] as! String))
+                guard let waitlist = queue["waitlist"] as? [String] else {
+                    self.displayAlert("Error", message: "Could not get waitlist from selected queue")
+                    return
                 }
+                
+                //Iterate through all users and create the Model queueList for the TableView
+                for username in waitlist {
+                    
+                    let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
+                    userQuery?.findObjectsInBackgroundWithBlock { user, error in
+                        
+                        guard error == nil else {
+                            self.displayErrorString(error)
+                            return
+                        }
+                        
+                        guard let user = user?.first else {
+                            self.displayAlert("Error", message: "User not found")
+                            return
+                        }
+                        
+                        self.queueList.append(Person(lastName: user["lastName"] as! String,
+                            firstName: user["firstName"] as! String,
+                            userName: user["username"] as! String))
+                    }
+                }
+                
+            } catch let error as NSError {
+                self.displayErrorString(error)
+            } catch {
+                fatalError()
             }
+
         }
+
     }
+    
+    
 }
 
 extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelegate {

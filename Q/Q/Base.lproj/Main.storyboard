@@ -187,7 +187,6 @@
                                     <constraint firstAttribute="width" constant="107" id="sEs-tW-Ig7"/>
                                 </constraints>
                             </imageView>
-
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzU-Nj-QzL">
                                 <rect key="frame" x="123" y="313" width="101" height="30"/>
                                 <animations/>

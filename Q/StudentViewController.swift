@@ -25,7 +25,7 @@ class StudentViewController: UIViewController {
     var endTime:NSDate?
     var queueToJoin:String?
     var userName = PFUser.currentUser()!.username
-    
+    var reason = "none"
     
     
     
@@ -63,8 +63,6 @@ class StudentViewController: UIViewController {
             redX.hidden = false
             return
         }
-        sendInfo()
-        
     }
     
     //makes NSDates from Strings in form "yyyy-MM-dd h:mm a"
@@ -88,19 +86,43 @@ class StudentViewController: UIViewController {
     
     
     func sendInfo(){
-        var uName = "smiley"  //default userName for testing
-        if let tempName = userName{
-            uName = tempName
+        guard let uName = userName else{
+            print("userName not set | maybe not signed in")
+            return
         }
-        if let q = queueToJoin {
-            let person = PFObject(className: q)
-            person["userName"] = uName
-            person.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-                print("Object has been saved.")
-                //testing the timer when entering queue
-                
+        
+        
+//        var uName = "smiley"  //default userName for testing
+//        if let tempName = userName{
+//            uName = tempName
+//        }
+        if let qID = queueToJoin {
+            
+            let queueQuery = PFQuery(className: "Queue")
+            queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
+                guard let queue = queue else {
+                    print("It appears there is no queue")
+                    return
+                }
+                //print(queue.allKeys())
+                //at this point we are in the corrrect queue, just need to add to the arrat in "waitlist" column
+                queue.addUniqueObject(uName, forKey: "waitlist")
+                queue.saveInBackground()
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "testTimer", userInfo: nil, repeats: true)
             }
+            
+            
+            
+            
+            
+//            let person = PFObject(className: qID)
+//            person["userName"] = uName
+//            person.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//                print("Object has been saved.")
+//                //testing the timer when entering queue
+//                
+//                self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "testTimer", userInfo: nil, repeats: true)
+//            }
             
         }
     }
@@ -158,7 +180,7 @@ class StudentViewController: UIViewController {
  
     
     @IBAction func back(segue:UIStoryboardSegue){
-        var reason = "none"
+        
         if let source = segue.sourceViewController as? QRViewController{
             guard let info = source.foundString,
                 reasonTmp = source.reason else{

@@ -187,9 +187,18 @@
                                     <constraint firstAttribute="width" constant="107" id="sEs-tW-Ig7"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzU-Nj-QzL">
+                                <rect key="frame" x="232" y="366" width="138" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Remove from queue"/>
+                                <connections>
+                                    <action selector="removeFromQueue:" destination="JMe-fo-vwO" eventType="touchUpInside" id="isi-yd-rGX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="QcC-nn-QX0" firstAttribute="top" secondItem="oFe-fe-YgR" secondAttribute="bottom" constant="8" symbolic="YES" id="07I-Gx-mC5"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="trailing" secondItem="J6Z-El-4rP" secondAttribute="trailing" id="2HO-dE-b1W"/>
@@ -203,6 +212,7 @@
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="centerX" secondItem="J6Z-El-4rP" secondAttribute="centerX" id="IfW-aG-VWw"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="Ivt-bN-J4z"/>
                             <constraint firstItem="GYI-ba-Y2r" firstAttribute="top" secondItem="Lyy-BT-giO" secondAttribute="top" id="JzD-UE-r5M"/>
+                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="centerX" secondItem="Lyy-BT-giO" secondAttribute="centerX" id="KdO-Jg-tgJ"/>
                             <constraint firstItem="Lyy-BT-giO" firstAttribute="top" secondItem="coZ-6E-VzU" secondAttribute="bottom" constant="3" id="LIy-dC-UbJ"/>
                             <constraint firstItem="coZ-6E-VzU" firstAttribute="top" secondItem="J6Z-El-4rP" secondAttribute="bottom" constant="25" id="MiS-iR-n83"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="leading" secondItem="QcC-nn-QX0" secondAttribute="leading" id="T68-PL-9ST"/>
@@ -211,12 +221,16 @@
                             <constraint firstItem="J9N-A3-HXg" firstAttribute="top" secondItem="bLt-pv-ZBL" secondAttribute="bottom" constant="39" id="Xyd-GG-diS"/>
                             <constraint firstItem="oFe-fe-YgR" firstAttribute="trailing" secondItem="bLt-pv-ZBL" secondAttribute="trailing" id="bBs-WR-fGA"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="top" secondItem="QcC-nn-QX0" secondAttribute="bottom" constant="8" symbolic="YES" id="bPv-cJ-Ah9"/>
+                            <constraint firstItem="RzU-Nj-QzL" firstAttribute="top" secondItem="MV9-U4-mco" secondAttribute="bottom" constant="28" id="feD-uk-zW7"/>
                             <constraint firstItem="J6Z-El-4rP" firstAttribute="top" secondItem="MV9-U4-mco" secondAttribute="bottom" constant="8" symbolic="YES" id="mx6-qZ-154"/>
                             <constraint firstItem="MV9-U4-mco" firstAttribute="trailing" secondItem="QcC-nn-QX0" secondAttribute="trailing" id="tGh-tB-ZD8"/>
                             <constraint firstItem="bLt-pv-ZBL" firstAttribute="top" secondItem="62B-eX-dJM" secondAttribute="bottom" constant="8" symbolic="YES" id="usL-4l-WXp"/>
                             <constraint firstItem="GYI-ba-Y2r" firstAttribute="leading" secondItem="Lyy-BT-giO" secondAttribute="leading" id="x9h-84-G01"/>
                             <constraint firstItem="J9N-A3-HXg" firstAttribute="top" secondItem="OvG-5f-8J7" secondAttribute="bottom" constant="157" id="xqS-CC-dfS"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Llb-jb-ag2" appends="YES" id="Kla-1P-gAi"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="check" destination="Lyy-BT-giO" id="Ark-gz-HYF"/>
@@ -231,6 +245,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeM-Ak-lEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Llb-jb-ag2">
+                    <connections>
+                        <action selector="touchBackground:" destination="JMe-fo-vwO" id="dwF-Jq-T4Y"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-456" y="240"/>
         </scene>

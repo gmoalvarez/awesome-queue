@@ -27,6 +27,45 @@ class StudentViewController: UIViewController {
     var userName = PFUser.currentUser()!.username
     var reason = "none"
     
+    @IBAction func touchBackground(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    //remove from queue
+    @IBAction func removeFromQueue(sender: UIButton) {
+        let controller = UIAlertController(title: "REMOVE FROM QUEUE", message: "Are you sure that you want to remove yourself from the Queue?",
+            preferredStyle: .ActionSheet)
+        let yesAction = UIAlertAction(title: "Yes Remove", style: .Default, handler: {action in self.removeFromQueueMethod()})
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel, handler: nil)
+        controller.addAction(cancelAction)
+        controller.addAction(yesAction)
+        self.presentViewController(controller, animated: true, completion: {print("Done")})
+        
+        
+    }
+    
+    func removeFromQueueMethod(){
+        guard let uName = userName else{
+            print("userName not set | maybe not signed in")
+            return
+        }
+        if let qID = queueToJoin {
+            
+            let queueQuery = PFQuery(className: "Queue")
+            queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
+                guard let queue = queue else {
+                    print("It appears there is no queue")
+                    return
+                }
+                queue.removeObject(uName, forKey: "waitlist")
+                queue.saveInBackground()
+                self.timer1.invalidate()
+            }
+        }
+    }
+    
+    
+    
     
     
     

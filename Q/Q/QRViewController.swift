@@ -11,9 +11,7 @@ import AVFoundation
 
 
 class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    
-    
-    
+
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var foundString:String?

@@ -27,6 +27,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var viewController = UIViewController()
+        if let user = PFUser.currentUser() {
+            print("Currently logged in:\(user.username)")
+            if let userType = user["type"] as? String {
+                if userType == "Student" {
+                    viewController = storyboard.instantiateViewControllerWithIdentifier("student")
+                } else if userType == "Professor" {
+                    viewController = storyboard.instantiateViewControllerWithIdentifier("professor")
+                } else {
+                    print("Error, there was a user logged in but it is not Student or Professor")
+                    return false
+                }
+            }
+        } else {
+            viewController = storyboard.instantiateViewControllerWithIdentifier("loginSignup")
+        }
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        self.window?.rootViewController = viewController
+        
+        self.window?.makeKeyAndVisible()
         return true
     }
 

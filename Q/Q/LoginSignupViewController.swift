@@ -10,12 +10,12 @@ import UIKit
 import Parse
 
 class LoginSignupViewController: UIViewController {
-
+    
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var theTitle: UILabel!
    
-    
     var activityIndicator = UIActivityIndicatorView()
     
     @IBAction func tapBackground(sender: UITapGestureRecognizer) {
@@ -67,8 +67,11 @@ class LoginSignupViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //testing only ****delete****
         //makeDate("2015-11-21 02:30 PM")
     }

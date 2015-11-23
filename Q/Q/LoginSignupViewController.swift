@@ -11,6 +11,16 @@ import Parse
 
 class LoginSignupViewController: UIViewController {
 
+    
+    override func viewDidAppear(animated: Bool) {
+        if let user = PFUser.currentUser() {
+            print("Currently logged in as:\(user.username)")
+            if let userType = user["type"] as? String{
+                self.segueAfterSignupOrLogin(userType)
+            }
+        }
+    }
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var theTitle: UILabel!

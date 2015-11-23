@@ -123,7 +123,6 @@ class TestQueueGenerator {
                     }
                 }
 
-                //this saves the users in a weird way but it is ok for now.
                 queue.addUniqueObjectsFromArray(usernames, forKey: "waitlist")
                 queue.saveInBackground()
                 

@@ -21,8 +21,6 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
         performSegueWithIdentifier("logoutProfessor", sender: self)
-        
-        
     }
 
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
@@ -33,7 +31,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     func createQueue() {
         let newQueue = PFObject(className: "Queue")
         newQueue["createdBy"] = professor
-        //newQueue["waitlist"] = [String]() //blank queue
+        newQueue["waitlist"] = [String]() 
         newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
             guard error == nil else {
                 self.displayErrorString(error,messageTitle: "Failed to create Queue")
@@ -51,7 +49,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
                 self.queueIDFromParse = objectId
                 
                 ///// ------- Automatically add students upon creating the queue for testing purposes
-                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
+//                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
                 ///// -------                        --------- /////////////////////////////////////
                 self.performSegueWithIdentifier("toQRgen", sender: self)
             }

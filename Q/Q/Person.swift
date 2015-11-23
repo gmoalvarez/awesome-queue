@@ -21,4 +21,10 @@ class Person {
         self.firstName = firstName
         self.userName = userName
     }
+    
+    init() {
+        self.lastName = ""
+        self.firstName = ""
+        self.userName = ""
+    }
 }

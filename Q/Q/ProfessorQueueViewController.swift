@@ -11,12 +11,25 @@ import Parse
 
 class ProfessorQueueViewController: UIViewController {
     
+    
+
     var queueId = String() {
         didSet {
             if queueId != "" {
                 loadQueueList()
+                startTimer()
             }
         }
+    }
+    
+    var timer = NSTimer()
+    let timerInterval:NSTimeInterval = 2 //update queue every 2 seconds
+    func startTimer() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval,
+            target: self,
+            selector: "loadQueueList",
+            userInfo: nil,
+            repeats: true)
     }
 
     let professor = PFUser.currentUser()!
@@ -24,17 +37,16 @@ class ProfessorQueueViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBar: UINavigationItem!
     
+    var queueSize = 0
     var queueList = [Person]() {
         didSet {
-//            dispatch_async(dispatch_get_main_queue()){
-                self.tableView.reloadData()
-//            }
+            tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            getQueueId()
+        getQueueId()
     }
     
     func getQueueId() {
@@ -76,8 +88,16 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
+            guard self.queueList.count != waitlist.count else {
+                //print("No need to update queue. They are the same size")
+                return
+            }
+            
+            self.queueSize = waitlist.count
+            self.queueList = [Person](count: self.queueSize, repeatedValue: Person())
+            
             //Iterate through all users and create the Model queueList for the TableView
-            for username in waitlist {
+            for (index,username) in waitlist.enumerate() {
                 
                 let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
                 userQuery?.findObjectsInBackgroundWithBlock { user, error in
@@ -92,15 +112,12 @@ class ProfessorQueueViewController: UIViewController {
                         return
                     }
                     
-                    self.queueList.append(Person(lastName: user["lastName"] as! String,
+                    self.queueList[index] = (Person(lastName: user["lastName"] as! String,
                         firstName: user["firstName"] as! String,
                         userName: user["username"] as! String))
                 }
             }
-
         }
-        
-        
     }
 
     @IBAction func nextButtonPressed(sender: UIButton) {
@@ -143,7 +160,6 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return queueList.count
     }
     

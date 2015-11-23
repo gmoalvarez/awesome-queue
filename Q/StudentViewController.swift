@@ -200,10 +200,10 @@ class StudentViewController: UIViewController {
             print("userName not set | maybe not signed in")
             return
         }
-        if let qID = queueToJoin {
+        if let queueToJoin = queueToJoin {
             
             let queueQuery = PFQuery(className: "Queue")
-            queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
+            queueQuery.getObjectInBackgroundWithId(queueToJoin){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
                     return

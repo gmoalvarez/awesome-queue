@@ -22,6 +22,7 @@ class ProfessorQueueViewController: UIViewController {
     let professor = PFUser.currentUser()!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     var queueList = [Person]() {
         didSet {

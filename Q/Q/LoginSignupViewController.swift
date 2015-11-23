@@ -13,6 +13,8 @@ class LoginSignupViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var theTitle: UILabel!
+   
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -120,6 +122,16 @@ class LoginSignupViewController: UIViewController {
             
         }
         //here is where we would code another unWind from another view if we need to
+        if let source = segue.sourceViewController as? StudentViewController{
+            print(PFUser.currentUser())//testing
+            usernameTextField.text = ""
+            passwordTextField.text = ""
+        }
+        if let source = segue.sourceViewController as? ProfessorCreateOrViewController{
+            print(PFUser.currentUser())//testing
+            usernameTextField.text = ""
+            passwordTextField.text = ""
+        }
     }
     
 }//end of class

@@ -18,6 +18,9 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     var previewLayer: AVCaptureVideoPreviewLayer!
     var foundString:String?
     var reason:String?
+    var didScan:Bool = false
+   
+    @IBOutlet weak var qrView: UIView!
     
     
     func foundCode(code: String) {
@@ -27,7 +30,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.blackColor()
+        qrView.backgroundColor = UIColor.blackColor()
         captureSession = AVCaptureSession()
         
         let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -59,9 +62,9 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         }
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
-        previewLayer.frame = view.layer.bounds;
+        previewLayer.frame = qrView.layer.bounds;
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        view.layer.addSublayer(previewLayer);
+        qrView.layer.addSublayer(previewLayer);
         
         captureSession.startRunning();
     }
@@ -105,6 +108,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         if reason == nil{
             reason = "none"
         }
+        didScan = true
         performSegueWithIdentifier("backToStudent", sender: self)
     }
     

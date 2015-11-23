@@ -14,15 +14,26 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     var professor = PFUser.currentUser()!
 //    var qrImageForParse:UIImage?
     var queueIDFromParse:String?
+    var startVar:String?
+    var endVar:String?
+
     
+    @IBAction func logout(sender: UIBarButtonItem) {
+        PFUser.logOut()
+        performSegueWithIdentifier("logoutProfessor", sender: self)
+        
+        
+    }
 
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
         createQueue()
     }
     
+
     func createQueue() {
         let newQueue = PFObject(className: "Queue")
         newQueue["createdBy"] = professor
+        //newQueue["waitlist"] = [String]() //blank queue
         newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
             guard error == nil else {
                 self.displayErrorString(error,messageTitle: "Failed to create Queue")
@@ -42,10 +53,11 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
                 ///// ------- Automatically add students upon creating the queue for testing purposes
                 TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
                 ///// -------                        --------- /////////////////////////////////////
-                
                 self.performSegueWithIdentifier("toQRgen", sender: self)
             }
+            
         }
+        
     }
     
     override func viewDidLoad() {
@@ -103,11 +115,22 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
         
     }
     
-//    @IBAction func back(segue:UIStoryboardSegue){
-//        if let source = segue.sourceViewController as? QRGenViewController{
-//            source.delegate = self
+    @IBAction func back(segue:UIStoryboardSegue){
+//        if let source = segue.sourceViewController as? SetInfoForNewQueueViewController{
+//            if !source.timeWasSet{
+//                return
+//            }else{
+//                guard let start = source.startDateTime,
+//                    end = source.endDateTime else{
+//                        print("Start and End could not be unwrapped")
+//                        return
+//                    }
+//                self.startVar = start
+//                self.endVar = end
+//            }
 //        }
-//    }
+        
+    }
     
 
     // MARK: - Navigation
@@ -122,7 +145,9 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
             else{
                 print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
             }
+            print("Start: \(startVar) End: \(endVar)")
         }
+        
     }
     
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2125BD421BFFE63D00A20E5F /* QRGenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125BD411BFFE63D00A20E5F /* QRGenViewController.swift */; };
+		21A4431B1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A4431A1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift */; };
 		21A54DFB1BFBF4C4006734FC /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */; };
 		21A54DFD1BFBF524006734FC /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFC1BFBF524006734FC /* QRViewController.swift */; };
 		21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		2125BD411BFFE63D00A20E5F /* QRGenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenViewController.swift; sourceTree = "<group>"; };
+		21A4431A1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetInfoForNewQueueViewController.swift; sourceTree = "<group>"; };
 		21A54DFA1BFBF4C4006734FC /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentViewController.swift; path = ../StudentViewController.swift; sourceTree = "<group>"; };
 		21A54DFC1BFBF524006734FC /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		21A54DFF1BFC13C3006734FC /* LogInInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInInfoViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B32B963F1BFEC859002CB95B /* Professor Controllers */,
 				21DCCB7E1BDA253800851C10 /* ViewController.swift */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
+				21A4431A1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift */,
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
@@ -394,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A4431B1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift in Sources */,
 				B32B96451BFEEDB5002CB95B /* VisitReasonViewController.swift in Sources */,
 				21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */,
 				2125BD421BFFE63D00A20E5F /* QRGenViewController.swift in Sources */,

@@ -30,6 +30,12 @@ class StudentViewController: UIViewController {
     var userName = PFUser.currentUser()!.username
     var reason = "none"
     
+    @IBAction func logout(sender: UIBarButtonItem) {
+        PFUser.logOut()
+        timer1.invalidate()
+        performSegueWithIdentifier("logoutStudent", sender: self)
+    }
+    
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -96,6 +102,7 @@ class StudentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(PFUser.currentUser())
         check.hidden = true
         redX.hidden = true
         exitQueueButton.hidden = true
@@ -216,7 +223,7 @@ class StudentViewController: UIViewController {
     
     func updatePlace(){
         if let qID = queueToJoin {
-            
+            print(currentTimerTime++)
             let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: qID).includeKey("waitlist")
             query.findObjectsInBackgroundWithBlock { queue, error in
                 
@@ -246,6 +253,9 @@ class StudentViewController: UIViewController {
     @IBAction func back(segue:UIStoryboardSegue){
         
         if let source = segue.sourceViewController as? QRViewController{
+            if !source.didScan{
+                return
+            }
             guard let info = source.foundString,
                 reasonTmp = source.reason else{
             print("Error in back() from StudentViewController: back")
@@ -258,5 +268,5 @@ class StudentViewController: UIViewController {
         }
         
         
-        }
+    }
 }

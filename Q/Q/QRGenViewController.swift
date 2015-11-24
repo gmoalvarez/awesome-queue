@@ -18,7 +18,7 @@ class QRGenViewController: UIViewController {
     
     var qrImage:CIImage!
     var qrString:String?
-    var delegate : QRViewDelegate! = nil
+    //var delegate : QRViewDelegate! = nil
 
     //vars for qrCode
     var queueID = String()
@@ -26,20 +26,23 @@ class QRGenViewController: UIViewController {
     var endDate:String = "2015-12-21 03:00"
     
     //this method gets called when the back button is pressed
-    override func viewWillDisappear(animated : Bool) {
-        super.viewWillDisappear(animated)
-        
-        if (self.isMovingFromParentViewController()){
-            //delegate method that will be located in the ProfessorCreateViewController
-            guard let image = qr.image else {
-                print("No image to send back?")
-                return
-            }
-            
-            delegate.setQR(image, queueId: queueID)
-        }
-    }
+//    override func viewWillDisappear(animated : Bool) {
+//        super.viewWillDisappear(animated)
+//        
+//        if (self.isMovingFromParentViewController()){
+//            //delegate method that will be located in the ProfessorCreateViewController
+//            guard let image = qr.image else {
+//                print("No image to send back?")
+//                return
+//            }
+//            
+//            delegate.setQR(image, queueId: queueID)
+//        }
+//    }
     
+    @IBAction func back(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("toProfessor", sender: self)
+    }
     func stringMaker(){
         qrString = "Q.0|\(queueID)|\(begDate)|\(endDate)|"
        

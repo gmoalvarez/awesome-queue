@@ -9,17 +9,18 @@
 import UIKit
 import Parse
 
-class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
+class ProfessorCreateOrViewController: UIViewController {
     
     var professor = PFUser.currentUser()!
-//    var qrImageForParse:UIImage?
+    var qrImageForParse:UIImage?
     var queueIDFromParse:String?
     var startVar:String?
     var endVar:String?
-
+    
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
+        PFQuery.clearAllCachedResults()
         performSegueWithIdentifier("logoutProfessor", sender: self)
     }
 
@@ -66,24 +67,24 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
 
     }
     
-    func setQR(qrImage: UIImage, queueId: String) {
-        
-        let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId)
-        query.findObjectsInBackgroundWithBlock { queue, error in
-            guard error == nil else {
-                self.displayErrorString(error, messageTitle: "Error when finding current queue")
-                return
-            }
-            
-            guard let currentQueue = queue?.first else {
-                print("Could not get queue")
-                return
-            }
-            
-            self.addImageToQueue(currentQueue, image: qrImage)
-        }
-        
-    }
+//    func setQR(qrImage: UIImage, queueId: String) {
+//        
+//        let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId)
+//        query.findObjectsInBackgroundWithBlock { queue, error in
+//            guard error == nil else {
+//                self.displayErrorString(error, messageTitle: "Error when finding current queue")
+//                return
+//            }
+//            
+//            guard let currentQueue = queue?.first else {
+//                print("Could not get queue")
+//                return
+//            }
+//            
+//            self.addImageToQueue(currentQueue, image: qrImage)
+//        }
+//        
+//    }
     
     let compression:CGFloat = 0.8
     func addImageToQueue(queue: PFObject, image: UIImage) {
@@ -114,19 +115,13 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     }
     
     @IBAction func back(segue:UIStoryboardSegue){
-//        if let source = segue.sourceViewController as? SetInfoForNewQueueViewController{
-//            if !source.timeWasSet{
-//                return
-//            }else{
-//                guard let start = source.startDateTime,
-//                    end = source.endDateTime else{
-//                        print("Start and End could not be unwrapped")
-//                        return
-//                    }
-//                self.startVar = start
-//                self.endVar = end
-//            }
-//        }
+        if let source = segue.sourceViewController as? QRGenViewController{
+            guard let qrFromGen = source.qr.image else{
+                print("No qr")
+                return
+            }
+            self.qrImageForParse = qrFromGen
+        }
         
     }
     
@@ -136,7 +131,7 @@ class ProfessorCreateOrViewController: UIViewController,QRViewDelegate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? QRGenViewController{
-            destination.delegate = self
+            //destination.delegate = self
             if let queueIDFromParse = queueIDFromParse{
                 destination.queueID = queueIDFromParse
             }

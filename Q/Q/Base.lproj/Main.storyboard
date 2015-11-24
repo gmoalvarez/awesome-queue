@@ -594,7 +594,7 @@
                                     <navigationItem title="QR Code For New Queue" id="edo-uE-3Sg">
                                         <barButtonItem key="leftBarButtonItem" title="back" id="5Ce-0W-RgV">
                                             <connections>
-                                                <segue destination="dah-gc-5tr" kind="unwind" unwindAction="back:" id="Ahq-uE-Evw"/>
+                                                <action selector="back:" destination="xmC-Pm-NKY" id="dTw-HH-mcn"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -614,7 +614,7 @@
                     </view>
                     <connections>
                         <outlet property="qr" destination="xBQ-ks-LwA" id="taS-Vy-6nd"/>
-                        <segue destination="dah-gc-5tr" kind="unwind" unwindAction="back:" id="Iys-Qh-gEt"/>
+                        <segue destination="dah-gc-5tr" kind="unwind" identifier="toProfessor" unwindAction="back:" id="8J1-T8-xfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCy-5g-WxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -107,6 +107,7 @@ class LoginSignupViewController: UIViewController {
             userType = source.userType,
             password = source.password1 else{
                     print("Error retrieving fields from signup page")
+                 
                     return
             }
             

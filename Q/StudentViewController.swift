@@ -35,7 +35,7 @@ class StudentViewController: UIViewController {
         if timer1 != nil{
           timer1.invalidate()  
         }
-        
+        PFQuery.clearAllCachedResults()
         performSegueWithIdentifier("logoutStudent", sender: self)
     }
     

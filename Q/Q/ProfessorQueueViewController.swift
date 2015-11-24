@@ -38,7 +38,7 @@ class ProfessorQueueViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationItem!
     
     var queueSize = 0
-    var queueList = [Person]() {
+    var queueList = [PFObject]() {
         didSet {
             tableView.reloadData()
         }
@@ -83,7 +83,7 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            guard let waitlist = queue["waitlist"] as? [String] else {
+            guard let waitlist = queue["waitlist"] as? [PFObject] else {
                 self.displayAlert("Error", message: "Could not get waitlist from selected queue")
                 return
             }
@@ -93,30 +93,32 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            self.queueSize = waitlist.count
-            self.queueList = [Person](count: self.queueSize, repeatedValue: Person())
+            self.queueList = waitlist
+//            self.queueSize = waitlist.count
+//            self.queueList = [Person](count: self.queueSize, repeatedValue: Person())
+//            
             
             //Iterate through all users and create the Model queueList for the TableView
-            for (index,username) in waitlist.enumerate() {
-                
-                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
-                userQuery?.findObjectsInBackgroundWithBlock { user, error in
-                    
-                    guard error == nil else {
-                        self.displayErrorString(error)
-                        return
-                    }
-                    
-                    guard let user = user?.first else {
-                        self.displayAlert("Error", message: "User not found")
-                        return
-                    }
-                    
-                    self.queueList[index] = (Person(lastName: user["lastName"] as! String,
-                        firstName: user["firstName"] as! String,
-                        userName: user["username"] as! String))
-                }
-            }
+//            for (index,username) in waitlist.enumerate() {
+//                
+//                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
+//                userQuery?.findObjectsInBackgroundWithBlock { user, error in
+//                    
+//                    guard error == nil else {
+//                        self.displayErrorString(error)
+//                        return
+//                    }
+//                    
+//                    guard let user = user?.first else {
+//                        self.displayAlert("Error", message: "User not found")
+//                        return
+//                    }
+//                    
+//                    self.queueList[index] = (Person(lastName: user["lastName"] as! String,
+//                        firstName: user["firstName"] as! String,
+//                        userName: user["username"] as! String))
+//                }
+//            }
         }
     }
 
@@ -130,17 +132,17 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            guard let waitlist = queue["waitlist"] as? [String] else {
+            guard let waitlist = queue["waitlist"] as? [PFObject] else {
                 self.displayAlert("Error", message: "Could not get waitlist from queue")
                 return
             }
             
-            guard let usernameOfFirstStudentInQueue = waitlist.first else {
+            guard let firstStudentInQueue = waitlist.first else {
                 self.displayAlert("Error", message: "Could not get first user in queue")
                 return
             }
             
-            queue.removeObjectsInArray([usernameOfFirstStudentInQueue], forKey: "waitlist")
+            queue.removeObject(firstStudentInQueue, forKey: "waitlist")
             queue.saveInBackground()
             self.queueList.removeFirst()
         }
@@ -152,8 +154,16 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
         let person = queueList[indexPath.row]
-        cell.textLabel?.text = "\(person.firstName) \(person.lastName)"
+        guard let firstName = person["firstName"] as? String,
+            let lastName = person["lastName"] else {
+                print("Could not obtain first name and last name")
+                cell.textLabel?.text = ""
+                return cell
+        }
+        
+        cell.textLabel?.text = "\(firstName) \(lastName)"
         
         return cell
         

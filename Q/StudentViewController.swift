@@ -27,7 +27,8 @@ class StudentViewController: UIViewController {
     var beginTime:NSDate?
     var endTime:NSDate?
     var queueToJoin:String?
-    var userName = PFUser.currentUser()!.username
+    let currentUser = PFUser.currentUser()!
+    let userName = PFUser.currentUser()!.username!
     var reason = "none"
     
     @IBAction func logout(sender: UIBarButtonItem) {
@@ -56,10 +57,7 @@ class StudentViewController: UIViewController {
     }
     
     func removeFromQueueMethod(){
-        guard let uName = userName else{
-            print("userName not set | maybe not signed in")
-            return
-        }
+
         if let qID = queueToJoin {
             
             let queueQuery = PFQuery(className: "Queue")
@@ -68,7 +66,7 @@ class StudentViewController: UIViewController {
                     print("It appears there is no queue")
                     return
                 }
-                queue.removeObject(uName, forKey: "waitlist")
+                queue.removeObject(self.currentUser, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
                 self.exitQueueButton.hidden = true
@@ -82,12 +80,6 @@ class StudentViewController: UIViewController {
 
     // MARK: - TESTING METHODS (SAFE TO DELETE)
     
-    //change the name for testing
-    @IBAction func changeName(sender: UIButton) {
-        userName = userNameToChange.text
-        print(userName)
-    }
-    
     //next two methods are for testing timer
     func testTimer(){
         print(currentTimerTime++)
@@ -96,23 +88,18 @@ class StudentViewController: UIViewController {
     @IBAction func stopTimer(sender: UIButton) {
         timer1.invalidate()
     }
-    /////
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(PFUser.currentUser())
+        print(currentUser)
         check.hidden = true
         redX.hidden = true
         exitQueueButton.hidden = true
         self.placeInQueue.hidden = true
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -148,14 +135,16 @@ class StudentViewController: UIViewController {
         self.presentViewController(controller, animated: true, completion: {print("Done")})
     }
     
-    func doSomething(info:String,reason:String){
+    func parseQRInformation(info:String, reason:String){
         print(info)
         print(reason)
         var infoArray = info.componentsSeparatedByString("|")
+        
         if infoArray[0] != "Q.0" {
             status.text = "Error: Not a Q.0 qr code."
             return
         }
+        
         queueToJoin = infoArray[1]
         status.text = "Status: \(infoArray[0])"
         queueName.text = "queue id: \(infoArray[1])"
@@ -194,12 +183,8 @@ class StudentViewController: UIViewController {
         }
     }
     
-    
     func sendInfo(){
-        guard let uName = userName else{
-            print("userName not set | maybe not signed in")
-            return
-        }
+
         if let queueToJoin = queueToJoin {
             
             let queueQuery = PFQuery(className: "Queue")
@@ -208,9 +193,8 @@ class StudentViewController: UIViewController {
                     print("It appears there is no queue")
                     return
                 }
-                //print(queue.allKeys())
-                //at this point we are in the corrrect queue, just need to add to the arrat in "waitlist" column
-                queue.addUniqueObject(uName, forKey: "waitlist")
+                
+                queue.addUniqueObject(self.currentUser, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
@@ -222,9 +206,9 @@ class StudentViewController: UIViewController {
     
     
     func updatePlace(){
-        if let qID = queueToJoin {
+        if let queueToJoin = queueToJoin {
             print(currentTimerTime++)
-            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: qID).includeKey("waitlist")
+            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueToJoin).includeKey("waitlist")
             query.findObjectsInBackgroundWithBlock { queue, error in
                 
                 
@@ -233,18 +217,18 @@ class StudentViewController: UIViewController {
                     return
                 }
                 
-                guard let waitlist = queue["waitlist"] as? [String] else {
+                guard let waitlist = queue["waitlist"] as? [PFObject] else {
                     self.displayAlert("Error", message: "Could not get waitlist from selected queue")
                     return
                 }
-                if let un = self.userName{
-                    guard let index = waitlist.indexOf(un) else{
-                        print("unable to find place in queue")
-                        return
-                    }
-                    self.placeInQueue.text = "\(index + 1)"
-                    self.placeInQueue.hidden = false
+                
+                guard let index = waitlist.indexOf(self.currentUser) else{
+                    print("unable to find place in queue")
+                    return
                 }
+                self.placeInQueue.text = "\(index + 1)"
+                self.placeInQueue.hidden = false
+                
             }
         }
     }
@@ -264,7 +248,7 @@ class StudentViewController: UIViewController {
             if reasonTmp != ""{
             reason = reasonTmp
             }
-            doSomething(info, reason: reason)
+            parseQRInformation(info, reason: reason)
         }
         
         

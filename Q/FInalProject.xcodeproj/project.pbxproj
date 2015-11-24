@@ -35,6 +35,7 @@
 		B32B963C1BFEC6D1002CB95B /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */; };
 		B32B963D1BFEC6D1002CB95B /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */; };
 		B32B96451BFEEDB5002CB95B /* VisitReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B96441BFEEDB5002CB95B /* VisitReasonViewController.swift */; };
+		B33F55001C04A3C400AA9785 /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F54FF1C04A3C400AA9785 /* Visit.swift */; };
 		B36561CF1BFE46800069F785 /* testStudentList.json in Resources */ = {isa = PBXBuildFile; fileRef = B36561CE1BFE46800069F785 /* testStudentList.json */; };
 		B36561D01BFE46800069F785 /* testStudentList.json in Resources */ = {isa = PBXBuildFile; fileRef = B36561CE1BFE46800069F785 /* testStudentList.json */; };
 		B36561D21BFE46B70069F785 /* TestQueueGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */; };
@@ -95,6 +96,7 @@
 		B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorQueueViewController.swift; sourceTree = "<group>"; };
 		B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		B32B96441BFEEDB5002CB95B /* VisitReasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisitReasonViewController.swift; path = ../VisitReasonViewController.swift; sourceTree = "<group>"; };
+		B33F54FF1C04A3C400AA9785 /* Visit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Visit.swift; path = ../Visit.swift; sourceTree = "<group>"; };
 		B36561CE1BFE46800069F785 /* testStudentList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testStudentList.json; sourceTree = "<group>"; };
 		B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestQueueGenerator.swift; sourceTree = "<group>"; };
 		B37081721C00D194006ADEE1 /* QueueTesting.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = QueueTesting.playground; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				B37081721C00D194006ADEE1 /* QueueTesting.playground */,
 				B32B963B1BFEC6D1002CB95B /* AlertExtension.swift */,
+				B33F54FF1C04A3C400AA9785 /* Visit.swift */,
 				B32B963E1BFEC840002CB95B /* Test Generator Files */,
 				B39C960B1BEAB8E100372446 /* LoginSignup */,
 				B32B96401BFEC885002CB95B /* Student Controllers */,
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A4431B1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift in Sources */,
+				B33F55001C04A3C400AA9785 /* Visit.swift in Sources */,
 				B32B96451BFEEDB5002CB95B /* VisitReasonViewController.swift in Sources */,
 				21A54E001BFC13C3006734FC /* LogInInfoViewController.swift in Sources */,
 				2125BD421BFFE63D00A20E5F /* QRGenViewController.swift in Sources */,

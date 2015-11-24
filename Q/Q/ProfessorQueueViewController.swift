@@ -38,7 +38,7 @@ class ProfessorQueueViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationItem!
     
     var queueSize = 0
-    var queueList = [PFObject]() {
+    var queueList = [Visit]() {
         didSet {
             tableView.reloadData()
         }
@@ -93,7 +93,31 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            self.queueList = waitlist
+            var visitList = [Visit]()
+            for visit in waitlist {
+
+                guard let user = visit["user"] as? PFUser else {
+                    print("error getting info from waitlist visit")
+                    return
+                }
+                
+                guard let firstName = visit["firstName"] as? String,
+                    let lastName = visit["lastName"] as? String else {
+                        print("Could not get first and last name from user")
+                        return
+                }
+                
+                let reason = visit["reason"] as? String
+                
+                let newVisit = Visit(user: user,
+                    lastName: lastName,
+                    firstName: firstName,
+                    reason: reason)
+                
+                visitList.append(newVisit)
+            }
+            
+            self.queueList = visitList
 
         }
     }
@@ -132,19 +156,13 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         let visit = queueList[indexPath.row]
-        let visitUser = visit["user"]
         
-        guard let firstName = visitUser["firstName"] as? String,
-            let lastName = visitUser["lastName"] else {
-                print("Could not obtain first name and last name")
-                cell.textLabel?.text = ""
-                return cell
-        }
+        cell.textLabel?.text = "\(visit.firstName) \(visit.lastName)"
         
-        cell.textLabel?.text = "\(firstName) \(lastName)"
-        
-        if let reason = visit["reason"] as? String {
+        if let reason = visit.reason {
             cell.detailTextLabel?.text = reason
+        } else {
+            cell.detailTextLabel?.text = ""
         }
         
         return cell

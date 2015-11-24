@@ -26,10 +26,11 @@ class StudentViewController: UIViewController {
     
     var beginTime:NSDate?
     var endTime:NSDate?
-    var queueToJoin:String?
+    var currentQueueId:String?
     let currentUser = PFUser.currentUser()!
     let userName = PFUser.currentUser()!.username!
     var reason = "none"
+    var currentVisitId = String()
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -58,15 +59,27 @@ class StudentViewController: UIViewController {
     
     func removeFromQueueMethod(){
 
-        if let qID = queueToJoin {
+        guard let currentQueueId = currentQueueId else {
+            print("Could not get current queue id")
+            return
+        }
+        
+        let visitQuery = PFQuery(className: "Visit")
+        visitQuery.getObjectInBackgroundWithId(currentVisitId) { visit, error in
+            
+            guard let visit = visit else {
+                print("Could not find visit")
+                return
+            }
             
             let queueQuery = PFQuery(className: "Queue")
-            queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
+            queueQuery.getObjectInBackgroundWithId(currentQueueId){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
                     return
                 }
-                queue.removeObject(self.currentUser, forKey: "waitlist")
+                
+                queue.removeObject(visit, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
                 self.exitQueueButton.hidden = true
@@ -75,7 +88,10 @@ class StudentViewController: UIViewController {
                 self.redX.hidden = true
                 self.placeInQueue.hidden = true
             }
+
         }
+            
+        
     }
 
     // MARK: - TESTING METHODS (SAFE TO DELETE)
@@ -145,7 +161,7 @@ class StudentViewController: UIViewController {
             return
         }
         
-        queueToJoin = infoArray[1]
+        currentQueueId = infoArray[1]
         status.text = "Status: \(infoArray[0])"
         queueName.text = "queue id: \(infoArray[1])"
         lat.text = "Begin Time: \(infoArray[2])"
@@ -185,13 +201,15 @@ class StudentViewController: UIViewController {
     
     func sendInfo(){
         
-        guard let queueToJoin = queueToJoin else {
+        guard let currentQueueId = currentQueueId else {
             print("No queue to join?")
             return
         }
 
         let visit = PFObject(className: "Visit")
         visit["user"] = self.currentUser
+        visit["firstName"] = currentUser["firstName"]
+        visit["lastName"] = currentUser["lastName"]
         if reason != "none" {
             visit["reason"] = reason
         }
@@ -203,17 +221,29 @@ class StudentViewController: UIViewController {
             }
             
             let queueQuery = PFQuery(className: "Queue")
-            queueQuery.getObjectInBackgroundWithId(queueToJoin){ queue, error in
+            queueQuery.getObjectInBackgroundWithId(currentQueueId){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
                     return
                 }
                 
-                
-                
-                
                 queue.addUniqueObject(visit, forKey: "waitlist")
-                queue.saveInBackground()
+                queue.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    
+                    if success {
+                        print("Saved visit in queue successfully: \(success)")
+                        
+                        guard let objectId = visit.objectId else {
+                            print("Added visit but did not get an id back")
+                            return
+                        }
+                        
+                        self.currentVisitId = objectId
+                        
+                        
+                    }
+
+                })
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
@@ -227,9 +257,9 @@ class StudentViewController: UIViewController {
     
     
     func updatePlace(){
-        if let queueToJoin = queueToJoin {
+        if let currentQueueId = currentQueueId {
             print(currentTimerTime++)
-            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueToJoin).includeKey("waitlist")
+            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: currentQueueId).includeKey("waitlist")
             query.findObjectsInBackgroundWithBlock { queue, error in
                 
                 

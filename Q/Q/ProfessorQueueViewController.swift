@@ -23,7 +23,7 @@ class ProfessorQueueViewController: UIViewController {
     }
     
     var timer = NSTimer()
-    let timerInterval:NSTimeInterval = 2 //update queue every 2 seconds
+    let timerInterval:NSTimeInterval = 3
     func startTimer() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval,
             target: self,
@@ -38,7 +38,7 @@ class ProfessorQueueViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationItem!
     
     var queueSize = 0
-    var queueList = [Person]() {
+    var queueList = [Visit]() {
         didSet {
             tableView.reloadData()
         }
@@ -83,40 +83,42 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            guard let waitlist = queue["waitlist"] as? [String] else {
+            guard let waitlist = queue["waitlist"] as? [PFObject] else {
                 self.displayAlert("Error", message: "Could not get waitlist from selected queue")
                 return
             }
             
             guard self.queueList.count != waitlist.count else {
-                //print("No need to update queue. They are the same size")
+                print("No need to update queue. They are the same size")
                 return
             }
             
-            self.queueSize = waitlist.count
-            self.queueList = [Person](count: self.queueSize, repeatedValue: Person())
-            
-            //Iterate through all users and create the Model queueList for the TableView
-            for (index,username) in waitlist.enumerate() {
-                
-                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
-                userQuery?.findObjectsInBackgroundWithBlock { user, error in
-                    
-                    guard error == nil else {
-                        self.displayErrorString(error)
-                        return
-                    }
-                    
-                    guard let user = user?.first else {
-                        self.displayAlert("Error", message: "User not found")
-                        return
-                    }
-                    
-                    self.queueList[index] = (Person(lastName: user["lastName"] as! String,
-                        firstName: user["firstName"] as! String,
-                        userName: user["username"] as! String))
+            var visitList = [Visit]()
+            for visit in waitlist {
+
+                guard let user = visit["user"] as? PFUser else {
+                    print("error getting info from waitlist visit")
+                    return
                 }
+                
+                guard let firstName = visit["firstName"] as? String,
+                    let lastName = visit["lastName"] as? String else {
+                        print("Could not get first and last name from user")
+                        return
+                }
+                
+                let reason = visit["reason"] as? String
+                
+                let newVisit = Visit(user: user,
+                    lastName: lastName,
+                    firstName: firstName,
+                    reason: reason)
+                
+                visitList.append(newVisit)
             }
+            
+            self.queueList = visitList
+
         }
     }
 
@@ -130,17 +132,17 @@ class ProfessorQueueViewController: UIViewController {
                 return
             }
             
-            guard let waitlist = queue["waitlist"] as? [String] else {
+            guard let waitlist = queue["waitlist"] as? [PFObject] else {
                 self.displayAlert("Error", message: "Could not get waitlist from queue")
                 return
             }
             
-            guard let usernameOfFirstStudentInQueue = waitlist.first else {
+            guard let firstStudentInQueue = waitlist.first else {
                 self.displayAlert("Error", message: "Could not get first user in queue")
                 return
             }
             
-            queue.removeObjectsInArray([usernameOfFirstStudentInQueue], forKey: "waitlist")
+            queue.removeObject(firstStudentInQueue, forKey: "waitlist")
             queue.saveInBackground()
             self.queueList.removeFirst()
         }
@@ -152,8 +154,16 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        let person = queueList[indexPath.row]
-        cell.textLabel?.text = "\(person.firstName) \(person.lastName)"
+        
+        let visit = queueList[indexPath.row]
+        
+        cell.textLabel?.text = "\(visit.firstName) \(visit.lastName)"
+        
+        if let reason = visit.reason {
+            cell.detailTextLabel?.text = reason
+        } else {
+            cell.detailTextLabel?.text = ""
+        }
         
         return cell
         

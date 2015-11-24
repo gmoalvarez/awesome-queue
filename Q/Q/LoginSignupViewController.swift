@@ -16,6 +16,7 @@ class LoginSignupViewController: UIViewController {
         if let user = PFUser.currentUser() {
             print("Currently logged in as:\(user.username)")
             if let userType = user["type"] as? String{
+                activityIndicator.stopAnimating()
                 self.segueAfterSignupOrLogin(userType)
             }
         }
@@ -100,6 +101,7 @@ class LoginSignupViewController: UIViewController {
     }
 
     @IBAction func back(segue:UIStoryboardSegue){
+        self.activityIndicator.stopAnimating()
         if let source = segue.sourceViewController as? LogInInfoViewController{
             guard let firstName = source.firstName,
             lastName = source.lastName,

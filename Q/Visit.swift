@@ -7,24 +7,22 @@
 //
 
 import Foundation
-import MapKit
+import Parse
+//import MapKit
 
-class Person {
+class Visit {
     
+    var user:PFUser
     var lastName:String
     var firstName:String
-    var userName:String
-    var location:CLLocation?
+    var reason:String?
+//    var location:CLLocation?
     
-    init(lastName:String, firstName:String, userName: String) {
+    init(user:PFUser, lastName:String, firstName:String, reason:String?) {
+        self.user = user
         self.lastName = lastName
         self.firstName = firstName
-        self.userName = userName
+        self.reason = reason
     }
     
-    init() {
-        self.lastName = ""
-        self.firstName = ""
-        self.userName = ""
-    }
 }

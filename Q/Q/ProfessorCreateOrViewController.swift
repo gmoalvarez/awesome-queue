@@ -32,7 +32,7 @@ class ProfessorCreateOrViewController: UIViewController {
     func createQueue() {
         let newQueue = PFObject(className: "Queue")
         newQueue["createdBy"] = professor
-        newQueue["waitlist"] = [String]() 
+        newQueue["waitlist"] = [PFObject]()
         newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
             guard error == nil else {
                 self.displayErrorString(error,messageTitle: "Failed to create Queue")

@@ -26,9 +26,11 @@ class StudentViewController: UIViewController {
     
     var beginTime:NSDate?
     var endTime:NSDate?
-    var queueToJoin:String?
-    var userName = PFUser.currentUser()!.username
+    var currentQueueId:String?
+    let currentUser = PFUser.currentUser()!
+    let userName = PFUser.currentUser()!.username!
     var reason = "none"
+    var currentVisitId = String()
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -56,19 +58,28 @@ class StudentViewController: UIViewController {
     }
     
     func removeFromQueueMethod(){
-        guard let uName = userName else{
-            print("userName not set | maybe not signed in")
+
+        guard let currentQueueId = currentQueueId else {
+            print("Could not get current queue id")
             return
         }
-        if let qID = queueToJoin {
+        
+        let visitQuery = PFQuery(className: "Visit")
+        visitQuery.getObjectInBackgroundWithId(currentVisitId) { visit, error in
+            
+            guard let visit = visit else {
+                print("Could not find visit")
+                return
+            }
             
             let queueQuery = PFQuery(className: "Queue")
-            queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
+            queueQuery.getObjectInBackgroundWithId(currentQueueId){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
                     return
                 }
-                queue.removeObject(uName, forKey: "waitlist")
+                
+                queue.removeObject(visit, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
                 self.exitQueueButton.hidden = true
@@ -77,19 +88,13 @@ class StudentViewController: UIViewController {
                 self.redX.hidden = true
                 self.placeInQueue.hidden = true
             }
+
         }
+            
+        
     }
-    
-    
-    
-    
-       // MARK: - TESTING METHODS (SAFE TO DELETE)
-    
-    //change the name for testing
-    @IBAction func changeName(sender: UIButton) {
-        userName = userNameToChange.text
-        print(userName)
-    }
+
+    // MARK: - TESTING METHODS (SAFE TO DELETE)
     
     //next two methods are for testing timer
     func testTimer(){
@@ -99,23 +104,18 @@ class StudentViewController: UIViewController {
     @IBAction func stopTimer(sender: UIButton) {
         timer1.invalidate()
     }
-    /////
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(PFUser.currentUser())
+        print(currentUser)
         check.hidden = true
         redX.hidden = true
         exitQueueButton.hidden = true
         self.placeInQueue.hidden = true
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -151,15 +151,17 @@ class StudentViewController: UIViewController {
         self.presentViewController(controller, animated: true, completion: {print("Done")})
     }
     
-    func doSomething(info:String,reason:String){
+    func parseQRInformation(info:String, reason:String){
         print(info)
         print(reason)
         var infoArray = info.componentsSeparatedByString("|")
+        
         if infoArray[0] != "Q.0" {
             status.text = "Error: Not a Q.0 qr code."
             return
         }
-        queueToJoin = infoArray[1]
+        
+        currentQueueId = infoArray[1]
         status.text = "Status: \(infoArray[0])"
         queueName.text = "queue id: \(infoArray[1])"
         lat.text = "Begin Time: \(infoArray[2])"
@@ -197,37 +199,67 @@ class StudentViewController: UIViewController {
         }
     }
     
-    
     func sendInfo(){
-        guard let uName = userName else{
-            print("userName not set | maybe not signed in")
+        
+        guard let currentQueueId = currentQueueId else {
+            print("No queue to join?")
             return
         }
-        if let queueToJoin = queueToJoin {
+
+        let visit = PFObject(className: "Visit")
+        visit["user"] = self.currentUser
+        visit["firstName"] = currentUser["firstName"]
+        visit["lastName"] = currentUser["lastName"]
+        if reason != "none" {
+            visit["reason"] = reason
+        }
+        visit.saveInBackgroundWithBlock{ success, error in
+            
+            guard error == nil else {
+                self.displayErrorString(error, messageTitle: "Not able to save visit")
+                return
+            }
             
             let queueQuery = PFQuery(className: "Queue")
-            queueQuery.getObjectInBackgroundWithId(queueToJoin){ queue, error in
+            queueQuery.getObjectInBackgroundWithId(currentQueueId){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
                     return
                 }
-                //print(queue.allKeys())
-                //at this point we are in the corrrect queue, just need to add to the arrat in "waitlist" column
-                queue.addUniqueObject(uName, forKey: "waitlist")
-                queue.saveInBackground()
+                
+                queue.addUniqueObject(visit, forKey: "waitlist")
+                queue.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    
+                    if success {
+                        print("Saved visit in queue successfully: \(success)")
+                        
+                        guard let objectId = visit.objectId else {
+                            print("Added visit but did not get an id back")
+                            return
+                        }
+                        
+                        self.currentVisitId = objectId
+                        
+                        
+                    }
+
+                })
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
                 self.updatePlace()
             }
+
         }
+        
+        
     }
     
     
     func updatePlace(){
-        if let qID = queueToJoin {
+        if let currentQueueId = currentQueueId {
             print(currentTimerTime++)
-            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: qID).includeKey("waitlist")
+            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: currentQueueId).includeKey("waitlist")
             query.findObjectsInBackgroundWithBlock { queue, error in
                 
                 
@@ -236,18 +268,20 @@ class StudentViewController: UIViewController {
                     return
                 }
                 
-                guard let waitlist = queue["waitlist"] as? [String] else {
+                guard let waitlist = queue["waitlist"] as? [PFObject] else {
                     self.displayAlert("Error", message: "Could not get waitlist from selected queue")
                     return
                 }
-                if let un = self.userName{
-                    guard let index = waitlist.indexOf(un) else{
-                        print("unable to find place in queue")
-                        return
-                    }
-                    self.placeInQueue.text = "\(index + 1)"
-                    self.placeInQueue.hidden = false
+                
+                let users = waitlist.map{$0["user"]} as? [PFObject]
+                
+                guard let index = users?.indexOf(self.currentUser) else{
+                    print("unable to find place in queue")
+                    return
                 }
+                self.placeInQueue.text = "\(index + 1)"
+                self.placeInQueue.hidden = false
+                
             }
         }
     }
@@ -267,7 +301,7 @@ class StudentViewController: UIViewController {
             if reasonTmp != ""{
             reason = reasonTmp
             }
-            doSomething(info, reason: reason)
+            parseQRInformation(info, reason: reason)
         }
         
         

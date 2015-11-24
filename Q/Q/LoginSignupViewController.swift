@@ -101,6 +101,7 @@ class LoginSignupViewController: UIViewController {
     }
 
     @IBAction func back(segue:UIStoryboardSegue){
+        self.activityIndicator.stopAnimating()
         if let source = segue.sourceViewController as? LogInInfoViewController{
             guard let firstName = source.firstName,
             lastName = source.lastName,

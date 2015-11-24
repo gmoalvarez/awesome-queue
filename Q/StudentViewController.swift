@@ -79,11 +79,8 @@ class StudentViewController: UIViewController {
             }
         }
     }
-    
-    
-    
-    
-       // MARK: - TESTING METHODS (SAFE TO DELETE)
+
+    // MARK: - TESTING METHODS (SAFE TO DELETE)
     
     //change the name for testing
     @IBAction func changeName(sender: UIButton) {

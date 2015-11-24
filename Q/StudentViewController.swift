@@ -184,8 +184,23 @@ class StudentViewController: UIViewController {
     }
     
     func sendInfo(){
+        
+        guard let queueToJoin = queueToJoin else {
+            print("No queue to join?")
+            return
+        }
 
-        if let queueToJoin = queueToJoin {
+        let visit = PFObject(className: "Visit")
+        visit["user"] = self.currentUser
+        if reason != "none" {
+            visit["reason"] = reason
+        }
+        visit.saveInBackgroundWithBlock{ success, error in
+            
+            guard error == nil else {
+                self.displayErrorString(error, messageTitle: "Not able to save visit")
+                return
+            }
             
             let queueQuery = PFQuery(className: "Queue")
             queueQuery.getObjectInBackgroundWithId(queueToJoin){ queue, error in
@@ -194,14 +209,20 @@ class StudentViewController: UIViewController {
                     return
                 }
                 
-                queue.addUniqueObject(self.currentUser, forKey: "waitlist")
+                
+                
+                
+                queue.addUniqueObject(visit, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
                 self.updatePlace()
             }
+
         }
+        
+        
     }
     
     
@@ -222,7 +243,9 @@ class StudentViewController: UIViewController {
                     return
                 }
                 
-                guard let index = waitlist.indexOf(self.currentUser) else{
+                let users = waitlist.map{$0["user"]} as? [PFObject]
+                
+                guard let index = users?.indexOf(self.currentUser) else{
                     print("unable to find place in queue")
                     return
                 }

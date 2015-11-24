@@ -23,7 +23,7 @@ class ProfessorQueueViewController: UIViewController {
     }
     
     var timer = NSTimer()
-    let timerInterval:NSTimeInterval = 2 //update queue every 2 seconds
+    let timerInterval:NSTimeInterval = 3
     func startTimer() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval,
             target: self,
@@ -89,36 +89,12 @@ class ProfessorQueueViewController: UIViewController {
             }
             
             guard self.queueList.count != waitlist.count else {
-                //print("No need to update queue. They are the same size")
+                print("No need to update queue. They are the same size")
                 return
             }
             
             self.queueList = waitlist
-//            self.queueSize = waitlist.count
-//            self.queueList = [Person](count: self.queueSize, repeatedValue: Person())
-//            
-            
-            //Iterate through all users and create the Model queueList for the TableView
-//            for (index,username) in waitlist.enumerate() {
-//                
-//                let userQuery = PFUser.query()?.whereKey("username", equalTo: username)
-//                userQuery?.findObjectsInBackgroundWithBlock { user, error in
-//                    
-//                    guard error == nil else {
-//                        self.displayErrorString(error)
-//                        return
-//                    }
-//                    
-//                    guard let user = user?.first else {
-//                        self.displayAlert("Error", message: "User not found")
-//                        return
-//                    }
-//                    
-//                    self.queueList[index] = (Person(lastName: user["lastName"] as! String,
-//                        firstName: user["firstName"] as! String,
-//                        userName: user["username"] as! String))
-//                }
-//            }
+
         }
     }
 
@@ -155,15 +131,21 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        let person = queueList[indexPath.row]
-        guard let firstName = person["firstName"] as? String,
-            let lastName = person["lastName"] else {
+        let visit = queueList[indexPath.row]
+        let visitUser = visit["user"]
+        
+        guard let firstName = visitUser["firstName"] as? String,
+            let lastName = visitUser["lastName"] else {
                 print("Could not obtain first name and last name")
                 cell.textLabel?.text = ""
                 return cell
         }
         
         cell.textLabel?.text = "\(firstName) \(lastName)"
+        
+        if let reason = visit["reason"] as? String {
+            cell.detailTextLabel?.text = reason
+        }
         
         return cell
         

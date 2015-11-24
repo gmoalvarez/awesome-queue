@@ -32,7 +32,10 @@ class StudentViewController: UIViewController {
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
-        timer1.invalidate()
+        if timer1 != nil{
+          timer1.invalidate()  
+        }
+        
         performSegueWithIdentifier("logoutStudent", sender: self)
     }
     

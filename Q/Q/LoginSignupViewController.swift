@@ -16,6 +16,7 @@ class LoginSignupViewController: UIViewController {
         if let user = PFUser.currentUser() {
             print("Currently logged in as:\(user.username)")
             if let userType = user["type"] as? String{
+                activityIndicator.stopAnimating()
                 self.segueAfterSignupOrLogin(userType)
             }
         }

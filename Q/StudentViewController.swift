@@ -17,25 +17,53 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var queueName: UILabel!
     @IBOutlet weak var lat: UILabel!
     @IBOutlet weak var long: UILabel!
-    @IBOutlet weak var userNameToChange: UITextField!
     @IBOutlet weak var check: UIImageView!
     @IBOutlet weak var redX: UIImageView!
+    @IBOutlet weak var smiley: UIImageView!
     @IBOutlet weak var joinQueueButton: UIButton!
     @IBOutlet weak var exitQueueButton: UIButton!
     @IBOutlet weak var placeInQueue: UILabel!
+    @IBOutlet weak var removeAlert: UILabel!
     
+   
     var beginTime:NSDate?
     var endTime:NSDate?
     var queueToJoin:String?
     var userName = PFUser.currentUser()!.username
     var reason = "none"
+    var timer1:NSTimer!
+    var currentTimerTime = 0
+    
+    var firstInLine = false
+    var joinedQ = false
+    
+    func allUnhide(){
+        smiley.hidden = false
+        check.hidden = false
+        redX.hidden = false
+        smiley.hidden = false
+        removeAlert.hidden = false
+        joinQueueButton.hidden = false
+        exitQueueButton.hidden = false
+        
+    }
+    
+    func allHide(){
+        smiley.hidden = true
+        check.hidden = true
+        redX.hidden = true
+        smiley.hidden = true
+        removeAlert.hidden = true
+        joinQueueButton.hidden = true
+        exitQueueButton.hidden = true
+        placeInQueue.hidden = true
+    }
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
         if timer1 != nil{
-          timer1.invalidate()  
+          timer1.invalidate()
         }
-        
         performSegueWithIdentifier("logoutStudent", sender: self)
     }
     
@@ -62,7 +90,7 @@ class StudentViewController: UIViewController {
         }
         if let qID = queueToJoin {
             
-            let queueQuery = PFQuery(className: "Queue")
+            let queueQuery = PFQuery(className: "OfficeHour")
             queueQuery.getObjectInBackgroundWithId(qID){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
@@ -71,42 +99,22 @@ class StudentViewController: UIViewController {
                 queue.removeObject(uName, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
-                self.exitQueueButton.hidden = true
+                self.allHide()
+                self.joinedQ = false
                 self.joinQueueButton.hidden = false
-                self.check.hidden = true
-                self.redX.hidden = true
                 self.placeInQueue.hidden = true
+                self.firstInLine = false
             }
         }
     }
 
-    // MARK: - TESTING METHODS (SAFE TO DELETE)
-    
-    //change the name for testing
-    @IBAction func changeName(sender: UIButton) {
-        userName = userNameToChange.text
-        print(userName)
-    }
-    
-    //next two methods are for testing timer
-    func testTimer(){
-        print(currentTimerTime++)
-    }
-    
-    @IBAction func stopTimer(sender: UIButton) {
-        timer1.invalidate()
-    }
-    /////
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(PFUser.currentUser())
-        check.hidden = true
-        redX.hidden = true
-        exitQueueButton.hidden = true
-        self.placeInQueue.hidden = true
+        allHide()
+        joinQueueButton.hidden = false
+        joinedQ = false
+        
         // Do any additional setup after loading the view.
     }
     
@@ -128,8 +136,7 @@ class StudentViewController: UIViewController {
     
     // MARK: - METHODS TO JOIN QUEUE AND UPDATE SCREEN
     //creates new timer
-    var timer1:NSTimer!
-    var currentTimerTime = 0
+ 
     
     @IBAction func joinQ(sender: UIButton) {
         //adding alert
@@ -202,7 +209,7 @@ class StudentViewController: UIViewController {
         }
         if let queueToJoin = queueToJoin {
             
-            let queueQuery = PFQuery(className: "Queue")
+            let queueQuery = PFQuery(className: "OfficeHour")
             queueQuery.getObjectInBackgroundWithId(queueToJoin){ queue, error in
                 guard let queue = queue else {
                     print("It appears there is no queue")
@@ -215,7 +222,10 @@ class StudentViewController: UIViewController {
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
+                self.joinedQ = true
+                self.smiley.hidden = true
                 self.updatePlace()
+                self.removeAlert.hidden = true
             }
         }
     }
@@ -224,9 +234,8 @@ class StudentViewController: UIViewController {
     func updatePlace(){
         if let qID = queueToJoin {
             print(currentTimerTime++)
-            let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: qID).includeKey("waitlist")
+            let query = PFQuery(className: "OfficeHour").whereKey("objectId", equalTo: qID).includeKey("waitlist")
             query.findObjectsInBackgroundWithBlock { queue, error in
-                
                 
                 guard let queue = queue?.first else {
                     self.displayAlert("Error", message: "Could not get  queue")
@@ -239,8 +248,26 @@ class StudentViewController: UIViewController {
                 }
                 if let un = self.userName{
                     guard let index = waitlist.indexOf(un) else{
-                        print("unable to find place in queue")
+                        if(self.joinedQ == false){
+                            print("unable to find place in queue, not joined")
+                        }
+                        else if (self.firstInLine == false){
+                            self.removeAlert.hidden = false
+                        }
+                        else{
+                            self.placeInQueue.hidden = true
+                            self.smiley.hidden = false
+                        }
+                        self.placeInQueue.hidden = true
+                        self.joinedQ = false
+                        self.joinQueueButton.hidden = false
+                        self.firstInLine = false
+                        self.exitQueueButton.hidden = true
+                        self.timer1.invalidate()
                         return
+                    }
+                    if(index == 0){
+                        self.firstInLine = true
                     }
                     self.placeInQueue.text = "\(index + 1)"
                     self.placeInQueue.hidden = false
@@ -269,4 +296,6 @@ class StudentViewController: UIViewController {
         
         
     }
+    
+    
 }

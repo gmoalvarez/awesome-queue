@@ -62,7 +62,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     }
     
     func setValuesToPassBack(){
-        //self.image = image
+        image = imageView.image
         firstName = firstNameText.text
         lastName = lastNameText.text
         userName = userNameText.text

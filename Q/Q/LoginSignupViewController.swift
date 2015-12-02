@@ -100,6 +100,7 @@ class LoginSignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: - Sign up new user data
     @IBAction func back(segue:UIStoryboardSegue){
         self.activityIndicator.stopAnimating()
         if let source = segue.sourceViewController as? LogInInfoViewController{
@@ -120,14 +121,28 @@ class LoginSignupViewController: UIViewController {
             user["firstName"] = firstName
             user["lastName"] = lastName
             user["type"] = userType
-            if let image = source.image {
-                //Put code in here to save the image of the user
-            }
+            
             
             user.signUpInBackgroundWithBlock { success, error in
                 guard error == nil else {
                     self.displayErrorString(error, messageTitle: "Failed to sign up")
                     return
+                }
+                
+                if let image = source.image {
+                    let compression:CGFloat = 0.8
+                    guard let imageData = UIImageJPEGRepresentation(image, compression) else {
+                        print("Could not convert image into data")
+                        return
+                    }
+                    
+                    guard let imageFile = PFFile(data: imageData) else {
+                        print("Could not convert image file to Parse file")
+                        return
+                    }
+                    
+                    user["picture"] = imageFile
+                    user.saveInBackground()
                 }
                 
                 self.segueAfterSignupOrLogin(userType)
@@ -146,6 +161,7 @@ class LoginSignupViewController: UIViewController {
             passwordTextField.text = ""
         }
     }
+    
     
 }//end of class
 

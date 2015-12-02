@@ -110,8 +110,6 @@ class ProfessorCreateOrViewController: UIViewController {
                 queue.setObject(imageFile, forKey: "qrImage")
             }
         }
-        
-        
     }
     
     @IBAction func back(segue:UIStoryboardSegue){

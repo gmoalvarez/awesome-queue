@@ -17,20 +17,47 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var queueName: UILabel!
     @IBOutlet weak var lat: UILabel!
     @IBOutlet weak var long: UILabel!
-    @IBOutlet weak var userNameToChange: UITextField!
-    @IBOutlet weak var check: UIImageView!
     @IBOutlet weak var redX: UIImageView!
     @IBOutlet weak var joinQueueButton: UIButton!
     @IBOutlet weak var exitQueueButton: UIButton!
     @IBOutlet weak var placeInQueue: UILabel!
+    @IBOutlet weak var smiley: UIImageView!
+    @IBOutlet weak var removeAlert: UITextView!
+    
+    var currentVisitId = String()
+    var currentQueueId:String?
+    let currentUser = PFUser.currentUser()!
     
     var beginTime:NSDate?
     var endTime:NSDate?
-    var currentQueueId:String?
-    let currentUser = PFUser.currentUser()!
+    var queueToJoin:String?
     let userName = PFUser.currentUser()!.username!
     var reason = "none"
-    var currentVisitId = String()
+    
+    var timer1:NSTimer!
+    var currentTimerTime = 0
+    var firstInLine = false
+    var joinedQ = false
+    
+    func allUnhide(){
+        smiley.hidden = false
+        redX.hidden = false
+        smiley.hidden = false
+        removeAlert.hidden = false
+        joinQueueButton.hidden = false
+        exitQueueButton.hidden = false
+        
+    }
+    
+    func allHide(){
+        smiley.hidden = true
+        redX.hidden = true
+        smiley.hidden = true
+        removeAlert.hidden = true
+        joinQueueButton.hidden = true
+        exitQueueButton.hidden = true
+        placeInQueue.hidden = true
+    }
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -82,36 +109,24 @@ class StudentViewController: UIViewController {
                 queue.removeObject(visit, forKey: "waitlist")
                 queue.saveInBackground()
                 self.timer1.invalidate()
-                self.exitQueueButton.hidden = true
+                self.allHide()
+                self.joinedQ = false
                 self.joinQueueButton.hidden = false
-                self.check.hidden = true
-                self.redX.hidden = true
                 self.placeInQueue.hidden = true
+                self.firstInLine = false
             }
 
         }
             
         
     }
-
-    // MARK: - TESTING METHODS (SAFE TO DELETE)
-    
-    //next two methods are for testing timer
-    func testTimer(){
-        print(currentTimerTime++)
-    }
-    
-    @IBAction func stopTimer(sender: UIButton) {
-        timer1.invalidate()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(currentUser)
-        check.hidden = true
-        redX.hidden = true
-        exitQueueButton.hidden = true
-        self.placeInQueue.hidden = true
+        allHide()
+        joinQueueButton.hidden = false
+        joinedQ = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,13 +146,11 @@ class StudentViewController: UIViewController {
     
     // MARK: - METHODS TO JOIN QUEUE AND UPDATE SCREEN
     //creates new timer
-    var timer1:NSTimer!
-    var currentTimerTime = 0
+   
     
     @IBAction func joinQ(sender: UIButton) {
         //adding alert
         redX.hidden = true
-        check.hidden = true
         
         let controller = UIAlertController(title: "SUBMIT REASON", message: "Would you like to add a brief reason for your visit?",
             preferredStyle: .ActionSheet)
@@ -169,10 +182,7 @@ class StudentViewController: UIViewController {
         let beginDT = makeDate(infoArray[2])
         let endDT = makeDate(infoArray[3])
         if (checkTime(beginDT, endDate: endDT)){
-            //check.hidden = false
-            
             sendInfo()
-            
         }
         else{
             redX.hidden = false
@@ -206,6 +216,7 @@ class StudentViewController: UIViewController {
             return
         }
 
+        
         let visit = PFObject(className: "Visit")
         visit["user"] = self.currentUser
         visit["firstName"] = currentUser["firstName"]
@@ -227,6 +238,8 @@ class StudentViewController: UIViewController {
                     print("It appears there is no queue")
                     return
                 }
+                //need to check and see if user currently has another visit in this queue before entering
+                //this could actually be the outer part and make the visit here if there is no user/vist in queue
                 
                 queue.addUniqueObject(visit, forKey: "waitlist")
                 queue.saveInBackgroundWithBlock({ (success, error) -> Void in
@@ -248,7 +261,10 @@ class StudentViewController: UIViewController {
                 self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
+                self.joinedQ = true
+                self.smiley.hidden = true
                 self.updatePlace()
+                self.removeAlert.hidden = true
             }
 
         }
@@ -277,8 +293,26 @@ class StudentViewController: UIViewController {
                 let users = waitlist.map{$0["user"]} as? [PFObject]
                 
                 guard let index = users?.indexOf(self.currentUser) else{
-                    print("unable to find place in queue")
+                    if(self.joinedQ == false){
+                        print("unable to find place in queue")
+                    }
+                    else if (self.firstInLine == false){
+                        self.removeAlert.hidden = false
+                    }
+                    else{
+                        self.placeInQueue.hidden = true
+                        self.smiley.hidden = false
+                    }
+                    self.placeInQueue.hidden = true
+                    self.joinedQ = false
+                    self.joinQueueButton.hidden = false
+                    self.firstInLine = false
+                    self.exitQueueButton.hidden = true
+                    self.timer1.invalidate()
                     return
+                }
+                if(index == 0){
+                    self.firstInLine = true
                 }
                 self.placeInQueue.text = "\(index + 1)"
                 self.placeInQueue.hidden = false

@@ -16,6 +16,7 @@ class Visit {
     var lastName:String
     var firstName:String
     var reason:String?
+    var image:UIImage?
 //    var location:CLLocation?
     
     init(user:PFUser, lastName:String, firstName:String, reason:String?) {

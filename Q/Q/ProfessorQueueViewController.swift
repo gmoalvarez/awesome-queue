@@ -10,8 +10,6 @@ import UIKit
 import Parse
 
 class ProfessorQueueViewController: UIViewController {
-    
-    
 
     var queueId = String() {
         didSet {
@@ -77,7 +75,6 @@ class ProfessorQueueViewController: UIViewController {
         let query = PFQuery(className: "Queue").whereKey("objectId", equalTo: queueId).includeKey("waitlist")
         query.findObjectsInBackgroundWithBlock { queue, error in
             
-            
             guard let queue = queue?.first else {
                 self.displayAlert("Error", message: "Could not get queue")
                 return
@@ -94,6 +91,7 @@ class ProfessorQueueViewController: UIViewController {
             }
             
             var visitList = [Visit]()
+            
             for visit in waitlist {
 
                 guard let user = visit["user"] as? PFUser else {
@@ -114,11 +112,30 @@ class ProfessorQueueViewController: UIViewController {
                     firstName: firstName,
                     reason: reason)
                 
+                //Check for image if available
+                if let imageFile = visit["picture"] as? PFFile {
+                    imageFile.getDataInBackgroundWithBlock{ imageData, error in
+                        guard error == nil else {
+                            self.displayErrorString(error, messageTitle: "error retrieving image file")
+                            return
+                        }
+                        
+                        if let imageData = imageData {
+                            if let image = UIImage(data: imageData) {
+                                newVisit.image = image
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
+                //End check for image
+                
                 visitList.append(newVisit)
             }
             
             self.queueList = visitList
-
         }
     }
 
@@ -165,6 +182,10 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
             cell.detailTextLabel?.text = ""
         }
         
+        if let image = visit.image {
+            cell.imageView?.image = image
+        }
+        
         return cell
         
     }
@@ -172,5 +193,4 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return queueList.count
     }
-    
 }

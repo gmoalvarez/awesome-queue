@@ -213,6 +213,7 @@ class StudentViewController: UIViewController {
         if reason != "none" {
             visit["reason"] = reason
         }
+        visit["picture"] = currentUser["picture"]
         visit.saveInBackgroundWithBlock{ success, error in
             
             guard error == nil else {

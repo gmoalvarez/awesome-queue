@@ -136,7 +136,7 @@ class LoginSignupViewController: UIViewController {
                         return
                     }
                     
-                    guard let imageFile = PFFile(data: imageData) else {
+                    guard let imageFile = PFFile(name: "profile.jpg", data: imageData) else {
                         print("Could not convert image file to Parse file")
                         return
                     }

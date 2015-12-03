@@ -165,6 +165,25 @@ class ProfessorQueueViewController: UIViewController {
         }
     }
     
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? VisitDetailViewController {
+            if let visitIndex = tableView.indexPathForSelectedRow {
+                destination.visit = queueList[visitIndex.row]
+            }
+        }
+    }
+    
+    
+    @IBAction func back(segue:UIStoryboardSegue){
+        if let source = segue.sourceViewController as? VisitDetailViewController{
+            print("Came back from detail view")
+        }
+        
+    }
+    
+    
 }
 
 extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelegate {

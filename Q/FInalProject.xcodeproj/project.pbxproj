@@ -233,10 +233,10 @@
 		B32B963F1BFEC859002CB95B /* Professor Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */,
 				2125BD411BFFE63D00A20E5F /* QRGenViewController.swift */,
 				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
 				B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */,
+				B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */,
 			);
 			name = "Professor Controllers";
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 				TargetAttributes = {
 					21DCCB781BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 9U59G4TU97;
+						DevelopmentTeam = YFW32UFS6M;
 					};
 					21DCCB8C1BDA253800851C10 = {
 						CreatedOnToolsVersion = 7.0.1;

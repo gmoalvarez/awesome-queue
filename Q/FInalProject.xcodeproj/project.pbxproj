@@ -42,6 +42,7 @@
 		B36561D31BFE46B70069F785 /* TestQueueGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */; };
 		B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
 		B39C960E1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */; };
+		B3B079C91C0FB1FC00ECDFA4 /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */; };
 		B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 		B3D6BAEC1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		B36561D11BFE46B70069F785 /* TestQueueGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestQueueGenerator.swift; sourceTree = "<group>"; };
 		B37081721C00D194006ADEE1 /* QueueTesting.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = QueueTesting.playground; sourceTree = "<group>"; };
 		B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessorCreateOrViewController.swift; sourceTree = "<group>"; };
+		B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		B3D6BAEA1BE9B4F900F65416 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 		B32B963F1BFEC859002CB95B /* Professor Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */,
 				2125BD411BFFE63D00A20E5F /* QRGenViewController.swift */,
 				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
 				B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */,
@@ -401,6 +404,7 @@
 				B36561D21BFE46B70069F785 /* TestQueueGenerator.swift in Sources */,
 				B39C960D1BEAC01E00372446 /* ProfessorCreateOrViewController.swift in Sources */,
 				B32B96321BFD6F99002CB95B /* ProfessorQueueViewController.swift in Sources */,
+				B3B079C91C0FB1FC00ECDFA4 /* VisitDetailViewController.swift in Sources */,
 				B3D6BAEB1BE9B4F900F65416 /* LoginSignupViewController.swift in Sources */,
 				B32B963C1BFEC6D1002CB95B /* AlertExtension.swift in Sources */,
 				21DCCB7D1BDA253800851C10 /* AppDelegate.swift in Sources */,

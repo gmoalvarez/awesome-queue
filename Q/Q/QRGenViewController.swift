@@ -67,8 +67,6 @@ class QRGenViewController: UIViewController {
         
         print("Level 2!")
         displayQRCodeImage()
-        
-        
     }
     
     func displayQRCodeImage() {

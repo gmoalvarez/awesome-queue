@@ -14,6 +14,8 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var emailText: UITextField!
+    
     @IBOutlet weak var userNameText: UITextField!
     @IBOutlet weak var passWordText: UITextField!
     @IBOutlet weak var password2Text: UITextField!
@@ -25,6 +27,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
     var image:UIImage?
     var firstName:String?
     var lastName:String?
+    var email:String?
     var userName:String?
     var password1:String?
     var password2:String?
@@ -45,6 +48,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         if firstNameText.text == "" ||
             lastNameText.text == "" ||
             userNameText.text == "" ||
+            emailText.text == "" ||
             passWordText.text == "" ||
             password2Text.text == "" ||
             userTypeSegmentedControl.selectedSegmentIndex == -1 {
@@ -65,6 +69,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         image = imageView.image
         firstName = firstNameText.text
         lastName = lastNameText.text
+        email = emailText.text
         userName = userNameText.text
         password1 = passWordText.text
         password2 = password2Text.text
@@ -100,6 +105,7 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         imagePicker.delegate = self
         firstNameText.delegate = self
         lastNameText.delegate = self
+        emailText.delegate = self
         userNameText.delegate = self
         password2Text.delegate = self
         passWordText.delegate = self

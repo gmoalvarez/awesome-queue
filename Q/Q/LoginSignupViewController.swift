@@ -80,20 +80,7 @@ class LoginSignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //testing only ****delete****
-        //makeDate("2015-11-21 02:30 PM")
     }
-
-//testing only --ARchie-- delete after done
-//    func makeDate(dateInString:String)->NSDate {
-//        let dateFmt = NSDateFormatter()
-//        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
-//        dateFmt.dateFormat = "yyyy-MM-dd hh:mm a"
-//        let returnDate = dateFmt.dateFromString(dateInString)!
-//        print("The date is \(returnDate)")
-//        print("The current date is \(NSDate())")
-//        return returnDate
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -105,10 +92,11 @@ class LoginSignupViewController: UIViewController {
         self.activityIndicator.stopAnimating()
         if let source = segue.sourceViewController as? LogInInfoViewController{
             guard let firstName = source.firstName,
-            lastName = source.lastName,
-            userName = source.userName,
-            userType = source.userType,
-            password = source.password1 else{
+                lastName = source.lastName,
+                email = source.email,
+                userName = source.userName,
+                userType = source.userType,
+                password = source.password1 else{
                     print("Error retrieving fields from signup page")
                  
                     return
@@ -118,6 +106,7 @@ class LoginSignupViewController: UIViewController {
             let user = PFUser()
             user.username = userName
             user.password = password
+            user.email = email
             user["firstName"] = firstName
             user["lastName"] = lastName
             user["type"] = userType

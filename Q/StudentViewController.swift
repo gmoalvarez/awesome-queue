@@ -143,6 +143,7 @@ class StudentViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         //1. Check for the first visit where user appears
         let visitQuery = PFQuery(className: "Visit").whereKey("user", equalTo: currentUser)
+        visitQuery.orderByDescending("updatedAt")
         visitQuery.getFirstObjectInBackgroundWithBlock { (visit, error) -> Void in
             guard let visit = visit else {
                 print("Could not find user in a visit")

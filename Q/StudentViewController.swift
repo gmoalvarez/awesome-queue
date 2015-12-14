@@ -24,7 +24,7 @@ class StudentViewController: UIViewController {
     @IBOutlet weak var smiley: UIImageView!
     @IBOutlet weak var removeAlert: UITextView!
     
-    var currentVisitId = String()
+    var currentVisitId:String?
     var currentQueueId:String?
     let currentUser = PFUser.currentUser()!
     
@@ -34,7 +34,7 @@ class StudentViewController: UIViewController {
     let userName = PFUser.currentUser()!.username!
     var reason = "none"
     
-    var timer1:NSTimer!
+    var timer1:NSTimer?
     var currentTimerTime = 0
     var firstInLine = false
     var joinedQ = false
@@ -61,7 +61,7 @@ class StudentViewController: UIViewController {
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
-        if timer1 != nil{
+        if let timer1 = timer1{
           timer1.invalidate()  
         }
         PFQuery.clearAllCachedResults()
@@ -91,6 +91,11 @@ class StudentViewController: UIViewController {
             return
         }
         
+        guard let currentVisitId = currentVisitId else {
+            print("Could not get current visit id")
+            return
+        }
+        
         let visitQuery = PFQuery(className: "Visit")
         visitQuery.getObjectInBackgroundWithId(currentVisitId) { visit, error in
             
@@ -108,7 +113,9 @@ class StudentViewController: UIViewController {
                 
                 queue.removeObject(visit, forKey: "waitlist")
                 queue.saveInBackground()
-                self.timer1.invalidate()
+                if let timer1 = self.timer1 {
+                    timer1.invalidate()
+                }
                 self.allHide()
                 self.joinedQ = false
                 self.joinQueueButton.hidden = false
@@ -133,6 +140,35 @@ class StudentViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        //1. Check for the first visit where user appears
+        let visitQuery = PFQuery(className: "Visit").whereKey("user", equalTo: currentUser)
+        visitQuery.getFirstObjectInBackgroundWithBlock { (visit, error) -> Void in
+            guard let visit = visit else {
+                print("Could not find user in a visit")
+                return
+            }
+            //2. Save visit as current visit
+            self.currentVisitId = visit.objectId
+            //3. User was found in a Visit class. Now we query the queues to see if that visit is found
+            let waitlistQuery = PFQuery(className: "Queue").whereKey("waitlist", containsAllObjectsInArray: [visit])
+            waitlistQuery.getFirstObjectInBackgroundWithBlock({ (queue, error) -> Void in
+                guard let queue = queue else {
+                    print("Did not find user in the Queue")
+                    return
+                }
+                
+                print(queue.objectId)
+                self.currentQueueId = queue.objectId
+                self.joinQueueButton.hidden = true
+                self.exitQueueButton.hidden = false
+                if self.timer1 == nil {
+                    self.startTimer()
+                }
+                self.updatePlace()
+            })
+        }
+    }
     
     /*
     // MARK: - Navigation
@@ -224,7 +260,10 @@ class StudentViewController: UIViewController {
         if reason != "none" {
             visit["reason"] = reason
         }
-        visit["picture"] = currentUser["picture"]
+        if let picture = currentUser["picture"] {
+            visit["picture"] = picture
+        }
+        
         visit.saveInBackgroundWithBlock{ success, error in
             
             guard error == nil else {
@@ -253,12 +292,12 @@ class StudentViewController: UIViewController {
                         }
                         
                         self.currentVisitId = objectId
-                        
-                        
                     }
 
                 })
-                self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
+                if self.timer1 == nil {
+                    self.startTimer()
+                }
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
                 self.joinedQ = true
@@ -268,10 +307,11 @@ class StudentViewController: UIViewController {
             }
 
         }
-        
-        
     }
     
+    func startTimer() {
+        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "updatePlace", userInfo: nil, repeats: true)
+    }
     
     func updatePlace(){
         if let currentQueueId = currentQueueId {
@@ -308,7 +348,10 @@ class StudentViewController: UIViewController {
                     self.joinQueueButton.hidden = false
                     self.firstInLine = false
                     self.exitQueueButton.hidden = true
-                    self.timer1.invalidate()
+                    if let timer1 = self.timer1 {
+                        timer1.invalidate()
+                    }
+                    
                     return
                 }
                 if(index == 0){

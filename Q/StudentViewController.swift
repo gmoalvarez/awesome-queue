@@ -120,7 +120,7 @@ class StudentViewController: UIViewController {
                 self.joinedQ = false
                 self.joinQueueButton.hidden = false
                 self.placeInQueue.hidden = true
-                self.firstInLine = false
+//                self.firstInLine = false
             }
         }
     }
@@ -160,6 +160,7 @@ class StudentViewController: UIViewController {
                 self.currentQueueId = queue.objectId
                 self.joinQueueButton.hidden = true
                 self.exitQueueButton.hidden = false
+                self.joinedQ = true
                 if self.timer1 == nil {
                     self.startTimer()
                 }
@@ -358,6 +359,7 @@ class StudentViewController: UIViewController {
                 }
                 self.placeInQueue.text = "\(index + 1)"
                 self.placeInQueue.hidden = false
+                
                 
             }
         }

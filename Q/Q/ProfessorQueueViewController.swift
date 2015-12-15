@@ -136,6 +136,9 @@ class ProfessorQueueViewController: UIViewController {
             }
             
             self.queueList = visitList
+            dispatch_async(dispatch_get_main_queue()){
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -162,6 +165,7 @@ class ProfessorQueueViewController: UIViewController {
             queue.removeObject(firstStudentInQueue, forKey: "waitlist")
             queue.saveInBackground()
             self.queueList.removeFirst()
+            self.tableView.reloadData()
         }
     }
     
@@ -203,6 +207,8 @@ extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelega
         
         if let image = visit.image {
             cell.imageView?.image = image
+        } else {
+            cell.imageView?.image = UIImage(named: "user_placeholder")
         }
         
         return cell

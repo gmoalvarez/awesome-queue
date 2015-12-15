@@ -122,10 +122,7 @@ class StudentViewController: UIViewController {
                 self.placeInQueue.hidden = true
                 self.firstInLine = false
             }
-
         }
-            
-        
     }
     
     override func viewDidLoad() {
@@ -167,6 +164,7 @@ class StudentViewController: UIViewController {
                     self.startTimer()
                 }
                 self.updatePlace()
+                self.removeAlert.hidden = true
             })
         }
     }

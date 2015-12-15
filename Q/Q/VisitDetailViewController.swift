@@ -31,7 +31,6 @@ class VisitDetailViewController: UIViewController {
         nameTextLabel.text = "\(visit.firstName) \(visit.lastName)"
         reasonTextLabel.text = visit.reason
         profileImageView.image = visit.image
-//        profileImageView.contentMode = .ScaleAspectFit
     }
 
     var image:UIImage? {

@@ -230,6 +230,7 @@ class StudentViewController: UIViewController {
     func makeDate(dateInString:String)->NSDate {
         let dateFormatter = NSDateFormatter()
         let locale = NSLocale.currentLocale()
+        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
         
         let dateFormat = NSDateFormatter.dateFormatFromTemplate("j", options: 0, locale: locale)!
         

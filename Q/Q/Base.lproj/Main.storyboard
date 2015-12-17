@@ -530,7 +530,7 @@
                                                 <action selector="cancel:" destination="tHF-Rt-lVr" id="fgQ-Qm-ibv"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="set" id="1rn-eC-nsR">
+                                        <barButtonItem key="rightBarButtonItem" title="create event" id="1rn-eC-nsR">
                                             <connections>
                                                 <action selector="setTime:" destination="tHF-Rt-lVr" id="4cB-cm-VEx"/>
                                             </connections>

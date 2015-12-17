@@ -181,7 +181,7 @@ class ProfessorQueueViewController: UIViewController {
     
     
     @IBAction func back(segue:UIStoryboardSegue){
-        if let source = segue.sourceViewController as? VisitDetailViewController{
+        if let _ = segue.sourceViewController as? VisitDetailViewController{
             print("Came back from detail view")
         }
         

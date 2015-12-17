@@ -139,12 +139,12 @@ class LoginSignupViewController: UIViewController {
             
         }
         //here is where we would code another unWind from another view if we need to
-        if let source = segue.sourceViewController as? StudentViewController{
+        if let _ = segue.sourceViewController as? StudentViewController{
             print(PFUser.currentUser())//testing
             usernameTextField.text = ""
             passwordTextField.text = ""
         }
-        if let source = segue.sourceViewController as? ProfessorCreateOrViewController{
+        if let _ = segue.sourceViewController as? ProfessorCreateOrViewController{
             print(PFUser.currentUser())//testing
             usernameTextField.text = ""
             passwordTextField.text = ""

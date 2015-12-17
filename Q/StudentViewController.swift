@@ -61,8 +61,9 @@ class StudentViewController: UIViewController {
         if let timer1 = timer1{
           timer1.invalidate()  
         }
-        PFQuery.clearAllCachedResults()
-        performSegueWithIdentifier("logoutStudent", sender: self)
+        print("logout")
+            PFQuery.clearAllCachedResults()
+        //performSegueWithIdentifier("logoutStudent", sender: self)
     }
     
     @IBAction func touchBackground(sender: UITapGestureRecognizer) {

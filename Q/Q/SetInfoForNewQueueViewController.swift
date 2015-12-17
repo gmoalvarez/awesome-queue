@@ -13,16 +13,12 @@ class SetInfoForNewQueueViewController: UIViewController {
 
     var beginWasSet:Bool = false
     var endWasSet:Bool = false
-    var timeWasSet = false
+    //var timeWasSet = false
     var queueID:String?
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("toProfFromTime", sender: self)
-    }
-  
     @IBAction func setTime(sender: UIBarButtonItem) {
-        if beginWasSet && endWasSet{
-            timeWasSet = true
+        if !beginWasSet || !endWasSet{
+            return
         }
         performSegueWithIdentifier("toQrFromDate", sender: self)
     }
@@ -31,7 +27,6 @@ class SetInfoForNewQueueViewController: UIViewController {
         
         startTime.text = dateTime
         startDateTime = dateTime
-        startCheck.hidden = false
         beginWasSet = true
     }
     
@@ -39,7 +34,6 @@ class SetInfoForNewQueueViewController: UIViewController {
         
         endTime.text = dateTime
         endDateTime = dateTime
-        endCheck.hidden = false
         endWasSet = true
     }
     
@@ -47,9 +41,7 @@ class SetInfoForNewQueueViewController: UIViewController {
     
     @IBOutlet weak var endTime: UILabel!
     
-    @IBOutlet weak var startCheck: UIImageView!
-    
-    @IBOutlet weak var endCheck: UIImageView!
+
     
     @IBOutlet weak var datePicker: UIDatePicker!
    
@@ -81,9 +73,6 @@ class SetInfoForNewQueueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startCheck.hidden = true
-        endCheck.hidden = true
-        
         // Do any additional setup after loading the view.
     }
     

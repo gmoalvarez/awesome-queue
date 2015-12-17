@@ -40,9 +40,7 @@ class QRGenViewController: UIViewController {
 //        }
 //    }
     
-    @IBAction func back(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("toProfessor", sender: self)
-    }
+
     func stringMaker(){
         qrString = "Q.0|\(queueID)|\(begDate)|\(endDate)|"
        

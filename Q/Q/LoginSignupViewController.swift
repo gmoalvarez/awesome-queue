@@ -88,7 +88,7 @@ class LoginSignupViewController: UIViewController {
     }
 
     //MARK: - Sign up new user data
-    @IBAction func back(segue:UIStoryboardSegue){
+    @IBAction func loginBack(segue:UIStoryboardSegue){
         self.activityIndicator.stopAnimating()
         if let source = segue.sourceViewController as? LogInInfoViewController{
             guard let firstName = source.firstName,
@@ -138,6 +138,24 @@ class LoginSignupViewController: UIViewController {
             }
             
         }
+        
+        if let _ = segue.sourceViewController as? ProfessorCreateOrViewController{
+            PFUser.logOut()
+            print("logged out of prof")
+        }
+        
+        if let source = segue.sourceViewController as? StudentViewController{
+            PFUser.logOut()
+            if let timer1 = source.timer1{
+                timer1.invalidate()
+            }
+            print("logout of student")
+            PFQuery.clearAllCachedResults()
+        }
+        
+        
+        
+        
         //here is where we would code another unWind from another view if we need to
         if let _ = segue.sourceViewController as? StudentViewController{
             print(PFUser.currentUser())//testing

@@ -48,7 +48,7 @@
                                     <navigationItem title="Student Page" id="8Py-Uu-bMv">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="2Ja-c0-QA7">
                                             <connections>
-                                                <action selector="logout:" destination="JMe-fo-vwO" id="UNu-Pn-DPM"/>
+                                                <segue destination="hdM-xV-5w7" kind="unwind" unwindAction="loginBack:" id="lKQ-D8-V2v"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -140,7 +140,6 @@
                         <outlet property="status" destination="oFe-fe-YgR" id="HOn-LT-fkA"/>
                         <segue destination="SBa-Ig-DuV" kind="show" identifier="toQR" id="rbA-It-bdg"/>
                         <segue destination="y0t-uU-bde" kind="show" identifier="toReason" id="6gM-B6-ddy"/>
-                        <segue destination="hdM-xV-5w7" kind="unwind" identifier="logoutStudent" unwindAction="back:" id="Ape-Zd-T4j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeM-Ak-lEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -445,7 +444,7 @@
                                     <navigationItem title="QR Code For New Queue" id="edo-uE-3Sg">
                                         <barButtonItem key="leftBarButtonItem" title="back" id="5Ce-0W-RgV">
                                             <connections>
-                                                <action selector="back:" destination="xmC-Pm-NKY" id="dTw-HH-mcn"/>
+                                                <segue destination="dah-gc-5tr" kind="unwind" unwindAction="profBack:" id="Ddm-3J-SLF"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -471,7 +470,6 @@
                     </view>
                     <connections>
                         <outlet property="qr" destination="xBQ-ks-LwA" id="taS-Vy-6nd"/>
-                        <segue destination="dah-gc-5tr" kind="unwind" identifier="toProfessor" unwindAction="back:" id="8J1-T8-xfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCy-5g-WxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -497,10 +495,10 @@
                                     <navigationItem title="Set Date and Time of Office Hours" id="tMB-sG-lSB">
                                         <barButtonItem key="leftBarButtonItem" title="cancel" id="GzW-NU-HvC">
                                             <connections>
-                                                <action selector="cancel:" destination="tHF-Rt-lVr" id="fgQ-Qm-ibv"/>
+                                                <segue destination="7Ax-aE-8q7" kind="unwind" unwindAction="profBack:" id="GuX-NJ-Oa7"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="create event" id="1rn-eC-nsR">
+                                        <barButtonItem key="rightBarButtonItem" title="create" id="1rn-eC-nsR">
                                             <connections>
                                                 <action selector="setTime:" destination="tHF-Rt-lVr" id="4cB-cm-VEx"/>
                                             </connections>
@@ -522,27 +520,15 @@
                                     <action selector="setEnd:" destination="tHF-Rt-lVr" eventType="touchUpInside" id="pk1-sW-J15"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select a Start Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-zU-jmy">
-                                <rect key="frame" x="20" y="147" width="560" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select an End Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcJ-Wh-XQq">
-                                <rect key="frame" x="20" y="225" width="560" height="26"/>
+                                <rect key="frame" x="162" y="225" width="279" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="279" id="tN1-va-4Qs"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="f3m-yQ-ZSK">
-                                <rect key="frame" x="458" y="144" width="30" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Wh8-IM-O0z"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="2Wg-7h-Soq">
-                                <rect key="frame" x="458" y="222" width="30" height="32"/>
-                            </imageView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ovv-Xg-Nee">
                                 <rect key="frame" x="0.0" y="314" width="600" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="469955253.38644701">
@@ -552,42 +538,51 @@
                                     <action selector="datePicker:" destination="tHF-Rt-lVr" eventType="valueChanged" id="Nhf-tI-UTX"/>
                                 </connections>
                             </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lai-fw-D0w">
+                                <rect key="frame" x="20" y="135" width="560" height="37"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select a Start Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-zU-jmy">
+                                        <rect key="frame" x="145" y="3" width="270" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="270" id="GXj-68-frz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="rSi-zU-jmy" firstAttribute="centerX" secondItem="lai-fw-D0w" secondAttribute="centerX" id="2uB-uU-hNt"/>
+                                    <constraint firstItem="rSi-zU-jmy" firstAttribute="bottom" secondItem="lai-fw-D0w" secondAttribute="bottomMargin" id="JMp-Cv-Fgq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2Wg-7h-Soq" firstAttribute="top" secondItem="f3m-yQ-ZSK" secondAttribute="bottom" constant="46" id="4KY-DH-GwJ"/>
+                            <constraint firstItem="lai-fw-D0w" firstAttribute="centerX" secondItem="8BU-t5-pdj" secondAttribute="centerX" id="1wg-JS-KAK"/>
                             <constraint firstItem="Ovv-Xg-Nee" firstAttribute="leading" secondItem="Elf-CL-6BU" secondAttribute="leading" id="4qE-yZ-Rqt"/>
-                            <constraint firstItem="8BU-t5-pdj" firstAttribute="centerX" secondItem="xcJ-Wh-XQq" secondAttribute="centerX" id="AiD-IJ-KLn"/>
+                            <constraint firstItem="SGL-ib-W2N" firstAttribute="centerX" secondItem="xcJ-Wh-XQq" secondAttribute="centerX" id="8GM-YQ-XG8"/>
+                            <constraint firstItem="lai-fw-D0w" firstAttribute="leading" secondItem="cqQ-3f-Yzn" secondAttribute="leadingMargin" id="93T-pU-4Ju"/>
                             <constraint firstItem="Elf-CL-6BU" firstAttribute="top" secondItem="wkL-ia-f7O" secondAttribute="bottom" constant="8" id="Gaw-Ez-CTs"/>
                             <constraint firstAttribute="trailing" secondItem="Ovv-Xg-Nee" secondAttribute="trailing" id="Gd0-Wg-JLA"/>
                             <constraint firstItem="TOp-Hb-aiS" firstAttribute="top" secondItem="Ovv-Xg-Nee" secondAttribute="bottom" constant="70" id="JE8-Uq-Tmp"/>
-                            <constraint firstItem="rSi-zU-jmy" firstAttribute="leading" secondItem="xcJ-Wh-XQq" secondAttribute="leading" id="KjH-o0-Flh"/>
-                            <constraint firstItem="8BU-t5-pdj" firstAttribute="top" secondItem="rSi-zU-jmy" secondAttribute="bottom" constant="14" id="KyW-by-6t6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="f3m-yQ-ZSK" secondAttribute="trailing" constant="92" id="Mae-9x-qCE"/>
-                            <constraint firstItem="2Wg-7h-Soq" firstAttribute="centerY" secondItem="xcJ-Wh-XQq" secondAttribute="centerY" id="NUS-MK-hlP"/>
-                            <constraint firstItem="rSi-zU-jmy" firstAttribute="top" secondItem="SGL-ib-W2N" secondAttribute="bottom" constant="8" symbolic="YES" id="WZD-bB-pRI"/>
-                            <constraint firstItem="f3m-yQ-ZSK" firstAttribute="top" secondItem="Elf-CL-6BU" secondAttribute="bottom" constant="72" id="Wk2-og-hE9"/>
-                            <constraint firstItem="SGL-ib-W2N" firstAttribute="top" secondItem="Elf-CL-6BU" secondAttribute="bottom" constant="37" id="X5B-Yx-ccw"/>
-                            <constraint firstItem="f3m-yQ-ZSK" firstAttribute="centerY" secondItem="rSi-zU-jmy" secondAttribute="centerY" id="bdW-AZ-M3w"/>
-                            <constraint firstItem="8BU-t5-pdj" firstAttribute="centerX" secondItem="SGL-ib-W2N" secondAttribute="centerX" id="dgm-A6-LwR"/>
-                            <constraint firstItem="rSi-zU-jmy" firstAttribute="trailing" secondItem="xcJ-Wh-XQq" secondAttribute="trailing" id="hbr-Am-uvN"/>
-                            <constraint firstItem="f3m-yQ-ZSK" firstAttribute="leading" secondItem="2Wg-7h-Soq" secondAttribute="leading" id="jeh-r1-BOm"/>
-                            <constraint firstItem="2Wg-7h-Soq" firstAttribute="trailing" secondItem="f3m-yQ-ZSK" secondAttribute="trailing" id="kE7-x8-11o"/>
-                            <constraint firstItem="Elf-CL-6BU" firstAttribute="centerX" secondItem="rSi-zU-jmy" secondAttribute="centerX" id="ke5-Xi-swb"/>
-                            <constraint firstItem="xcJ-Wh-XQq" firstAttribute="top" secondItem="8BU-t5-pdj" secondAttribute="bottom" constant="8" symbolic="YES" id="lmf-fO-xuL"/>
+                            <constraint firstItem="SGL-ib-W2N" firstAttribute="top" secondItem="Elf-CL-6BU" secondAttribute="bottom" constant="37" id="Nmk-rb-UHF"/>
+                            <constraint firstItem="8BU-t5-pdj" firstAttribute="top" secondItem="lai-fw-D0w" secondAttribute="bottom" constant="15" id="Q2m-tB-2JC"/>
+                            <constraint firstItem="8BU-t5-pdj" firstAttribute="centerX" secondItem="SGL-ib-W2N" secondAttribute="centerX" id="VRw-Ta-iLP"/>
+                            <constraint firstItem="xcJ-Wh-XQq" firstAttribute="top" secondItem="8BU-t5-pdj" secondAttribute="bottom" constant="8" symbolic="YES" id="kfQ-eP-JCX"/>
+                            <constraint firstItem="8BU-t5-pdj" firstAttribute="top" secondItem="SGL-ib-W2N" secondAttribute="bottom" constant="48" id="lfz-fI-KMa"/>
                             <constraint firstItem="Elf-CL-6BU" firstAttribute="trailing" secondItem="Ovv-Xg-Nee" secondAttribute="trailing" id="nNm-6N-jeG"/>
-                            <constraint firstItem="rSi-zU-jmy" firstAttribute="leading" secondItem="cqQ-3f-Yzn" secondAttribute="leadingMargin" id="s4G-0Q-DVT"/>
-                            <constraint firstItem="Ovv-Xg-Nee" firstAttribute="top" secondItem="2Wg-7h-Soq" secondAttribute="bottom" constant="60" id="ydj-G2-XG1"/>
+                            <constraint firstItem="lai-fw-D0w" firstAttribute="top" secondItem="Elf-CL-6BU" secondAttribute="bottom" constant="63" id="vd8-Ve-F9k"/>
+                            <constraint firstItem="Ovv-Xg-Nee" firstAttribute="top" secondItem="xcJ-Wh-XQq" secondAttribute="bottom" constant="63" id="w3c-dU-JBd"/>
+                            <constraint firstItem="lai-fw-D0w" firstAttribute="centerX" secondItem="Elf-CL-6BU" secondAttribute="centerX" id="yS9-Lu-GR6"/>
                             <constraint firstItem="Elf-CL-6BU" firstAttribute="leading" secondItem="cqQ-3f-Yzn" secondAttribute="leading" id="zIy-zl-3qJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="Ovv-Xg-Nee" id="8O9-Pj-2tF"/>
-                        <outlet property="endCheck" destination="2Wg-7h-Soq" id="3Ho-Bn-TX2"/>
                         <outlet property="endTime" destination="xcJ-Wh-XQq" id="AfM-Xi-X0m"/>
-                        <outlet property="startCheck" destination="f3m-yQ-ZSK" id="mI0-Xz-tD6"/>
                         <outlet property="startTime" destination="rSi-zU-jmy" id="jYY-v7-a1M"/>
-                        <segue destination="7Ax-aE-8q7" kind="unwind" identifier="toProfFromTime" unwindAction="back:" id="fea-Pl-j80"/>
                         <segue destination="xmC-Pm-NKY" kind="show" identifier="toQrFromDate" id="Jlk-V8-mQn"/>
                     </connections>
                 </viewController>
@@ -717,6 +712,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Ejw-2F-KHg">
                                             <connections>
                                                 <action selector="logout:" destination="9mw-02-WeK" id="Uj3-e9-UFn"/>
+                                                <segue destination="ZIM-FK-Ujv" kind="unwind" unwindAction="loginBack:" id="Mlx-2d-zad"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -736,7 +732,6 @@
                     </view>
                     <connections>
                         <segue destination="xmC-Pm-NKY" kind="show" identifier="toQRgen" id="8V8-WH-Yj3"/>
-                        <segue destination="ZIM-FK-Ujv" kind="unwind" identifier="logoutProfessor" unwindAction="back:" id="5z3-5b-Lh0"/>
                         <segue destination="tHF-Rt-lVr" kind="show" identifier="toDatePick" id="eKl-UB-TQn"/>
                     </connections>
                 </viewController>
@@ -1018,7 +1013,6 @@
     </scenes>
     <resources>
         <image name="Red-X" width="334" height="334"/>
-        <image name="check" width="582" height="596"/>
         <image name="smiley" width="801" height="732"/>
         <image name="uploadPhoto" width="900" height="900"/>
     </resources>

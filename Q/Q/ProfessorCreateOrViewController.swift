@@ -87,41 +87,41 @@ class ProfessorCreateOrViewController: UIViewController {
 //        
 //    }
     
-    let compression:CGFloat = 0.8
-    func addImageToQueue(queue: PFObject, image: UIImage) {
-        guard let imageData = UIImagePNGRepresentation(image) else {
-            print("Could not convert image into data")
-            return
-        }
-        
-        guard let imageFile = PFFile(data: imageData) else {
-            print("Could not convert image file to Parse File")
-            return
-        }
-        
-        imageFile.saveInBackgroundWithBlock{ (success, error) -> Void in
-            
-            guard error == nil else {
-                self.displayErrorString(error, messageTitle: "Failed to upload QR image")
-                return
-            }
-            
-            if success {
-                print("Successfully saved QR image")
-                queue.setObject(imageFile, forKey: "qrImage")
-            }
-        }
-    }
+//    let compression:CGFloat = 0.8
+//    func addImageToQueue(queue: PFObject, image: UIImage) {
+//        guard let imageData = UIImagePNGRepresentation(image) else {
+//            print("Could not convert image into data")
+//            return
+//        }
+//        
+//        guard let imageFile = PFFile(data: imageData) else {
+//            print("Could not convert image file to Parse File")
+//            return
+//        }
+//        
+//        imageFile.saveInBackgroundWithBlock{ (success, error) -> Void in
+//            
+//            guard error == nil else {
+//                self.displayErrorString(error, messageTitle: "Failed to upload QR image")
+//                return
+//            }
+//            
+//            if success {
+//                print("Successfully saved QR image")
+//                queue.setObject(imageFile, forKey: "qrImage")
+//            }
+//        }
+//    }
     
-    @IBAction func back(segue:UIStoryboardSegue){
-        if let source = segue.sourceViewController as? QRGenViewController{
-            guard let qrFromGen = source.qr.image else{
-                print("No qr")
-                return
-            }
-            self.qrImageForParse = qrFromGen
-        }
-        
+    @IBAction func profBack(segue:UIStoryboardSegue){
+//        if let source = segue.sourceViewController as? QRGenViewController{
+//            guard let qrFromGen = source.qr.image else{
+//                print("No qr")
+//                return
+//            }
+//            self.qrImageForParse = qrFromGen
+//        }
+        return
     }
     
 
@@ -129,16 +129,16 @@ class ProfessorCreateOrViewController: UIViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? QRGenViewController{
-            //destination.delegate = self
-            if let queueIDFromParse = queueIDFromParse{
-                destination.queueID = queueIDFromParse
-            }
-            else{
-                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
-            }
-//            print("Start: \(startVar) End: \(endVar)")
-        }
+//        if let destination = segue.destinationViewController as? QRGenViewController{
+//            //destination.delegate = self
+//            if let queueIDFromParse = queueIDFromParse{
+//                destination.queueID = queueIDFromParse
+//            }
+//            else{
+//                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
+//            }
+////            print("Start: \(startVar) End: \(endVar)")
+//        }
         if let destination = segue.destinationViewController as? SetInfoForNewQueueViewController{
             //destination.delegate = self
             if let queueIDFromParse = queueIDFromParse{

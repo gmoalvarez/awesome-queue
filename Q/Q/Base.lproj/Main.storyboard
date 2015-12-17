@@ -318,13 +318,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="uploadPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-io-FlP">
-                                <rect key="frame" x="20" y="361" width="560" height="219"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="1xO-rO-Gwn" appends="YES" id="hoY-VL-SMD"/>
-                                </connections>
-                            </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-xb-PdO">
                                 <rect key="frame" x="228" y="296" width="145" height="29"/>
                                 <segments>
@@ -344,6 +337,13 @@
                                 <color key="textColor" red="0.93333339689999995" green="0.1176470667" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="uploadPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-io-FlP">
+                                <rect key="frame" x="20" y="361" width="560" height="219"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1xO-rO-Gwn" appends="YES" id="hoY-VL-SMD"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -388,7 +388,7 @@
                     <navigationItem key="navigationItem" id="5WN-qk-6xL">
                         <barButtonItem key="leftBarButtonItem" title="cancel" id="F7a-ym-ad2">
                             <connections>
-                                <action selector="cancel:" destination="Ka6-87-CcI" id="WVR-Wl-THn"/>
+                                <segue destination="15w-qv-FGy" kind="unwind" identifier="backToLogIn" unwindAction="loginBack:" id="HIZ-3P-WZd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="sign-up" id="6us-yG-XFK">
@@ -408,7 +408,7 @@
                         <outlet property="passwordsError" destination="Nas-2r-MEk" id="6AY-Po-zDO"/>
                         <outlet property="userNameText" destination="YYA-Ti-8cL" id="fex-m9-eKA"/>
                         <outlet property="userTypeSegmentedControl" destination="qTV-xb-PdO" id="Q2z-Uf-cuD"/>
-                        <segue destination="15w-qv-FGy" kind="unwind" identifier="backToLogIn" unwindAction="back:" id="loG-a6-xgk"/>
+                        <segue destination="15w-qv-FGy" kind="unwind" identifier="" unwindAction="loginBack:" id="9Ia-4D-siY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giU-wg-XTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -803,7 +803,7 @@
                                     <navigationItem title="Current Queue" id="sjK-h4-WZN">
                                         <barButtonItem key="leftBarButtonItem" title="back" id="yfr-jX-VGP">
                                             <connections>
-                                                <segue destination="qa3-C4-1HZ" kind="unwind" unwindAction="back:" id="5Hx-R6-1Ps"/>
+                                                <segue destination="qa3-C4-1HZ" kind="unwind" unwindAction="profBack:" id="H3d-Pb-u8c"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

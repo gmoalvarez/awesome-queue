@@ -11,9 +11,10 @@ import Parse
 
 class ProfessorCreateOrViewController: UIViewController {
     
-    var professor = PFUser.currentUser()!
-    var qrImageForParse:UIImage?
-    var queueIDFromParse:String?
+//    var professor = PFUser.currentUser()!
+//
+//    var queueIDFromParse:String?
+    //    var qrImageForParse:UIImage?
 //    var startVar:String?
 //    var endVar:String?
     
@@ -25,40 +26,34 @@ class ProfessorCreateOrViewController: UIViewController {
     }
 
     @IBAction func createQueueButtonPressed(sender: AnyObject) {
-        createQueue()
+//        createQueue()
+        performSegueWithIdentifier("toDatePick", sender: self)
     }
     
 
-    func createQueue() {
-        let newQueue = PFObject(className: "Queue")
-        newQueue["createdBy"] = professor
-        newQueue["waitlist"] = [PFObject]()
-        newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
-            guard error == nil else {
-                self.displayErrorString(error,messageTitle: "Failed to create Queue")
-                return
-            }
-            
-            if success {
-                print("Created queue successfully: \(success)")
-                guard let objectId = newQueue.objectId else {
-                    print("Created queue but did not get an id back")
-                    return
-                }
-                
-                self.professor.addObject(newQueue, forKey: "queues")
-                self.queueIDFromParse = objectId
-                
-                ///// ------- Automatically add students upon creating the queue for testing purposes
-//                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
-                ///// -------                        --------- /////////////////////////////////////
-//                self.performSegueWithIdentifier("toQRgen", sender: self)
-                self.performSegueWithIdentifier("toDatePick", sender: self)
-            }
-            
-        }
-        
-    }
+//    func createQueue() {
+//        let newQueue = PFObject(className: "Queue")
+//        newQueue["createdBy"] = professor
+//        newQueue["waitlist"] = [PFObject]()
+//        newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
+//            guard error == nil else {
+//                self.displayErrorString(error,messageTitle: "Failed to create Queue")
+//                return
+//            }
+//            
+//            if success {
+//                print("Created queue successfully: \(success)")
+//                guard let objectId = newQueue.objectId else {
+//                    print("Created queue but did not get an id back")
+//                    return
+//                }
+//                
+//                self.professor.addObject(newQueue, forKey: "queues")
+//                self.queueIDFromParse = objectId
+//                self.performSegueWithIdentifier("toDatePick", sender: self)
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,37 +115,42 @@ class ProfessorCreateOrViewController: UIViewController {
 //                return
 //            }
 //            self.qrImageForParse = qrFromGen
+//            return
 //        }
-        return
+        
+        
+            if let source = segue.sourceViewController as? ProfessorQueueViewController{
+                        source.timer.invalidate()
+                return
+            }
     }
+
     
 
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let destination = segue.destinationViewController as? QRGenViewController{
-//            //destination.delegate = self
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+////        if let destination = segue.destinationViewController as? QRGenViewController{
+////            //destination.delegate = self
+////            if let queueIDFromParse = queueIDFromParse{
+////                destination.queueID = queueIDFromParse
+////            }
+////            else{
+////                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
+////            }
+//////            print("Start: \(startVar) End: \(endVar)")
+////        }
+//        if let destination = segue.destinationViewController as? SetInfoForNewQueueViewController{
 //            if let queueIDFromParse = queueIDFromParse{
 //                destination.queueID = queueIDFromParse
 //            }
 //            else{
 //                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
 //            }
-////            print("Start: \(startVar) End: \(endVar)")
 //        }
-        if let destination = segue.destinationViewController as? SetInfoForNewQueueViewController{
-            //destination.delegate = self
-            if let queueIDFromParse = queueIDFromParse{
-                destination.queueID = queueIDFromParse
-            }
-            else{
-                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
-            }
-//            print("Start: \(startVar) End: \(endVar)")
-        }
-        
-    }
+//        
+//    }
     
     
 

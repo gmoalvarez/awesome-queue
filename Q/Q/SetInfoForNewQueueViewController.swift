@@ -20,7 +20,8 @@ class SetInfoForNewQueueViewController: UIViewController {
         if !beginWasSet || !endWasSet{
             return
         }
-        performSegueWithIdentifier("toQrFromDate", sender: self)
+        createQueue()
+//        performSegueWithIdentifier("toQrFromDate", sender: self)
     }
     
     @IBAction func setStart(sender: UIButton) {
@@ -102,5 +103,34 @@ class SetInfoForNewQueueViewController: UIViewController {
         }
     }
     
-
+    var professor = PFUser.currentUser()!
+    //var queueIDFromParse:String?
+    func createQueue() {
+        let newQueue = PFObject(className: "Queue")
+        newQueue["createdBy"] = professor
+        newQueue["waitlist"] = [PFObject]()
+        newQueue.saveInBackgroundWithBlock { (success, error) -> Void in
+            guard error == nil else {
+                self.displayErrorString(error,messageTitle: "Failed to create Queue")
+                return
+            }
+            
+            if success {
+                print("Created queue successfully: \(success)")
+                guard let objectId = newQueue.objectId else {
+                    print("Created queue but did not get an id back")
+                    return
+                }
+                
+                self.professor.addObject(newQueue, forKey: "queues")
+                self.queueID = objectId
+                //self.performSegueWithIdentifier("toDatePick", sender: self)
+                self.performSegueWithIdentifier("toQrFromDate", sender: self)
+            }
+        }
+    }
+    
+    
+    
+    
 }

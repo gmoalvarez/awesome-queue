@@ -19,7 +19,7 @@ class ProfessorQueueViewController: UIViewController {
             }
         }
     }
-    
+
     var timer = NSTimer()
     let timerInterval:NSTimeInterval = 3
     func startTimer() {

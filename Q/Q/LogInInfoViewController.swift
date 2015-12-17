@@ -37,12 +37,13 @@ class LogInInfoViewController: UIViewController,UINavigationControllerDelegate,U
         view.endEditing(true)
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("backToLogIn", sender: self)
-        
-    }
+//    @IBAction func cancel(sender: UIBarButtonItem) {
+//        performSegueWithIdentifier("backToLogIn", sender: self)
+//        
+//    }
     
     @IBAction func signUp(sender: UIBarButtonItem) {
+        print("YES!!!")
         passwordsError.hidden = true
         errorMessage.hidden = true
         if firstNameText.text == "" ||

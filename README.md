@@ -34,6 +34,8 @@ The app currently does not support joining multiple queues at the same time. If 
 #####Bugs
 There are currently 2 bugs which we are not yet able to figure out.
 
-1. If a user logs in as a teacher and creates a new queue, if they log out and log back in as a student, they are not able to join the new queue that was just created.
+1. If a user logs in as a teacher and creates a new queue, if they log out and log back in as a student using the same device, they are not able to join the new queue that was just created.
 
 2. We tried to implement a share feature for the QR code but we couldn't get it to work with CI images.
+3. There is an error joining the queue if a phone is in 24 hour mode.
+

@@ -6,6 +6,9 @@ The best iOS app for making office hour queues
 - Patrick Archbold
 - Guillermo Alvarez
 
+#Github Repository
+https://github.com/gmoalvarez/awesome-queue/
+
 #Description of Project
 
 Our project is a cloud based queue app that is specifically taylored to professor's hosting student office hours. The app uses a Parse database as the backend.

@@ -175,7 +175,6 @@
 				B32B96401BFEC885002CB95B /* Student Controllers */,
 				B32B963F1BFEC859002CB95B /* Professor Controllers */,
 				21DCCB801BDA253800851C10 /* Main.storyboard */,
-				21A4431A1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift */,
 				21DCCB7C1BDA253800851C10 /* AppDelegate.swift */,
 				21DCCB831BDA253800851C10 /* Assets.xcassets */,
 				21DCCB851BDA253800851C10 /* LaunchScreen.storyboard */,
@@ -237,6 +236,7 @@
 				B39C960C1BEAC01E00372446 /* ProfessorCreateOrViewController.swift */,
 				B32B96311BFD6F99002CB95B /* ProfessorQueueViewController.swift */,
 				B3B079C81C0FB1FC00ECDFA4 /* VisitDetailViewController.swift */,
+				21A4431A1C02F28C00EC35CB /* SetInfoForNewQueueViewController.swift */,
 			);
 			name = "Professor Controllers";
 			sourceTree = "<group>";

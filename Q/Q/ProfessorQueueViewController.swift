@@ -186,8 +186,6 @@ class ProfessorQueueViewController: UIViewController {
         }
         
     }
-    
-    
 }
 
 extension ProfessorQueueViewController: UITableViewDataSource, UITableViewDelegate {

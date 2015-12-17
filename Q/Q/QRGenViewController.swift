@@ -24,22 +24,6 @@ class QRGenViewController: UIViewController {
     var queueID = String()
     var begDate:String = "2015-11-21 12:01"
     var endDate:String = "2015-12-21 03:00"
-    
-    //this method gets called when the back button is pressed
-//    override func viewWillDisappear(animated : Bool) {
-//        super.viewWillDisappear(animated)
-//        
-//        if (self.isMovingFromParentViewController()){
-//            //delegate method that will be located in the ProfessorCreateViewController
-//            guard let image = qr.image else {
-//                print("No image to send back?")
-//                return
-//            }
-//            
-//            delegate.setQR(image, queueId: queueID)
-//        }
-//    }
-    
 
     func stringMaker(){
         qrString = "Q.0|\(queueID)|\(begDate)|\(endDate)|"

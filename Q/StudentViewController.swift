@@ -228,10 +228,19 @@ class StudentViewController: UIViewController {
     
     //makes NSDates from Strings in form "yyyy-MM-dd h:mm a"
     func makeDate(dateInString:String)->NSDate {
-        let dateFmt = NSDateFormatter()
-        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
-        dateFmt.dateFormat = "yyyy-MM-dd h:mm a"
-        let returnDate = dateFmt.dateFromString(dateInString)!
+        let dateFormatter = NSDateFormatter()
+        let locale = NSLocale.currentLocale()
+        
+        let dateFormat = NSDateFormatter.dateFormatFromTemplate("j", options: 0, locale: locale)!
+        
+        if dateFormat.rangeOfString("a") != nil {
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        }
+        else {
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        }
+        
+        let returnDate = dateFormatter.dateFromString(dateInString)!
         return returnDate
     }
     

@@ -477,7 +477,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCy-5g-WxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dah-gc-5tr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1161" y="-1589"/>
+            <point key="canvasLocation" x="1041" y="-1635"/>
         </scene>
         <!--Set Info For New Queue View Controller-->
         <scene sceneID="uUd-Nt-eaf">
@@ -588,6 +588,7 @@
                         <outlet property="startCheck" destination="f3m-yQ-ZSK" id="mI0-Xz-tD6"/>
                         <outlet property="startTime" destination="rSi-zU-jmy" id="jYY-v7-a1M"/>
                         <segue destination="7Ax-aE-8q7" kind="unwind" identifier="toProfFromTime" unwindAction="back:" id="fea-Pl-j80"/>
+                        <segue destination="xmC-Pm-NKY" kind="show" identifier="toQrFromDate" id="Jlk-V8-mQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pm6-WX-YZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1022,6 +1023,7 @@
         <image name="uploadPhoto" width="900" height="900"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Jlk-V8-mQn"/>
         <segue reference="rbA-It-bdg"/>
     </inferredMetricsTieBreakers>
 </document>

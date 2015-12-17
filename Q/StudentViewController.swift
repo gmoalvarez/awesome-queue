@@ -230,7 +230,7 @@ class StudentViewController: UIViewController {
     func makeDate(dateInString:String)->NSDate {
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
-        dateFmt.dateFormat = "yyyy-MM-dd h:mm"
+        dateFmt.dateFormat = "yyyy-MM-dd h:mm a"
         let returnDate = dateFmt.dateFromString(dateInString)!
         return returnDate
     }

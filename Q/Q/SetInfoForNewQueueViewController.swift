@@ -24,7 +24,7 @@ class SetInfoForNewQueueViewController: UIViewController {
         if beginWasSet && endWasSet{
             timeWasSet = true
         }
-        performSegueWithIdentifier("toProfFromTime", sender: self)
+        performSegueWithIdentifier("toQrFromDate", sender: self)
     }
     
     @IBAction func setStart(sender: UIButton) {
@@ -95,15 +95,23 @@ class SetInfoForNewQueueViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destinationViewController as? QRGenViewController{
+            //destination.delegate = self
+            if let queueIDForQR = queueID{
+                destination.queueID = queueIDForQR
+            }
+            else{
+                print("queueIDFromParse nil in DatePick")
+            }
+            guard let qStart = startDateTime, qEnd = endDateTime else{
+                print("start or end time not set in dateTime")
+                return
+            }
+            destination.begDate = qStart
+            destination.endDate = qEnd
+        }
     }
-    */
+    
 
 }

@@ -14,9 +14,6 @@ import Parse
 class StudentViewController: UIViewController {
     
     @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var queueName: UILabel!
-    @IBOutlet weak var lat: UILabel!
-    @IBOutlet weak var long: UILabel!
     @IBOutlet weak var redX: UIImageView!
     @IBOutlet weak var joinQueueButton: UIButton!
     @IBOutlet weak var exitQueueButton: UIButton!
@@ -126,6 +123,7 @@ class StudentViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        status.hidden = true
         super.viewDidLoad()
         print(currentUser)
         allHide()
@@ -187,7 +185,7 @@ class StudentViewController: UIViewController {
     @IBAction func joinQ(sender: UIButton) {
         //adding alert
         redX.hidden = true
-        
+        status.hidden = true
         let controller = UIAlertController(title: "SUBMIT REASON", message: "Would you like to add a brief reason for your visit?",
             preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Add Reason", style: .Default, handler: {action in self.performSegueWithIdentifier("toReason", sender: self)})
@@ -207,14 +205,15 @@ class StudentViewController: UIViewController {
         
         if infoArray[0] != "Q.0" {
             status.text = "Error: Not a Q.0 qr code."
+            status.hidden = false
             return
         }
         
         currentQueueId = infoArray[1]
         status.text = "Status: \(infoArray[0])"
-        queueName.text = "queue id: \(infoArray[1])"
-        lat.text = "Begin Time: \(infoArray[2])"
-        long.text = "End Time: \(infoArray[3])"
+//        queueName.text = "queue id: \(infoArray[1])"
+//        lat.text = "Begin Time: \(infoArray[2])"
+//        long.text = "End Time: \(infoArray[3])"
         let beginDT = makeDate(infoArray[2])
         let endDT = makeDate(infoArray[3])
         if (checkTime(beginDT, endDate: endDT)){

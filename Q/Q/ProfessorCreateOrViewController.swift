@@ -14,8 +14,8 @@ class ProfessorCreateOrViewController: UIViewController {
     var professor = PFUser.currentUser()!
     var qrImageForParse:UIImage?
     var queueIDFromParse:String?
-    var startVar:String?
-    var endVar:String?
+//    var startVar:String?
+//    var endVar:String?
     
     
     @IBAction func logout(sender: UIBarButtonItem) {
@@ -52,7 +52,8 @@ class ProfessorCreateOrViewController: UIViewController {
                 ///// ------- Automatically add students upon creating the queue for testing purposes
 //                TestQueueGenerator.addAllStudentsToQueueWithId(objectId)
                 ///// -------                        --------- /////////////////////////////////////
-                self.performSegueWithIdentifier("toQRgen", sender: self)
+//                self.performSegueWithIdentifier("toQRgen", sender: self)
+                self.performSegueWithIdentifier("toDatePick", sender: self)
             }
             
         }
@@ -136,7 +137,17 @@ class ProfessorCreateOrViewController: UIViewController {
             else{
                 print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
             }
-            print("Start: \(startVar) End: \(endVar)")
+//            print("Start: \(startVar) End: \(endVar)")
+        }
+        if let destination = segue.destinationViewController as? SetInfoForNewQueueViewController{
+            //destination.delegate = self
+            if let queueIDFromParse = queueIDFromParse{
+                destination.queueID = queueIDFromParse
+            }
+            else{
+                print("queueIDFromParse nil while unwrapping in prepareForSegue() in ProfessorCreateOrViewController")
+            }
+//            print("Start: \(startVar) End: \(endVar)")
         }
         
     }
